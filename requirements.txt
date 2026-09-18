@@ -1,0 +1,15 @@
+aiogram
+openai
+flask
+requests
+python-dotenv
+anyio
+psycopg2-binary
+aiohttp
+dateparser
+cryptography
+caldav
+httpx
+psutil
+yookassa
+apscheduler
