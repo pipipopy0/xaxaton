@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendator — Your Calendar in Telegram</title>
+    <meta name="description" content="Calendator is a Telegram bot that manages your calendar through natural language chat.">
+
+    <!-- TODO: Insert Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calendator — Your Calendar in Telegram">
+    <meta property="og:description" content="Calendator is a Telegram bot that manages your calendar through natural language chat.">
+    <meta property="og:image" content="TODO: Insert Open Graph Image URL">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Calendator">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calendator — Your Calendar in Telegram">
+    <meta name="twitter:description" content="Calendator is a Telegram bot that manages your calendar through natural language chat.">
+    <meta name="twitter:image" content="TODO: Insert Twitter Image URL">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="bg-ambient bg-ambient--1" aria-hidden="true"></div>
+    <div class="bg-ambient bg-ambient--2" aria-hidden="true"></div>
+    <div class="bg-ambient bg-ambient--3" aria-hidden="true"></div>
+
+    <header class="nav-header">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" aria-label="Calendator home">
+                <span class="nav-logo-icon">📅</span>
+                <span class="nav-logo-text">Calendator</span>
+            </a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="privacy.html" class="nav-link">Privacy Policy</a>
+                <a href="terms.html" class="nav-link">Terms of Service</a>
+                <a href="support.html" class="nav-link">Support</a>
+            </nav>
+            <a href="https://telegram.me/xrosobot" class="btn btn--primary nav-cta" target="_blank" rel="noopener noreferrer">
+                Open in Telegram
+                <span class="btn-arrow">→</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1 class="hero-title">Your calendar,<br>right in Telegram</h1>
+                    <p class="hero-description">
+                        Talk to Calendator like you talk to a friend. Type <em>"Remind me to call Mom tomorrow at 3 PM"</em> and it just works. No apps to open, no forms to fill — just chat.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://telegram.me/xrosobot" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">
+                            Open in Telegram
+                            <span class="btn-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- iPhone mockup with English chat -->
+                    <div class="phone-mockup" aria-hidden="true">
+                        <div class="phone-frame">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <div class="phone-chat">
+                                    <div class="chat-bubble chat-bubble--received">
+                                        <div class="chat-avatar">C</div>
+                                        <div class="chat-text">Hey! I'll help you stay on top of your schedule. What should we add?</div>
+                                    </div>
+                                    <div class="chat-bubble chat-bubble--sent">
+                                        <div class="chat-text">Remind me to call Mom tomorrow at 3 PM</div>
+                                    </div>
+                                    <div class="chat-bubble chat-bubble--received">
+                                        <div class="chat-avatar">C</div>
+                                        <div class="chat-text">
+                                            Sure, I'll remind you:<br>
+                                            <span class="chat-event">Call Mom</span><br>
+                                            <span class="chat-time">Tomorrow, 3:00 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Home indicator -->
+                                <div class="phone-home-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="phone-shadow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-inner">
+                <h2 class="section-title">What Calendator does</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3 class="feature-title">Create events</h3>
+                        <p class="feature-text">Describe any event in natural language and Calendator adds it to your calendar instantly.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">✏️</div>
+                        <h3 class="feature-title">Edit events</h3>
+                        <p class="feature-text">Need to reschedule? Just say <em>"Move my Friday meeting to Monday"</em> and it's done.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3 class="feature-title">Smart reminders</h3>
+                        <p class="feature-text">Get timely notifications in Telegram so you never miss anything important.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3 class="feature-title">Seamless sync</h3>
+                        <p class="feature-text">Works with Google Calendar and Apple Calendar. Changes sync both ways automatically.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="section-inner">
+                <h2 class="section-title">How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Connect your calendar</h3>
+                        <p class="step-text">Link your Google or Apple Calendar with one click. It takes seconds.</p>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Chat naturally</h3>
+                        <p class="step-text">Open Telegram and message Calendator like you'd message anyone else. No special commands needed.</p>
+                    </div>
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Stay organized</h3>
+                        <p class="step-text">Your calendar stays up to date. Calendator handles the details so you don't have to.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">📅 Calendator</span>
+                    <p class="footer-tagline">Your calendar, right in Telegram.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4 class="footer-col-title">Legal</h4>
+                        <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                        <a href="terms.html" class="footer-link">Terms of Service</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-col-title">Help</h4>
+                        <a href="support.html" class="footer-link">Support</a>
+                        <a href="https://telegram.me/xrosobot" class="footer-link" target="_blank" rel="noopener noreferrer">Open Bot</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span class="footer-copy">© <span id="current-year"></span> Calendator</span>
+                    <span class="footer-separator">·</span>
+                    <span class="footer-version">v1.0.0</span>
+                </div>
+                <div class="footer-social">
+                    <a href="TODO:%20Insert%20GitHub%20URL" class="footer-social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer" data-social="github">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="TODO:%20Insert%20X%20(Twitter)%20URL" class="footer-social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" data-social="twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="mailto:Max886066@gmail.com" class="footer-social-link" aria-label="Email" data-social="email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

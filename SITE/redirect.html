@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Переход в Telegram</title>
+
+    <!-- Yandex.Metrika -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){
+                (m[i].a=m[i].a||[]).push(arguments)
+            };
+            m[i].l=1*new Date();
+
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+
+            k=e.createElement(t);
+            a=e.getElementsByTagName(t)[0];
+            k.async=1;
+            k.src=r;
+            a.parentNode.insertBefore(k,a);
+        })(
+            window,
+            document,
+            'script',
+            'https://mc.yandex.ru/metrika/tag.js?id=111688581',
+            'ym'
+        );
+
+        ym(111688581, 'init', {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+</head>
+
+<body>
+
+<p style="font-family: Arial; text-align: center; margin-top: 50px;">
+    Перенаправляем в Telegram. Подождите, пожалуйста, пару секунд...
+</p>
+
+<script>
+    const COUNTER_ID = 111688581;
+    const BOT_USERNAME = 'xrosobot';
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Получаем настоящий yclid, если он есть
+    const yclid = urlParams.get('yclid') || '';
+
+    // Получаем настоящий ClientID именно через API Метрики
+    ym(COUNTER_ID, 'getClientID', function(clientId) {
+
+        console.log('YCLID:', yclid);
+        console.log('ClientID:', clientId);
+
+        /*
+         * Telegram start-параметр должен содержать только
+         * допустимые символы.
+         *
+         * Формат:
+         * yclid_XXXX_client_XXXX
+         */
+
+        let payload = '';
+
+        if (yclid) {
+            payload += 'yclid_' + yclid;
+        }
+
+        if (clientId) {
+            if (payload) {
+                payload += '_';
+            }
+
+            payload += 'client_' + clientId;
+        }
+
+        console.log('Telegram payload:', payload);
+
+        const botUrl =
+            'https://t.me/' +
+            BOT_USERNAME +
+            '?start=' +
+            encodeURIComponent(payload);
+
+        // Небольшая задержка, чтобы Мetrika успела отправить визит
+        setTimeout(function() {
+            window.location.replace(botUrl);
+        }, 3000);
+    });
+</script>
+
+</body>
+</html>
