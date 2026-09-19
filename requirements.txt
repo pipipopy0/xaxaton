@@ -1,4 +1,5 @@
-aiogram
+//aiogram
+maxapi
 openai
 flask
 requests

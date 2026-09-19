@@ -51,7 +51,7 @@ def parse_yookassa_datetime(value):
 # ПЕРВАЯ РАЗОВАЯ ОПЛАТА — 249 ₽
 # ============================================================
 
-def create_first_payment(user_id: int, tg_id: int):
+def create_first_payment(user_id: int, user_id: int):
     """
     Обычная разовая подписка.
     Карта НЕ сохраняется.
@@ -69,7 +69,7 @@ def create_first_payment(user_id: int, tg_id: int):
                 "return_url": RETURN_URL
             },
             "description": (
-                f"Pro на 30 суток для пользователя {tg_id}"
+                f"Pro на 30 суток для пользователя {user_id}"
             ),
             "save_payment_method": False,
             "metadata": {
@@ -85,7 +85,7 @@ def create_first_payment(user_id: int, tg_id: int):
 # ПЕРВАЯ ОПЛАТА С АВТОПРОДЛЕНИЕМ — 229 ₽
 # ============================================================
 
-def create_auto_payment(user_id: int, tg_id: int):
+def create_auto_payment(user_id: int, user_id: int):
     """
     Первая оплата тарифа с автопродлением.
     Способ оплаты сохраняется.
@@ -103,7 +103,7 @@ def create_auto_payment(user_id: int, tg_id: int):
                 "return_url": RETURN_URL
             },
             "description": (
-                f"Pro с автопродлением для пользователя {tg_id}"
+                f"Pro с автопродлением для пользователя {user_id}"
             ),
             "save_payment_method": True,
             "metadata": {
@@ -119,7 +119,7 @@ def create_auto_payment(user_id: int, tg_id: int):
 # РУЧНОЕ ПРОДЛЕНИЕ — 249 ₽
 # ============================================================
 
-def create_one_time_renewal_payment(user_id: int, tg_id: int):
+def create_one_time_renewal_payment(user_id: int, user_id: int):
     """
     Ручное продление без автопродления.
     """
@@ -136,7 +136,7 @@ def create_one_time_renewal_payment(user_id: int, tg_id: int):
                 "return_url": RETURN_URL
             },
             "description": (
-                f"Продление Pro на 30 суток для пользователя {tg_id}"
+                f"Продление Pro на 30 суток для пользователя {user_id}"
             ),
             "save_payment_method": False,
             "metadata": {

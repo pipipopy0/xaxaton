@@ -17,7 +17,7 @@ port = getenv("port")
 users_db = {
     "users": """
         id SERIAL PRIMARY KEY,
-        tg_id BIGINT UNIQUE NOT NULL,
+        user_id BIGINT UNIQUE NOT NULL,
         tg_nickname TEXT,
         name TEXT,
         timezone_offset TEXT,

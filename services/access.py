@@ -7,13 +7,13 @@ ADMINS = set()
 def is_pro_user(db, user_id):
     user_row = db.select_data(
         "users",
-        columns=["tg_id"],
+        columns=["user_id"],
         where_conditions={"id": user_id}
     )
     if user_row:
-        tg_id = user_row[0][0]
-        if tg_id in ADMINS:
-            logger.info(f"ADMINS: {ADMINS}, tg_id: {tg_id}")
+        user_id = user_row[0][0]
+        if user_id in ADMINS:
+            logger.info(f"ADMINS: {ADMINS}, user_id: {user_id}")
             return True
     subs = db.select_data(
         "subscriptions",
@@ -62,12 +62,12 @@ def check_access(db, user_id, action_type='event'):
     # 1. Берём активную подписку пользователя
     user_row = db.select_data(
             "users",
-            columns=["tg_id"],
+            columns=["user_id"],
             where_conditions={"id": user_id}
         )
     if user_row:
-        tg_id = user_row[0][0]
-        if tg_id in ADMINS:
+        user_id = user_row[0][0]
+        if user_id in ADMINS:
             return True, "", "pro"
     subs = db.select_data(
         "subscriptions",
@@ -111,9 +111,9 @@ def check_access(db, user_id, action_type='event'):
     # === УЧЁТ ЧАСОВОГО ПОЯСА ===
     user_data = db.select_data("users", where_conditions={"id": user_id})
     if not user_data:
-        text = get_text(key = "user_not_found", tg_id = user_id, db=db)
+        text = get_text(key = "user_not_found", user_id = user_id, db=db)
         return False, text, "free"
-    tg_id = user_data[0][1]
+    user_id = user_data[0][1]
     user_offset = user_data[0][4]
     if not user_offset:
         user_offset = "UTC"
@@ -148,7 +148,7 @@ def check_access(db, user_id, action_type='event'):
         voice_used = 0
     
     # Получаем текст для отказа (для обоих типов одинаковый)
-    text = get_text(key="access_denied", tg_id=tg_id, db=db)
+    text = get_text(key="access_denied", user_id=user_id, db=db)
     
     # 6. Сравниваем с лимитами
     if action_type == 'event':

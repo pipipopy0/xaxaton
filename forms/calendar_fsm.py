@@ -1,4 +1,4 @@
-from aiogram.fsm.state import State, StatesGroup
+from maxapi.context import State, StatesGroup
 
 class CalendarStates(StatesGroup):
     waiting_email = State()

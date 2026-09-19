@@ -108,21 +108,21 @@ async def check_pending_payments():
             # Получаем пользователя
             user = db.select_data(
                 "users",
-                columns=["tg_id", "tg_nickname", "name"],
+                columns=["user_id", "tg_nickname", "name"],
                 where_conditions={"id": user_id}
             )
             if not user:
                 logger.warning(f"Пользователь {user_id} не найден, пропускаем")
                 continue
 
-            user_tg_id = user[0][0]
+            user_user_id = user[0][0]
             nickname = user[0][1] or "—"
             name = user[0][2] or "—"
 
             text = (
                 f"💰 Новый платёж!\n"
                 f"Пользователь: {name} (@{nickname})\n"
-                f"TG ID: {user_tg_id}\n"
+                f"TG ID: {user_user_id}\n"
                 f"Сумма: {amount} руб.\n"
                 f"Дата: {paid_at}\n\n"
                 f"Ответьте на это сообщение чеком."
@@ -252,7 +252,7 @@ async def check_new_users():
     try:
         rows = db.select_data(
             "users",
-            columns=["id", "tg_id", "tg_nickname", "name"],
+            columns=["id", "user_id", "tg_nickname", "name"],
             where_conditions={"admin_notified": False}
         )
     except Exception as e:
@@ -264,7 +264,7 @@ async def check_new_users():
         return
 
     for row in rows:
-        user_id, tg_id, nickname, name = row
+        user_id, user_id, nickname, name = row
         nickname = nickname or "—"
         name = name or "—"
 
@@ -272,7 +272,7 @@ async def check_new_users():
             f"🆕 Новый пользователь!\n"
             f"Имя: {name}\n"
             f"Ник: @{nickname}\n"
-            f"TG ID: {tg_id}"
+            f"TG ID: {user_id}"
         )
 
         try:
@@ -284,9 +284,9 @@ async def check_new_users():
                 where_conditions={"id": user_id}
             )
             
-            logger.info(f"Админ уведомлён о новом пользователе {tg_id}")
+            logger.info(f"Админ уведомлён о новом пользователе {user_id}")
         except Exception as e:
-            logger.error(f"Ошибка при отправке уведомления о пользователе {tg_id}: {e}")
+            logger.error(f"Ошибка при отправке уведомления о пользователе {user_id}: {e}")
 
         await asyncio.sleep(1)
 

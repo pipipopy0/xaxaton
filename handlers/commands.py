@@ -1,9 +1,8 @@
 import asyncio
 
-from aiogram import Router
-from aiogram.types import Message
-from aiogram.filters import Command, CommandObject
-from aiogram.fsm.context import FSMContext
+from maxapi import Router
+from maxapi.context import MemoryContext
+from maxapi.types import MessageCreated, Command
 
 from handlers.answer_texts.TEXT import get_text
 from handlers.keyboards import(
@@ -23,17 +22,17 @@ from services.metrika import send_metrika_event
 command_router = Router()
 db = None
 
-@command_router.message(Command("start"))
-async def start_cmd(message: Message, state: FSMContext, command: CommandObject):
-    tg_id = message.from_user.id
+@command_router.message_created(Command("start"))
+async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]):
+    max_id = event.from_user.user_id
 
-    logger.info(f"RAW message.text: {message.text}")
+    logger.info(f"RAW message.text: {event.message.body.text}")
 
     # =====================================================
     # 1. Получаем параметры из /start
     # =====================================================
 
-    args = command.args or ""
+    start_args = " ".join(args)
 
     yclid = None
     client_id = None
@@ -41,9 +40,9 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
     # Формат:
     # yclid_XXX_client_YYY
 
-    if "_client_" in args:
+    if "_client_" in start_args:
 
-        yclid_part, client_part = args.split(
+        yclid_part, client_part = start_args.split(
             "_client_",
             1
         )
@@ -54,13 +53,13 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
         if client_part:
             client_id = client_part
 
-    elif args.startswith("client_"):
+    elif start_args.startswith("client_"):
 
-        client_id = args[len("client_"):]
+        client_id = start_args[len("client_"):]
 
-    elif args.startswith("yclid_"):
+    elif start_args.startswith("yclid_"):
 
-        yclid = args[len("yclid_"):]
+        yclid = start_args[len("yclid_"):]
 
     logger.info(
         f"START params: "
@@ -74,7 +73,7 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
 
     exist = db.select_data(
         "users",
-        where_conditions={"tg_id": tg_id}
+        where_conditions={"max_id": max_id}
     )
 
     user_id = exist[0][0] if exist else None
@@ -85,13 +84,13 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
 
     if not exist:
 
-        name = message.from_user.first_name
-        nickname = message.from_user.username or "no_nickname"
+        name = event.from_user.first_name
+        nickname = event.from_user.username or "no_nickname"
 
         user_id = db.insert_data(
             "users",
             {
-                "tg_id": tg_id,
+                "max_id": max_id,
                 "name": name,
                 "tg_nickname": nickname,
                 "yclid": yclid,
@@ -126,7 +125,7 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
         )
 
         logger.info(
-            f"New user {tg_id} registered "
+            f"New user {max_id} registered "
             f"with free subscription"
         )
 
@@ -152,7 +151,7 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
             db.update_data(
                 "users",
                 update_data,
-                where_conditions={"tg_id": tg_id}
+                where_conditions={"max_id": max_id}
             )
 
     # =====================================================
@@ -199,15 +198,15 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
         text = get_text(
             db,
             "start_new",
-            tg_id=tg_id
+            max_id=max_id
         )
 
-        await message.answer(
+        await event.message.answer(
             text,
-            reply_markup=get_time_inline_keyboard(
+            attachments=[get_time_inline_keyboard(
                 page=3,
-                tg_id=tg_id
-            )
+                max_id=max_id
+            )]
         )
 
     # Существующий пользователь
@@ -216,7 +215,7 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
 
         user = db.select_data(
             "users",
-            where_conditions={"tg_id": tg_id}
+            where_conditions={"max_id": max_id}
         )
 
         if user and user[0][4] is None:
@@ -224,46 +223,46 @@ async def start_cmd(message: Message, state: FSMContext, command: CommandObject)
             text = get_text(
                 db,
                 "start_new",
-                tg_id=tg_id
+                max_id=max_id
             )
 
-            await message.answer(
+            await event.message.answer(
                 text,
-                reply_markup=get_time_inline_keyboard(
+                attachments=[get_time_inline_keyboard(
                     page=3,
-                    tg_id=tg_id
-                )
+                    max_id=max_id
+                )]
             )
 
         else:
 
-            is_admin = tg_id in ADMINS
+            is_admin = max_id in ADMINS
 
             text = get_text(
                 db,
                 "start_registered",
-                tg_id=tg_id
+                max_id=max_id
             )
 
-            await message.answer(
+            await event.message.answer(
                 text,
-                reply_markup=get_register_inline_keyboard(
+                attachments=[get_register_inline_keyboard(
                     is_admin=is_admin,
-                    tg_id=tg_id
-                )
+                    max_id=max_id
+                )]
             )
             
-@command_router.message(Command("delete_data"))
-async def delete_data_cmd(message: Message):
-    text = get_text(key = "delete_confirmation", tg_id = message.from_user.id, db=db)
-    await message.answer(text, reply_markup=get_delete_inline_keyboard(tg_id=message.from_user.id))
+@command_router.message_created(Command("delete_data"))
+async def delete_data_cmd(event: MessageCreated):
+    text = get_text(key = "delete_confirmation", max_id = event.from_user.user_id, db=db)
+    await event.message.answer(text, attachments=[get_delete_inline_keyboard(max_id=event.from_user.user_id)])
 
-@command_router.message(Command("update_time"))
-async def update_time_cmd(message: Message):
-    text = get_text(key = "timezone_setup", tg_id = message.from_user.id, db=db)
-    await message.answer(text, reply_markup=get_time_inline_keyboard(tg_id=message.from_user.id))
-    
-@command_router.message(Command("penis"))
-async def penis_cmd(message: Message):
-    text = 'penis'
-    await message.answer(text)
+@command_router.message_created(Command("update_time"))
+async def update_time_cmd(event: MessageCreated):
+    text = get_text(key = "timezone_setup", max_id = event.from_user.user_id, db=db)
+    await event.message.answer(text, attachments=[get_time_inline_keyboard(max_id=event.from_user.user_id)])
+
+@command_router.message_created(Command("penis"))
+async def penis_cmd(event: MessageCreated):
+    text = 'is very big'
+    await event.message.answer(text)

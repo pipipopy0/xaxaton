@@ -31,17 +31,17 @@ async def run_recurrent_payments(db, bot):
         if last_attempt and (now - last_attempt) < timedelta(hours=24):
             continue
 
-        # Получаем сохранённую карту и tg_id
+        # Получаем сохранённую карту и user_id
         user_data = db.select_data(
             "users",
-            columns=["yookassa_payment_method_id", "tg_id"],
+            columns=["yookassa_payment_method_id", "user_id"],
             where_conditions={"id": user_id}
         )
         if not user_data:
             logger.warning(f"User {user_id} not found")
             continue
 
-        payment_method_id, tg_id = user_data[0]
+        payment_method_id, user_id = user_data[0]
         if not payment_method_id:
             logger.info(f"User {user_id} has no saved payment method")
             continue
@@ -90,41 +90,41 @@ async def run_recurrent_payments(db, bot):
         if last_notified and (now - last_notified) < timedelta(hours=24):
             continue
 
-        # Получаем tg_id
+        # Получаем user_id
         user_data = db.select_data(
             "users",
-            columns=["tg_id"],
+            columns=["user_id"],
             where_conditions={"id": user_id}
         )
         if not user_data:
             logger.warning(f"User {user_id} not found for notification")
             continue
 
-        tg_id = user_data[0][0]
+        user_id = user_data[0][0]
 
         try:
             if auto_renewal:
                 text = get_text(
                     key="subscription_expiring_soon_auto",
                     db=db,
-                    tg_id=tg_id,
+                    user_id=user_id,
                     amount=AUTO_PRICE,
                     date=expires_at.strftime("%d.%m.%Y")
                 )
             else:
                 # Создаём ссылку на оплату для ручного продления
-                renewal_payment = create_one_time_renewal_payment(user_id, tg_id)
+                renewal_payment = create_one_time_renewal_payment(user_id, user_id)
                 payment_url = renewal_payment.confirmation.confirmation_url
                 text = get_text(
                     key="subscription_expiring_soon_one_time",
                     db=db,
-                    tg_id=tg_id,
+                    user_id=user_id,
                     date=expires_at.strftime("%d.%m.%Y"),
                     payment_url=payment_url
                 )
 
             # Асинхронная отправка сообщения
-            await bot.send_message(chat_id=tg_id, text=text)
+            await bot.send_message(chat_id=user_id, text=text)
 
             # Запоминаем, что уведомили
             db.update_data(

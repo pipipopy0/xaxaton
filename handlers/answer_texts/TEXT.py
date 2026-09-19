@@ -569,19 +569,19 @@ from logger_config import logger
 
 
 
-def get_text(db, key: str, tg_id: str = None, **kwargs) -> str:
+def get_text(db, key: str, user_id: str = None, **kwargs) -> str:
     
-    tg_id = str(tg_id)
+    user_id = str(user_id)
     try:
         language = "ru"#дефолтный язык, если не удалось получить язык пользователя из базы данных
         if db:
-            user = db.select_data("users", where_conditions={"tg_id" : tg_id})
+            user = db.select_data("users", where_conditions={"user_id" : user_id})
             if user and user[0][6]:
                 language = user[0][6]
 
         if language not in ["ru", "en"]:
             language = "ru"
-            logger.warning(f"User {tg_id} has unsupported language '{language}', defaulting to 'ru'.")
+            logger.warning(f"User {user_id} has unsupported language '{language}', defaulting to 'ru'.")
     
         text = TEXTS.get(key, {}).get(language, "")
         if kwargs and text:

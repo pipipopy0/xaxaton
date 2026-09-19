@@ -32,25 +32,25 @@ async def send_cheques_to_users(db, bot):
         try:
             user = db.select_data(
                 "users",
-                columns=["tg_id"],
+                columns=["user_id"],
                 where_conditions={"id": user_id}
             )
             if not user:
                 logger.warning(f"Пользователь {user_id} не найден, чек не отправлен")
                 continue
-            user_tg_id = user[0][0]
+            user_user_id = user[0][0]
 
             # Определяем тип файла по расширению
             ext = os.path.splitext(file_path)[1].lower()
             if ext in (".jpg", ".jpeg", ".png"):
                 await bot.send_photo(
-                    chat_id=user_tg_id,
+                    chat_id=user_user_id,
                     photo=FSInputFile(file_path),
                     caption="Ваш чек"
                 )
             else:
                 await bot.send_document(
-                    chat_id=user_tg_id,
+                    chat_id=user_user_id,
                     document=FSInputFile(file_path),
                     caption="Ваш чек"
                 )
@@ -61,7 +61,7 @@ async def send_cheques_to_users(db, bot):
                 {"status": "sent", "updated_at": "NOW()"},
                 where_conditions={"id": notif_id}
             )
-            logger.info(f"Чек отправлен пользователю {user_tg_id}, уведомление {notif_id}")
+            logger.info(f"Чек отправлен пользователю {user_user_id}, уведомление {notif_id}")
 
         except Exception as e:
             logger.error(f"Ошибка отправки чека для уведомления {notif_id}: {e}")

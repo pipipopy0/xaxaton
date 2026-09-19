@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-BOT_TOKEN = getenv("TG_BOT_API")
+BOT_TOKEN = getenv("MAX_BOT_API")
 ADMIN_ID = getenv("tg_admin_id")
 OPENROUTER_API = getenv("OPENROUTER_API")
 POLZA_API = getenv("POLZA_API")
