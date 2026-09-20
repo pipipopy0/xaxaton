@@ -1,7 +1,7 @@
 import asyncio
 from os import getenv
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher
+from maxapi import Bot, Dispatcher
 from apscheduler.schedulers.asyncio import AsyncIOScheduler 
 
 import handlers.callback
@@ -9,7 +9,6 @@ import handlers.router
 import services.google_calendar_service
 import services.calendars.calendar_service
 
-#Импортируем другую логику
 from handlers.router import router
 from handlers.callback import callback_router
 from handlers.commands import command_router
@@ -20,12 +19,10 @@ from services.cheque_sender import send_cheques_to_users
 from services.remind_user import remind_user_about_event
 
 
-
-#Загрузка переменных окружения
 load_dotenv()
-TOKEN = getenv("TG_BOT_API")
+TOKEN = getenv("MAX_BOT_API")
 
-admin_id = int(getenv("tg_admin_id"))
+admin_id = int(getenv("max_admin_id"))
 
 connection = connect_database()
 db = Database(connection)
@@ -40,9 +37,7 @@ handlers.commands.db = db
 handlers.keyboards.db = db
 dp = Dispatcher()
 
-dp.include_router(command_router)
-dp.include_router(router)
-dp.include_router(callback_router)
+dp.include_routers(command_router, router, callback_router)
 
 
 async def main():

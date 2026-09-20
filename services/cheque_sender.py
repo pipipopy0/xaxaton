@@ -4,12 +4,11 @@ from aiogram.types import FSInputFile
 from logger_config import logger
 
 async def send_cheques_to_users(db, bot):
-    """Отправляет готовые чеки пользователям от имени основного бота."""
 
     try:
         rows = db.select_data(
             "payment_notifications",
-            columns=["id", "user_id", "cheque_file_path"],
+            columns=["id", "max_id", "cheque_file_path"],
             where_conditions={"status": "cheque_uploaded"}
         )
     except Exception as e:
@@ -22,7 +21,7 @@ async def send_cheques_to_users(db, bot):
 
     for row in rows:
         notif_id = row[0]
-        user_id = row[1]
+        max_id = row[1]
         file_path = row[2]
 
         if not file_path or not os.path.exists(file_path):
@@ -32,15 +31,14 @@ async def send_cheques_to_users(db, bot):
         try:
             user = db.select_data(
                 "users",
-                columns=["user_id"],
-                where_conditions={"id": user_id}
+                columns=["max_id"],
+                where_conditions={"id": max_id}
             )
             if not user:
-                logger.warning(f"Пользователь {user_id} не найден, чек не отправлен")
+                logger.warning(f"Пользователь {max_id} не найден, чек не отправлен")
                 continue
             user_user_id = user[0][0]
 
-            # Определяем тип файла по расширению
             ext = os.path.splitext(file_path)[1].lower()
             if ext in (".jpg", ".jpeg", ".png"):
                 await bot.send_photo(
@@ -55,7 +53,6 @@ async def send_cheques_to_users(db, bot):
                     caption="Ваш чек"
                 )
 
-            # Обновляем статус
             db.update_data(
                 "payment_notifications",
                 {"status": "sent", "updated_at": "NOW()"},

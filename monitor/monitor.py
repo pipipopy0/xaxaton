@@ -1,6 +1,5 @@
 import time
 
-
 from monitor.status import get_full_status, format_status
 from monitor.notifier import send_alert
 

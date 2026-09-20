@@ -47,7 +47,7 @@ async def remind_user_about_event(bot):
                     )
                     
                     if user:
-                        user_id = user[0][1]
+                        max_id = user[0][1]
                         offset = user[0][4]
                         
                         start_at = start_at.replace(tzinfo=timezone.utc)
@@ -57,10 +57,10 @@ async def remind_user_about_event(bot):
 
                         try:
                             await bot.send_message(
-                                chat_id=user_id, 
+                                chat_id=max_id, 
                                 text=f"Напоминание: {event_text} в {local_time}"
                             )
-                            logger.info(f"Notification sent to user {user_id}: {event_text}")
+                            logger.info(f"Notification sent to user {max_id}: {event_text}")
                             
                             db.update_data(
                                 table_name="events_notifications",
@@ -70,7 +70,7 @@ async def remind_user_about_event(bot):
                             
                         except TelegramForbiddenError:
                             # Пользователь заблокировал бота
-                            logger.warning(f"User {user_id} blocked the bot. Disabling all reminders.")
+                            logger.warning(f"User {max_id} blocked the bot. Disabling all reminders.")
                             
                             # Отключаем все активные события пользователя
                             db.update_data(
@@ -92,15 +92,15 @@ async def remind_user_about_event(bot):
                                 where_conditions={"id": event_notification_id}
                             )
                             
-                            logger.info(f"Disabled all reminders for user {user_id}")
+                            logger.info(f"Disabled all reminders for user {max_id}")
                             
                         except TelegramRetryAfter as e:
                             # Telegram просит подождать (флуд-контроль)
-                            logger.warning(f"Flood control for user {user_id}. Retry after {e.retry_after} seconds")
+                            logger.warning(f"Flood control for user {max_id}. Retry after {e.retry_after} seconds")
                             await asyncio.sleep(e.retry_after)
                             
                         except Exception as e:
-                            logger.error(f"Failed to send notification to user {user_id}: {e}")
+                            logger.error(f"Failed to send notification to user {max_id}: {e}")
                                 
             db.connection.close()
 

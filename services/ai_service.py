@@ -153,7 +153,7 @@ def create_prompt(user_text: str, system_prompt: str, user_offset: str = None, h
     logger.info(f"Local time for user (offset={user_offset}): {time_now}, weekday={weekday_ru}")
     return messages
 
-def ai_answer(user_text: str, system_prompt: str, history : list = None, user_offset: str = None, user_id = None):
+def ai_answer(user_text: str, system_prompt: str, history : list = None, user_offset: str = None, max_id = None):
 
     start = time.time()
     
@@ -195,7 +195,7 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
                     logger.error(f"Error parsing json {provider_key}: {e}")
                     logger.error(f"Original: {content}")
                     logger.error(f"Clear: {cleaned_content}")
-                    text_error = get_text(key="ai_not_understood", user_id=user_id)
+                    text_error = get_text(key="ai_not_understood", max_id=max_id)
                     response_data = {"action": "chat", "text": text_error}
                 
                 # Успешный ответ - возвращаем результат
@@ -230,7 +230,7 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
         logger.warning(f"Provider {provider_key} didn`t work reconnect to another")
     
     logger.error(f"All providers are unavailable. Last erorr: {last_error}")
-    text_error = get_text(key="error_ai_response", user_id=user_id)
+    text_error = get_text(key="error_ai_response", max_id=max_id)
     return {
         "response": {"action": "chat", "text": text_error},
         "response_cost": 0,

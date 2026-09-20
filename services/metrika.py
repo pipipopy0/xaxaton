@@ -12,11 +12,6 @@ from logger_config import logger
 
 load_dotenv()
 
-
-# ============================================================
-# CONFIG
-# ============================================================
-
 METRIKA_COUNTER_ID = getenv("METRIKA_COUNTER_ID")
 METRIKA_OAUTH_TOKEN = getenv("METRIKA_OAUTH_TOKEN")
 
@@ -35,11 +30,6 @@ METRIKA_URL = (
     f"management/v1/counter/{METRIKA_COUNTER_ID}/"
     f"offline_conversions/upload"
 )
-
-
-# ============================================================
-# MAIN FUNCTION
-# ============================================================
 
 async def send_metrika_event(
     client_id: Optional[str],
@@ -83,29 +73,17 @@ async def send_metrika_event(
         Если не указан — используется текущее время.
     """
 
-    # --------------------------------------------------------
-    # 1. Проверяем OAuth
-    # --------------------------------------------------------
-
     if not METRIKA_OAUTH_TOKEN:
         logger.error(
             "Metrika: METRIKA_OAUTH_TOKEN is not configured"
         )
         return False
 
-    # --------------------------------------------------------
-    # 2. Проверяем Target
-    # --------------------------------------------------------
-
     if not target:
         logger.error(
             "Metrika: target is empty"
         )
         return False
-
-    # --------------------------------------------------------
-    # 3. Должен быть хотя бы один идентификатор
-    # --------------------------------------------------------
 
     if not client_id and not yclid:
         logger.warning(
@@ -114,18 +92,8 @@ async def send_metrika_event(
         )
         return False
 
-    # --------------------------------------------------------
-    # 4. Время события
-    # --------------------------------------------------------
-
     if event_time is None:
-        # Берём несколько секунд назад,
-        # чтобы время гарантированно было в прошлом.
         event_time = int(time.time()) - 5
-
-    # --------------------------------------------------------
-    # 5. Формируем CSV
-    # --------------------------------------------------------
 
     row = {
         "Target": target,
@@ -134,11 +102,9 @@ async def send_metrika_event(
         "Yclid": yclid or "",
     }
 
-    # Добавляем дополнительные поля.
     if extra_params:
         row.update(extra_params)
 
-    # Оставляем только нужные колонки.
     fieldnames = list(row.keys())
 
     csv_buffer = io.StringIO(
@@ -163,10 +129,6 @@ async def send_metrika_event(
         f"yclid={yclid}, "
         f"event_time={event_time}"
     )
-
-    # --------------------------------------------------------
-    # 6. Отправляем CSV в API Яндекс.Метрики
-    # --------------------------------------------------------
 
     headers = {
         "Authorization": f"OAuth {METRIKA_OAUTH_TOKEN}",
@@ -198,19 +160,11 @@ async def send_metrika_event(
                 files=files,
             )
 
-        # ----------------------------------------------------
-        # 7. Логируем настоящий ответ Яндекса
-        # ----------------------------------------------------
-
         logger.info(
             f"Metrika API response: "
             f"status={response.status_code}, "
             f"body={response.text[:1000]}"
         )
-
-        # ----------------------------------------------------
-        # 8. Успешная загрузка
-        # ----------------------------------------------------
 
         if response.status_code == 200:
 
@@ -239,10 +193,6 @@ async def send_metrika_event(
                 )
 
             return True
-
-        # ----------------------------------------------------
-        # 9. Ошибка API
-        # ----------------------------------------------------
 
         logger.error(
             "Metrika API error: "
