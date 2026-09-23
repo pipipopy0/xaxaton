@@ -18,7 +18,7 @@ users_db = {
     "users": """
         id SERIAL PRIMARY KEY,
         user_id BIGINT UNIQUE NOT NULL,
-        tg_nickname TEXT,
+        max_nickname TEXT,
         name TEXT,
         timezone_offset TEXT,
         notification_time INTEGER,
@@ -155,13 +155,13 @@ payment_notifications_db = {
 }
 analytics_events_db = {
     "analytics_events": """ 
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    event_name TEXT NOT NULL,
-    yclid TEXT,
-    metrika_client_id TEXT,
-    created_at TIMESTAMP DEFAULT NOW(),
-    sent_to_metrika BOOLEAN DEFAULT FALSE
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        event_name TEXT NOT NULL,
+        yclid TEXT,
+        metrika_client_id TEXT,
+        created_at TIMESTAMP DEFAULT NOW(),
+        sent_to_metrika BOOLEAN DEFAULT FALSE
 """}
 def connect_database():
     connection = psycopg2.connect(

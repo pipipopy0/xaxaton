@@ -1,0 +1,542 @@
+2026-09-24 00:04:22,171 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:04:22,479 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:04:22,480 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:04:22,481 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:04:22,482 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:04:22,483 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:04:22,511 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:04:22,512 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:04:22,513 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:04:22,513 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:04:22,514 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:04:22,515 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:04:22,516 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:04:22,520 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:04:24,019 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:04:24,020 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:04:24,026 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:07:32,493 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:07:32,871 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:07:32,872 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:07:32,873 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:07:32,873 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:07:32,874 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:07:32,874 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:07:32,875 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:07:32,875 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:07:32,876 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:07:32,876 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:07:32,877 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:07:32,877 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:07:32,880 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:07:36,071 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:07:36,071 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:07:36,076 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:09:52,840 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:09:53,229 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:09:53,230 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:09:53,231 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:09:53,232 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:09:53,233 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:09:53,234 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:09:53,235 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:09:53,236 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:09:53,236 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:09:53,237 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:09:53,238 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:09:53,239 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:09:53,245 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:09:56,663 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:09:56,663 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:09:56,669 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:09:56,672 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,673 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'start_registered' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,676 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,677 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'what_is_kalendator' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'connect_calendars' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,679 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'support_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,680 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,680 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'admin_panel_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,682 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,682 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'settings_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,683 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,684 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'documents_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,687 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,687 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'manage_subscription' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:12:26,763 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:12:27,202 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:12:27,203 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:12:27,204 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:12:27,205 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:12:27,205 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:12:27,205 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:12:27,206 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:12:27,207 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:12:27,208 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:12:27,208 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:12:27,209 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:12:27,210 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:12:27,213 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:13:59,974 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:14:00,297 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:14:00,298 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:14:00,299 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:14:00,300 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:14:00,301 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:14:00,301 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:14:00,302 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:14:00,302 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:14:00,303 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:14:00,304 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:14:00,305 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:14:00,306 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:14:00,310 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:14:11,344 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:14:11,734 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:14:11,735 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:14:11,736 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:14:11,736 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:14:11,737 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:14:11,738 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:14:11,739 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:14:11,739 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:14:11,740 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:14:11,741 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:14:11,742 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:14:11,743 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:14:11,747 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:14:13,186 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:14:13,187 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:14:13,192 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:14:22,124 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:14:22,125 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:14:22,126 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:14:28,038 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,039 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'change_language' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,040 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,040 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_notifications_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,041 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,042 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_time_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:16,228 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:17:16,597 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:17:16,598 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:17:16,598 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:17:16,599 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:17:16,600 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:17:16,600 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:17:16,601 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:17:16,601 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:17:16,602 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:17:16,602 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:17:16,603 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:17:16,604 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:17:16,608 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:17:20,583 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:17:20,584 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:17:20,590 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:17:22,544 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,544 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'change_language' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,546 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,546 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_notifications_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,547 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,548 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_time_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:27:13,634 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:27:14,075 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:27:14,077 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:27:14,077 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:27:14,078 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:27:14,079 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:27:14,080 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:27:14,081 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:27:14,081 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:27:14,082 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:27:14,082 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:27:14,083 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:27:14,084 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:27:14,088 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:27:20,947 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:27:21,256 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:27:21,258 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:27:21,258 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:27:21,259 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:27:21,260 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:27:21,260 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:27:21,261 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:27:21,261 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:27:21,261 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:27:21,262 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:27:21,263 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:27:21,263 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:27:21,266 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:27:25,715 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:27:25,716 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:27:25,721 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:36:07,176 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:36:07,608 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:36:07,610 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:36:07,610 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:36:07,611 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:36:07,612 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:36:07,613 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:36:07,614 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:36:07,615 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:36:07,615 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:36:07,616 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:36:07,617 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:36:07,618 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:36:07,622 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:36:10,660 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:36:10,660 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:36:10,665 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:39:02,312 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:39:02,598 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:39:02,599 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:39:02,599 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:39:02,600 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:39:02,600 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:39:02,601 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:39:02,601 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:39:02,602 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:39:02,602 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:39:02,602 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:39:02,603 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:39:02,603 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:39:02,607 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:39:10,313 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:39:10,631 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:39:10,632 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:39:10,632 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:39:10,633 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:39:10,633 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:39:10,634 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:39:10,634 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:39:10,634 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:39:10,635 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:39:10,636 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:39:10,636 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:39:10,637 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:39:10,641 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:39:15,249 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:39:15,250 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:39:15,255 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:39:41,122 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:39:41,552 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:39:41,553 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:39:41,553 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:39:41,554 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:39:41,554 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:39:41,556 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:39:41,556 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:39:41,557 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:39:41,557 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:39:41,558 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:39:41,558 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:39:41,559 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:39:41,562 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:39:46,393 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:39:46,394 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:39:46,399 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:40:30,765 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:40:31,061 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:40:31,062 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:40:31,062 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:40:31,063 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:40:31,063 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:40:31,064 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:40:31,064 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:40:31,065 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:40:31,065 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:40:31,066 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:40:31,066 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:40:31,067 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:40:31,071 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:40:34,089 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:40:34,089 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:40:34,094 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:42:08,276 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:42:08,612 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:42:08,613 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:42:08,614 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:42:08,615 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:42:08,616 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:42:08,617 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:42:08,617 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:42:08,618 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:42:08,619 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:42:08,620 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:42:08,621 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:42:08,621 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:42:08,626 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:50:49,497 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:50:49,935 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:50:49,936 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:50:49,937 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:50:49,938 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:50:49,938 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:50:49,939 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:50:49,939 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:50:49,940 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:50:49,940 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:50:49,941 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:50:49,941 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:50:49,941 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:50:49,947 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:50:57,041 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:50:57,319 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:50:57,319 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:50:57,320 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:50:57,321 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:50:57,321 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:50:57,322 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:50:57,322 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:50:57,323 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:50:57,323 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:50:57,324 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:50:57,325 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:50:57,326 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:50:57,330 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:51:00,489 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:51:00,490 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:51:00,493 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 00:54:27,035 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 00:54:27,313 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 00:54:27,314 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 00:54:27,314 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 00:54:27,315 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 00:54:27,316 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 00:54:27,316 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 00:54:27,317 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 00:54:27,318 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 00:54:27,318 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 00:54:27,319 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 00:54:27,320 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 00:54:27,321 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 00:54:27,326 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 00:54:30,997 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 00:54:30,997 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 00:54:31,004 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:07:53,805 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:07:54,138 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:07:54,140 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:07:54,141 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:07:54,142 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:07:54,143 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:07:54,143 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:07:54,144 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:07:54,145 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:07:54,145 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:07:54,146 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:07:54,147 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:07:54,148 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:07:54,152 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:07:59,101 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:07:59,102 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:07:59,106 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:08:24,487 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:08:24,855 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:08:24,857 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:08:24,858 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:08:24,859 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:08:24,859 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:08:24,860 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:08:24,861 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:08:24,862 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:08:24,863 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:08:24,864 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:08:24,865 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:08:24,866 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:08:24,870 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:08:27,049 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:08:27,050 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:08:27,055 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:14:13,421 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:14:13,727 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:14:13,728 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:14:13,729 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:14:13,729 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:14:13,730 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:14:13,730 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:14:13,731 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:14:13,732 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:14:13,732 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:14:13,733 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:14:13,734 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:14:13,734 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:14:13,738 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:14:18,056 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:14:18,056 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:14:18,062 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:17:12,243 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:17:12,746 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:17:12,747 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:17:12,748 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:17:12,749 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:17:12,749 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:17:12,750 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:17:12,751 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:17:12,751 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:17:12,752 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:17:12,753 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:17:12,754 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:17:12,756 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:17:12,761 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:17:14,245 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:17:14,245 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:17:14,250 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:18:54,278 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:18:54,719 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:18:54,720 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:18:54,721 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:18:54,721 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:18:54,722 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:18:54,723 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:18:54,723 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:18:54,724 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:18:54,725 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:18:54,725 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:18:54,726 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:18:54,727 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:18:54,731 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:19:00,030 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:19:00,031 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:19:00,037 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:23:16,648 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:23:16,970 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:23:16,971 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:23:16,972 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:23:16,973 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:23:16,973 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:23:16,974 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:23:16,975 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:23:16,976 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:23:16,977 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:23:16,978 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:23:16,978 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:23:16,979 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:23:16,984 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:23:20,190 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:23:20,190 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:23:20,196 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:24:56,682 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:24:57,009 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:24:57,010 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:24:57,011 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:24:57,012 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:24:57,013 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:24:57,014 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:24:57,015 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:24:57,015 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:24:57,016 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:24:57,017 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:24:57,017 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:24:57,018 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:24:57,022 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:24:59,924 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:24:59,924 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:24:59,929 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:26:47,673 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:26:47,941 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:26:47,943 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:26:47,944 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:26:47,945 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:26:47,945 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:26:47,946 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:26:47,946 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:26:47,947 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:26:47,947 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:26:47,948 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:26:47,949 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:26:47,949 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:26:47,953 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:26:50,789 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:26:50,790 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:26:50,795 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:27:37,581 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:27:37,581 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:27:37,583 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped

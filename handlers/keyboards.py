@@ -9,16 +9,18 @@ db = None
 
 
 def add_back_button(builder: InlineKeyboardBuilder, max_id=None):
+
     text_back = get_text(
         key="back_btn",
-        max_id=max_id,
+        user_id=max_id,
         db=db
     )
 
     builder.row(
         CallbackButton(
             text=text_back,
-            payload="back"
+            payload="back",
+            db=db
         )
     )
 
@@ -88,19 +90,19 @@ def get_documents_inline_keyboard(max_id=None):
 def get_settings_inline_keyboard(max_id=None):
     text_change_language = get_text(
         key="change_language",
-        max_id=max_id,
+        user_id=max_id,
         db=db
     )
 
     text_update_notifications_btn = get_text(
         key="update_notifications_btn",
-        max_id=max_id,
+        user_id=max_id,
         db=db
     )
 
     text_update_time_btn = get_text(
         key="update_time_btn",
-        max_id=max_id,
+        user_id=max_id,
         db=db
     )
 

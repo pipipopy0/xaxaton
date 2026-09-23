@@ -2,7 +2,9 @@ import asyncio
 from os import getenv
 from dotenv import load_dotenv
 from maxapi import Bot, Dispatcher
-from apscheduler.schedulers.asyncio import AsyncIOScheduler 
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
+load_dotenv()
 
 import handlers.callback
 import handlers.router
@@ -15,14 +17,12 @@ from handlers.commands import command_router
 from services.database.work_with_dp import connect_database, create_tables
 from services.database.database import Database
 from services.recurrent_payment_worker import run_recurrent_payments
-from services.cheque_sender import send_cheques_to_users
 from services.remind_user import remind_user_about_event
 
 
-load_dotenv()
 TOKEN = getenv("MAX_BOT_API")
 
-admin_id = int(getenv("max_admin_id"))
+admin_id = int(getenv("tg_admin_id"))
 
 connection = connect_database()
 db = Database(connection)
@@ -51,12 +51,12 @@ async def main():
         minutes=1,
         args=(db, bot)
     )
-    scheduler.add_job(
-        send_cheques_to_users,
-        trigger="interval",
-        seconds=30,
-        args=(db, bot)
-    )
+    # scheduler.add_job(
+    #     send_cheques_to_users,
+    #     trigger="interval",
+    #     seconds=30,
+    #     args=(db, bot)
+    # )
     scheduler.start()
 
     asyncio.create_task(remind_user_about_event(bot))

@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from services.database.work_with_dp import connect_database
 from services.database.database import Database
-from aiogram.exceptions import TelegramForbiddenError, TelegramRetryAfter
+from maxapi.exceptions import MaxApiError
 from logger_config import logger
 
 async def remind_user_about_event(bot):
@@ -57,7 +57,7 @@ async def remind_user_about_event(bot):
 
                         try:
                             await bot.send_message(
-                                chat_id=max_id, 
+                                user_id=max_id, 
                                 text=f"Напоминание: {event_text} в {local_time}"
                             )
                             logger.info(f"Notification sent to user {max_id}: {event_text}")
@@ -68,43 +68,18 @@ async def remind_user_about_event(bot):
                                 where_conditions={"id": event_notification_id}
                             )
                             
-                        except TelegramForbiddenError:
-                            # Пользователь заблокировал бота
-                            logger.warning(f"User {max_id} blocked the bot. Disabling all reminders.")
-                            
-                            # Отключаем все активные события пользователя
-                            db.update_data(
-                                table_name="events",
-                                data={"active": False},
-                                where_conditions={"user_id": user_id}
+                        except MaxApiError as e:
+                            logger.error(
+                                f"MAX API error while sending "
+                                f"notification to user {max_id}: "
+                                f"code={e.code}, raw={e.raw}"
                             )
-                            
-                            # Помечаем пользователя как заблокировавшего бота
-                            db.update_data(
-                                table_name="users",
-                                data={"blocked_bot": True},
-                                where_conditions={"id": user_id}
-                            )
-                            
-                            db.update_data(
-                                table_name="events_notifications",
-                                data={"status": "failed"},
-                                where_conditions={"id": event_notification_id}
-                            )
-                            
-                            logger.info(f"Disabled all reminders for user {max_id}")
-                            
-                        except TelegramRetryAfter as e:
-                            # Telegram просит подождать (флуд-контроль)
-                            logger.warning(f"Flood control for user {max_id}. Retry after {e.retry_after} seconds")
-                            await asyncio.sleep(e.retry_after)
-                            
-                        except Exception as e:
-                            logger.error(f"Failed to send notification to user {max_id}: {e}")
-                                
-            db.connection.close()
 
         except Exception as e:
-            logger.error(f"Error in remind_user_about_event: {e}")
+            logger.error(
+                f"Failed to send notification "
+                f"to user {max_id}: {e}",
+                exc_info=True
+            )
 
         await asyncio.sleep(30)

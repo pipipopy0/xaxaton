@@ -29,19 +29,19 @@ app = Flask(__name__)
 connection = connect_database()
 db = Database(connection)
 
-def send_telegram_message(tg_id, text):
-    logger.info(f"Attempting to send message to tg_id={tg_id}, text preview: {text[:50]}...")
+def send_telegram_message(max_id, text):
+    logger.info(f"Attempting to send message to max_id={max_id}, text preview: {text[:50]}...")
     if not TG_BOT_API:
         logger.error("TG_BOT_API is not set. Cannot send message.")
         return
     url = f"https://api.telegram.org/bot{TG_BOT_API}/sendMessage"
     try:
-        response = requests.post(url, json={"chat_id": tg_id, "text": text})
+        response = requests.post(url, json={"chat_id": max_id, "text": text})
         logger.info(f"Telegram response status: {response.status_code}, body: {response.text[:200]}")
         if response.status_code != 200:
-            logger.error(f"Failed to send message to {tg_id}. Response: {response.text}")
+            logger.error(f"Failed to send message to {max_id}. Response: {response.text}")
     except Exception as e:
-        logger.error(f"Error occurred while sending message to {tg_id}: {e}")
+        logger.error(f"Error occurred while sending message to {max_id}: {e}")
 
 def render_html(title, message, success=True):
     status_icon = "✅" if success else "❌"
@@ -149,7 +149,7 @@ def yookassa_webhook():
 
         user = db.select_data(
             "users",
-            columns=["tg_id", "timezone_offset"],
+            columns=["max_id", "timezone_offset"],
             where_conditions={"id": user_id}
         )
 
@@ -157,7 +157,7 @@ def yookassa_webhook():
             logger.error(f"User {user_id} not found")
             return "OK", 200
 
-        tg_id = user[0][0]
+        max_id = user[0][0]
         user_timezone = user[0][1] or "UTC"
         expires_at_user = expires_at.astimezone(
                 ZoneInfo(user_timezone)
@@ -166,14 +166,14 @@ def yookassa_webhook():
         if payment_type == "first_one_time":
             text = get_text(
                 key="pro_activated",
-                tg_id=tg_id,
+                max_id=max_id,
                 db=db
             )
         # Первая оплата с автопродлением
         elif payment_type == "first_auto":
             text = get_text(
                 key="pro_auto_activated",
-                tg_id=tg_id,
+                max_id=max_id,
                 db=db,
                 expires_at=expires_at_user.strftime("%d.%m.%Y %H:%M")
             )
@@ -182,7 +182,7 @@ def yookassa_webhook():
         elif payment_type == "renewal_one_time":
             text = get_text(
                 key="pro_renewed",
-                tg_id=tg_id,
+                max_id=max_id,
                 db=db,
                 expires_at=expires_at_user.strftime("%d.%m.%Y %H:%M")
             )
@@ -191,7 +191,7 @@ def yookassa_webhook():
         elif payment_type == "renewal_auto":
             text = get_text(
                 key="pro_auto_renewed",
-                tg_id=tg_id,
+                max_id=max_id,
                 db=db,
                 expires_at=expires_at_user.strftime("%d.%m.%Y %H:%M")
             )
@@ -199,7 +199,7 @@ def yookassa_webhook():
         else:
             return "OK", 200
 
-        send_telegram_message(tg_id, text)
+        send_telegram_message(max_id, text)
 
         logger.info(
             f"Payment processed: "
@@ -282,9 +282,9 @@ def google_calendar():
             logger.error(f"User with id {user_id} not found in DB")
             return render_html("Eroor", "User not found. Try to register again", success=False)
         if user and user[0][1]:
-            tg_id = user[0][1]
-            logger.info(f"Found user: tg_id={tg_id}, language={user[0][6] if user and len(user[0])>6 else 'unknown'}")
-            text = get_text(key="google_authorized", tg_id=tg_id, db=db)
+            max_id = user[0][1]
+            logger.info(f"Found user: max_id={max_id}, language={user[0][6] if user and len(user[0])>6 else 'unknown'}")
+            text = get_text(key="google_authorized", max_id=max_id, db=db)
             logger.info(f"text = {text}, language = {user[0][6]}")
         if refresh_token:
             existing = db.select_data(
@@ -314,18 +314,18 @@ def google_calendar():
                     "oauth_states",
                     where_conditions={"state": state}  # изменено
                 )
-                send_telegram_message(tg_id, text)
-                google_text = get_text(key="google_authorized", tg_id=tg_id, db=db)
-                close_page_text = get_text(key="close_authorization_page", tg_id=tg_id, db=db)
+                send_telegram_message(max_id, text)
+                google_text = get_text(key="google_authorized", max_id=max_id, db=db)
+                close_page_text = get_text(key="close_authorization_page", max_id=max_id, db=db)
                 return render_html(google_text, close_page_text, success=True)    
             
             except Exception as e:
-                error_text = get_text(key="error", tg_id=tg_id, db=db)
-                refresh_error_text = get_text(key="refresh_token_not_received", tg_id=tg_id, db=db)
+                error_text = get_text(key="error", max_id=max_id, db=db)
+                refresh_error_text = get_text(key="refresh_token_not_received", max_id=max_id, db=db)
                 return render_html(error_text, refresh_error_text, success=False)
     except Exception as e:
         logger.error(f"Ошибка при обработке callback: {e}")
-        error_processing_callback_text = get_text(key="error_processing_callback", tg_id=tg_id, db=db)
+        error_processing_callback_text = get_text(key="error_processing_callback", max_id=max_id, db=db)
         return render_html(error_text, error_processing_callback_text, success=False)
 
     

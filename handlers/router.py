@@ -630,7 +630,7 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
 )
 async def process_calendar_email(
     event: MessageCreated,
-    state: MemoryContext
+    context: MemoryContext
 ):
     data = await state.get_data()
 
@@ -702,7 +702,7 @@ async def process_calendar_email(
 )
 async def process_calendar_password(
     event: MessageCreated,
-    state: MemoryContext
+    context: MemoryContext
 ):
     password = event.message.body.text
 

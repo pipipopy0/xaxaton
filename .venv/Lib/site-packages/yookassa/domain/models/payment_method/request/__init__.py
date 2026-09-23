@@ -1,0 +1,3 @@
+from yookassa.domain.models.payment_method.request.save_payment_method_holder import SavePaymentMethodHolder
+from yookassa.domain.models.payment_method.request.save_payment_method_confirmation_redirect import SavePaymentMethodConfirmationRedirect
+from yookassa.domain.models.payment_method.request.save_payment_method_confirmation_qr import SavePaymentMethodConfirmationQr

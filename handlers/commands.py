@@ -23,7 +23,7 @@ command_router = Router()
 db = None
 
 @command_router.message_created(Command("start"))
-async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]):
+async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[str]):
     max_id = event.from_user.user_id
 
     logger.info(f"RAW message.text: {event.message.body.text}")
@@ -73,7 +73,7 @@ async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]
 
     exist = db.select_data(
         "users",
-        where_conditions={"max_id": max_id}
+        where_conditions={"user_id": max_id}
     )
 
     user_id = exist[0][0] if exist else None
@@ -90,9 +90,9 @@ async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]
         user_id = db.insert_data(
             "users",
             {
-                "max_id": max_id,
+                "user_id": max_id,
                 "name": name,
-                "tg_nickname": nickname,
+                "max_nickname": nickname,
                 "yclid": yclid,
                 "metrika_client_id": client_id,
                 "admin_notified": False   
@@ -151,7 +151,7 @@ async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]
             db.update_data(
                 "users",
                 update_data,
-                where_conditions={"max_id": max_id}
+                where_conditions={"user_id": max_id}
             )
 
     # =====================================================
@@ -189,7 +189,7 @@ async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]
     # 6. Дальше твоя исходная логика
     # =====================================================
 
-    await state.clear()
+    await context.clear()
 
     # Новый пользователь
 
@@ -215,7 +215,7 @@ async def start_cmd(event: MessageCreated, state: MemoryContext, args: list[str]
 
         user = db.select_data(
             "users",
-            where_conditions={"max_id": max_id}
+            where_conditions={"user_id": max_id}
         )
 
         if user and user[0][4] is None:

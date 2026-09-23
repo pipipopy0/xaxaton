@@ -1,0 +1,112 @@
+2026-09-24 00:09:56,672 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,673 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'start_registered' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,676 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,677 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'what_is_kalendator' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'connect_calendars' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,678 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,679 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'support_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,680 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,680 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'admin_panel_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,682 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,682 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'settings_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,683 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,684 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'documents_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,687 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:09:56,687 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'manage_subscription' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,038 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,039 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'change_language' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,040 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,040 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_notifications_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,041 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:14:28,042 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_time_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,544 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,544 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'change_language' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,546 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,546 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_notifications_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,547 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
+2026-09-24 00:17:22,548 - Calendator - ERROR - TEXT.py:596 - Error retrieving text for key 'update_time_btn' and language 'ru': ОШИБКА:  неверный синтаксис для типа bigint: "None"
+LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
+                                                ^
+
