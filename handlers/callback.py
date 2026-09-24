@@ -474,13 +474,13 @@ async def process_admin_update_notification(callback: MessageCallback):
     text = get_text(key = "admin_broadcast_prompt", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
     
-@callback_router.message_callback(F.callback.payload == "services_status")
-async def process_admin_status_services(callback: MessageCallback):
-    status = get_full_status()
-    text = format_status(status)
-    await callback.message.answer(text)
+#@callback_router.message_callback(F.callback.payload == "services_status")
+#async def process_admin_status_services(callback: MessageCallback):
+    # status = get_full_status()
+    # text = format_status(status)
+    #await callback.message.answer(text)
     
-    return
+    #return
 @callback_router.message_callback(F.callback.payload == "calendars_setup")
 async def process_calendars_setup(callback: MessageCallback, context: MemoryContext):
     max_id = callback.from_user.user_id
