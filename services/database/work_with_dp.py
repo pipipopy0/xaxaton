@@ -82,12 +82,15 @@ events_notifications_db = {
         status TEXT NOT NULL DEFAULT 'pending'
     """
 }
-oauth_states = {
-    "oauth_states": """
+
+oauth_devices = {
+    "oauth_devices": """
         id SERIAL PRIMARY KEY,
-        state TEXT UNIQUE NOT NULL,
+        device_code TEXT UNIQUE NOT NULL,
+        user_code TEXT NOT NULL,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         provider TEXT NOT NULL DEFAULT 'google',
+        interval_seconds INTEGER DEFAULT 5,
         created_at TIMESTAMP DEFAULT NOW()
     """
 }
@@ -206,7 +209,7 @@ def create_tables():
         db.create_table(events_notifications_db)
         db.create_table(users_costs)
         db.create_table(user_authorization)
-        db.create_table(oauth_states)
+        db.create_table(oauth_devices)
         db.create_table(plans_db)         
         db.create_table(subscriptions_db)   
         db.create_table(usage_db)           

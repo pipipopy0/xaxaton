@@ -341,8 +341,8 @@ TEXTS = {
         "en": "Privacy Policy"
     },
     "unsupported_message_type" : {
-        "ru": "Извините, пока что я не могу обработать этот тип сообщения. Пожалуйста, отправьте текстовое или голосовое сообщение.",
-        "en": "Sorry, I cannot process this type of message yet. Please send a text or voice message."
+        "ru": "Извините, пока что я не могу обработать этот тип сообщения. Пожалуйста, отправьте текстовое сообщение.",
+        "en": "Sorry, I cannot process this type of message yet. Please send a text message."
     },
     "admin_status_services" : {
         "ru" : "Статус сервисов",
@@ -373,12 +373,20 @@ TEXTS = {
         "en": "An error occurred while saving data. Please try again."
     },
     "google_calendar_oauth": {
-        "ru": "Для подключения Google Календаря скопируйте ссылку ниже и откройте её в браузере.\n\n{url}\n\nНе открывайте ссылку внутри Telegram — иначе может возникнуть ошибка.",
-        "en": "To connect Google Calendar, copy the link below and open it in your browser.\n\n{url}\n\nDo not open the link inside Telegram, otherwise an error may occur."
+        "ru": "Для подключения Google Календаря перейдите по ссылке:\n\n{url}\n\nи введите код:\n {code}",
+        "en": "To connect Google Calendar, follow this link:\n\n{url}\n\nand enter the code:\n<code>{code}</code>"
     },
     "google_calendar_activated_already": {
         "ru": "Вы уже привязали Google календарь",
         "en": "You have already linked Google Calendar"
+    },
+    "google_calendat_access_denied": {
+        "ru": "В доступе отказано",
+        "en": "Access denied"
+    },
+    "google_calendar_expired_token": {
+        "ru": "Код истёк, авторизуйтесь заново",
+        "en": "The code has expired, please log in again"
     },
     "apple_calendar_activated_already": {
         "ru": "Вы уже привязали Apple календарь",
@@ -570,7 +578,7 @@ from logger_config import logger
 
 
 def get_text(db, key: str,   max_id: str = None, **kwargs) -> str:
-    language = "ru"#дефолтный язык, если не удалось получить язык пользователя из базы данных
+    language = "ru"
     
     try:
         if db and max_id != None:

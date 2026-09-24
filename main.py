@@ -19,7 +19,6 @@ from services.database.database import Database
 from services.recurrent_payment_worker import run_recurrent_payments
 from services.remind_user import remind_user_about_event
 
-
 TOKEN = getenv("MAX_BOT_API")
 
 admin_id = int(getenv("tg_admin_id"))
@@ -51,12 +50,6 @@ async def main():
         minutes=1,
         args=(db, bot)
     )
-    # scheduler.add_job(
-    #     send_cheques_to_users,
-    #     trigger="interval",
-    #     seconds=30,
-    #     args=(db, bot)
-    # )
     scheduler.start()
 
     asyncio.create_task(remind_user_about_event(bot))

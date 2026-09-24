@@ -27,19 +27,10 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
     max_id = event.from_user.user_id
 
     logger.info(f"RAW message.text: {event.message.body.text}")
-
-    # =====================================================
-    # 1. Получаем параметры из /start
-    # =====================================================
-
     start_args = " ".join(args)
 
     yclid = None
     client_id = None
-
-    # Формат:
-    # yclid_XXX_client_YYY
-
     if "_client_" in start_args:
 
         yclid_part, client_part = start_args.split(
@@ -67,10 +58,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
         f"client_id={client_id}"
     )
 
-    # =====================================================
-    # 2. Проверяем пользователя
-    # =====================================================
-
     exist = db.select_data(
         "users",
         where_conditions={"user_id": max_id}
@@ -78,9 +65,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
 
     user_id = exist[0][0] if exist else None
 
-    # =====================================================
-    # 3. Новый пользователь
-    # =====================================================
 
     if not exist:
 
@@ -128,15 +112,7 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
             f"New user {max_id} registered "
             f"with free subscription"
         )
-
-    # =====================================================
-    # 4. Существующий пользователь
-    # =====================================================
-
     else:
-
-        # Если пользователь снова пришёл с рекламными данными,
-        # обновляем их.
 
         update_data = {}
 
@@ -153,10 +129,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
                 update_data,
                 where_conditions={"user_id": max_id}
             )
-
-    # =====================================================
-    # 5. Отправляем start_bot в Метрику
-    # =====================================================
 
     if yclid or client_id:
 
@@ -185,13 +157,7 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
             "Metrika start_bot skipped"
         )
 
-    # =====================================================
-    # 6. Дальше твоя исходная логика
-    # =====================================================
-
     await context.clear()
-
-    # Новый пользователь
 
     if not exist:
 

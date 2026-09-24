@@ -1,7 +1,6 @@
 import base64
 import time
 import aiohttp
-import httpx
 import subprocess
 import json
 
@@ -12,8 +11,6 @@ from logger_config import logger, debug_logger
 
 load_dotenv()
 
-OPENROUTER_API = getenv("OPENROUTER_API")
-OPENROUTER_AUDIO_URL = getenv("OPENROUTER_AUDIO_URL")
 POLZA_API = getenv("POLZA_API")
 POLZA_AUDIO_URL = getenv("POLZA_AUDIO_URL")
 
@@ -22,33 +19,9 @@ WHISPER_1 = getenv("WHISPER_1")
 GPT_4O_MINI_TRANSCRIBE = getenv("GPT_4O_MINI_TRANSCRIBE")
 
 
-#все цены я перевожу в рубли.
 EXCHANGE_RATE = float(getenv("EXCHANGE_RATE"))
 
 TRANSCRIPTION_CHAIN = [
-    {
-        "provider": "fallback",
-        "name": "openrouter",
-        "base_url": OPENROUTER_AUDIO_URL,
-        "api_key": OPENROUTER_API,
-        "model": WHISPER_LARGE_V3_TURBO,
-        "timeout": 30,
-        "pricing" : {
-            "type": "fixed",
-            "price_per_minute": ((0.04/60)*EXCHANGE_RATE)#0.04$ за час.
-        }
-    },
-    {
-        "provider": "fallback",
-        "name": "openrouter",
-        "base_url": OPENROUTER_AUDIO_URL,
-        "api_key": OPENROUTER_API,
-        "model": GPT_4O_MINI_TRANSCRIBE,
-        "timeout": 30,
-        "pricing" : {
-            "type": "api_cost"
-        }
-    },
     {
         "provider": "primary",
         "name": "polza",
@@ -74,9 +47,8 @@ TRANSCRIPTION_CHAIN = [
         }
     }
 ]
-        
-        
-        
+
+
 
 
 def get_ogg_duration_minutes(file_path: str) -> float:
@@ -108,13 +80,9 @@ async def transcribe(file_path: str):
                         "model" : None,
                         "error": "Audio duration > 2 minutes"
                     }
-        # Открываем файл в бинарном режиме
         with open(file_path, "rb") as f:
-            # Читаем файл и переводим в base64
             audio_b64 = base64.b64encode(f.read()).decode()
-        
-        # JSON для OpenRouter
-        
+               
         last_error = None
         for provider in TRANSCRIPTION_CHAIN:
             try:
@@ -136,28 +104,6 @@ async def transcribe(file_path: str):
                                 timeout=provider["timeout"]
                             ) as resp:
                                 data = await resp.json()
-                elif provider["provider"] == "fallback":
-                    headers = {
-                        "Authorization": f"Bearer {provider['api_key']}",
-                        "Content-Type": "application/json"
-                    }
-                    payload = {
-                        "model": provider["model"],
-                        "input_audio": {
-                            "data": audio_b64,
-                            "format": "ogg"
-                        }
-                    }
-                    async with httpx.AsyncClient() as client:
-                        response = await client.post(
-                            provider["base_url"],
-                            json=payload,
-                            headers=headers,
-                            timeout=provider["timeout"]
-                        ) 
-
-                                # Ответ от сервера
-                        data = response.json()
 
                 if "text" not in data:
                     logger.error(f"{provider['name']} ({provider['model']}) response: {data}")
@@ -170,7 +116,6 @@ async def transcribe(file_path: str):
                     voice_cost_rub = pricing["price_per_minute"] * duration_min
 
                 logger.info(f"Transcribed: {data['text'][:50]}... (cost: {voice_cost_rub:.6f}) Provider: {provider['name']} ({provider['model']})")
-                            # Возвращаем текст
                 return {
                     "text" : data["text"],
                     "voice_cost_rub" : voice_cost_rub,

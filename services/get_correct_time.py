@@ -14,7 +14,6 @@ def get_correct_time():
     return options
 
 def parser_duckling(time_text: str, user_offset: str):
-    #time_text in 50 minutes
     utc_now = datetime.now(timezone.utc)
     reftime_ms = int(utc_now.timestamp() * 1000)
 

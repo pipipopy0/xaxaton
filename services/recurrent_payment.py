@@ -7,8 +7,6 @@ from logger_config import logger
 def run_recurrent_payments(db):
     now = datetime.now(timezone.utc)
 
-    # Берём только активные подписки,
-    # срок которых уже наступил
     active_subs = db.select_data(
         "subscriptions",
         where_conditions={
@@ -19,7 +17,6 @@ def run_recurrent_payments(db):
     expiring_subs = []
 
     for sub in active_subs:
-        # id, user_id, plan_id, status, started_at, expires_at, created_at
         expires_at = sub[5]
 
         if not expires_at:
@@ -41,7 +38,6 @@ def run_recurrent_payments(db):
     for sub in expiring_subs:
         user_id = sub[1]
 
-        # Берём только payment_method_id
         user_data = db.select_data(
             "users",
             columns=["yookassa_payment_method_id"],

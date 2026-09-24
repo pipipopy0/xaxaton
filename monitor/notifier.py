@@ -10,7 +10,6 @@ def send_alert(text):
         f"bot{BOT_TOKEN}/sendMessage"
     )
 
-
     requests.post(
         url,
         json={

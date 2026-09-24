@@ -27,15 +27,14 @@ def process_ai_event(ai_response, db, user_id):
         return ai_response.get("text", "К сожалению, я не могу помочь с вопросами, не связанными с событиями.")
 
 def _get_sync_calendars(db, user_id):
-    auth = db.select_data("users_authorizations", where_conditions={"user_id": user_id})  # изменено
+    auth = db.select_data("users_authorizations", where_conditions={"user_id": user_id})
     if not auth:
         return {}
     row = auth[0]
     result = {}
-    # Apple
-    if row[2] and row[4]:  # email и url
-        result["apple"] = {"type": "app_password"}  # всегда App Password
-    # Google - в приоритете oauth
+
+    if row[2] and row[4]:  
+        result["apple"] = {"type": "app_password"}  
     
     if row[8] and row[8].strip():  
         result["google"] = {"type": "oauth"}
@@ -46,13 +45,12 @@ def _get_sync_calendars(db, user_id):
 def create_event(ai_response, db, user_id):
     logger.debug(f"create_event: user_id={user_id}, summary={ai_response.get('summary')}")
 
-    user = db.select_data("users", where_conditions={"id": user_id})  # изменено
+    user = db.select_data("users", where_conditions={"id": user_id})  
     offset = user[0][4]
 
     time_text = ai_response.get("time_text", "")
     time_type = ai_response.get("time_type", "absolute")
     
-    # Сначала получаем start_at_local
     start_at_local = parser_duckling(time_text, offset)
     if start_at_local is None:
         return "Извините, я не понял время и дату..."
@@ -77,14 +75,12 @@ def create_event(ai_response, db, user_id):
     next_month = month_start + timedelta(days=32)
     month_end = next_month.replace(day=1) - timedelta(days=1)
 
-    # Ищем запись usage за этот месяц
     existing = db.select_data(
         "usage",
-        columns=["id", "events_created"],   # явно указываем нужные колонки
+        columns=["id", "events_created"],   
         where_conditions={"user_id": user_id}
     )
     if existing:
-        # existing[0][0] – id, existing[0][1] – events_created
         new_count = existing[0][1] + 1
         db.update_data(
             "usage",
@@ -102,7 +98,6 @@ def create_event(ai_response, db, user_id):
         )
     reminder_offset_minutes = ai_response.get("reminder_offset_minutes", -1)
     
-    # Уведомление ДО события (только если напоминание нужно)
     if reminder_offset_minutes > 0:
         notify_time_before = start_at_utc - timedelta(minutes=reminder_offset_minutes)
         db.insert_data("events_notifications", {
@@ -112,7 +107,6 @@ def create_event(ai_response, db, user_id):
             "status": "pending"
         })
     
-    # Уведомление В МОМЕНТ события (всегда)
     db.insert_data("events_notifications", {
         "event_id": event_id,
         "notify_at": start_at_utc.strftime("%Y-%m-%d %H:%M:%S"),
@@ -120,7 +114,6 @@ def create_event(ai_response, db, user_id):
         "status": "pending"
     })
 
-    # Подставляем дату в answer вместо [[DATE]]
     answer = ai_response.get("answer", "Событие создано")
     if "[[DATE]]" in answer:
         date_str = start_at_local.strftime("%d.%m.%Y")
@@ -136,8 +129,6 @@ def create_event(ai_response, db, user_id):
     calendars = _get_sync_calendars(db, user_id)
     update_fields = {}
 
-    # 1. Новый модуль: Apple + Google App Password (один вызов)
-    # Собираем список провайдеров, которые должны обрабатываться новым модулем
     new_providers = []
     if "apple" in calendars:
         new_providers.append("apple")
@@ -163,7 +154,6 @@ def create_event(ai_response, db, user_id):
         except Exception as e:
             logger.error(f"New module sync create error: {e}")
 
-    # 2. Google OAuth отдельно
     if "google" in calendars and calendars["google"]["type"] == "oauth":
         logger.info("Calling create_google_calendar_event")
         try:
@@ -180,7 +170,7 @@ def create_event(ai_response, db, user_id):
             logger.error(f"Google OAuth sync create error: {e}")
 
     if update_fields:
-        db.update_data("events", update_fields, where_conditions={"id": event_id})  # изменено
+        db.update_data("events", update_fields, where_conditions={"id": event_id})  
         logger.info(f"Updated event {event_id} with fields: {update_fields}")
 
     user_data = db.select_data(
@@ -193,7 +183,6 @@ def create_event(ai_response, db, user_id):
         yclid = user_data[0][0]
         client_id = user_data[0][1]
 
-        # Проверяем, сколько событий уже создано (для first_event_created)
         usage_data = db.select_data(
             "usage",
             columns=["events_created"],
@@ -201,7 +190,6 @@ def create_event(ai_response, db, user_id):
         )
         event_count = usage_data[0][0] if usage_data else 0
 
-        # Если это первое событие — отправляем first_event_created, иначе event_created
         target = "first_event_created" if event_count == 1 else "event_created"
 
         if client_id:
@@ -227,7 +215,7 @@ def update_event(ai_response, db, user_id):
         logger.error("update_event: event_id not specified")
         return "Ошибка: не указан ID события"
 
-    old_event = db.select_data("events", where_conditions={"id": event_id, "user_id": user_id})  # изменено
+    old_event = db.select_data("events", where_conditions={"id": event_id, "user_id": user_id})  
     logger.info(f"old_event: {old_event[0] if old_event else None}")
     
     if not old_event:
@@ -236,7 +224,7 @@ def update_event(ai_response, db, user_id):
     
     old_start_utc = old_event[0][3]
 
-    user = db.select_data("users", where_conditions={"id": user_id})  # изменено
+    user = db.select_data("users", where_conditions={"id": user_id})  
     if not user:
         return "Пользователь не найден"
     offset = user[0][4]
@@ -247,7 +235,6 @@ def update_event(ai_response, db, user_id):
     if ai_response.get("duration_min"):
         update_data["duration_min"] = ai_response["duration_min"]
 
-    # Время начала через time_text
     time_text = ai_response.get("time_text", "")
     if time_text:
         new_start_local = parser_duckling(time_text, offset)
@@ -264,13 +251,12 @@ def update_event(ai_response, db, user_id):
         new_start_utc = old_start_utc
 
     if update_data:
-        db.update_data("events", update_data, where_conditions={"id": event_id})  # изменено
+        db.update_data("events", update_data, where_conditions={"id": event_id})  
 
-    db.delete_data("events_notifications", where_conditions={"event_id": event_id})  # изменено
+    db.delete_data("events_notifications", where_conditions={"event_id": event_id})
 
     reminder_offset = ai_response.get("reminder_offset_minutes", -1)
     
-    # Уведомление ДО события (только если напоминание нужно)
     if reminder_offset > 0:
         notify_time_before = new_start_utc - timedelta(minutes=reminder_offset)
         db.insert_data("events_notifications", {
@@ -280,7 +266,6 @@ def update_event(ai_response, db, user_id):
             "status": "pending"
         })
     
-    # Уведомление В МОМЕНТ события (всегда)
     db.insert_data("events_notifications", {
         "event_id": event_id,
         "notify_at": new_start_utc.strftime("%Y-%m-%d %H:%M:%S"),
@@ -306,8 +291,6 @@ def update_event(ai_response, db, user_id):
     reminder = reminder_offset if reminder_offset > 0 else None
     calendars = _get_sync_calendars(db, user_id)
     logger.info(f"calendars in update: {calendars}")
-    # 1. Новый модуль (Apple + Google App Password) – один вызов, если есть что обновлять
-    # Проверяем, есть ли apple_uid или google_id (для App Password)
     apple_uid = old_event[0][7] if len(old_event[0]) > 7 else None
     google_id = old_event[0][9] if len(old_event[0]) > 9 else None
     logger.info(f"len(old_event[0]) = {len(old_event[0])}")
@@ -329,7 +312,6 @@ def update_event(ai_response, db, user_id):
         except Exception as e:
             logger.error(f"New module update error: {e}")
 
-    # 2. Google OAuth отдельно
     if google_id and "google" in calendars and calendars["google"]["type"] == "oauth":
         try:
             update_google_calendar_event(
@@ -342,10 +324,9 @@ def update_event(ai_response, db, user_id):
             logger.error(f"Google OAuth update error: {e}")
     return answer
 
-#Тут надо переписать фнукицю так как она не использует duckling и не может понять время для удаления. Надо передавать айди события для удаления, а не время. И соответственно менять промпт для удаления в ai_service.py
 def delete_event(ai_response, db, user_id):
     logger.debug(f"delete_event: user_id={user_id}, event_ids={ai_response.get('event_ids')}")
-    user = db.select_data("users", where_conditions={"id": user_id})  # изменено
+    user = db.select_data("users", where_conditions={"id": user_id})
     if not user:
         return "Пользователь не найден"
     if str(ai_response.get("has_event")) != "True":
@@ -361,17 +342,15 @@ def delete_event(ai_response, db, user_id):
         event_ids = [event_ids]
 
     for event_id in event_ids:
-        event_row = db.select_data("events", where_conditions={"id": event_id, "user_id": user_id})  # изменено
+        event_row = db.select_data("events", where_conditions={"id": event_id, "user_id": user_id})  
         if not event_row:
             logger.warning(f"Event {event_id} not found for user {user_id}")
             continue
         
-        # Получаем типы авторизации для пользователя
         calendars = _get_sync_calendars(db, user_id)
         apple_uid = event_row[0][7] if len(event_row[0]) > 7 else None
         google_id = event_row[0][9] if len(event_row[0]) > 9 else None
 
-        # 1. Новый модуль (Apple + Google App Password) – один вызов
         new_providers_exist = False
         if apple_uid and "apple" in calendars:
             new_providers_exist = True
@@ -384,14 +363,13 @@ def delete_event(ai_response, db, user_id):
             except Exception as e:
                 logger.error(f"New module delete error for event {event_id}: {e}")
 
-        # 2. Google OAuth отдельно
         if google_id and "google" in calendars and calendars["google"]["type"] == "oauth":
             try:
                 delete_google_calendar_event(user_id=user_id, event_id=google_id)
             except Exception as e:
                 logger.error(f"Google OAuth delete error for event {event_id}: {e}")
-        db.delete_data("events", where_conditions={"id": event_id, "user_id": user_id})  # изменено
-        db.delete_data("events_notifications", where_conditions={"event_id": event_id})  # изменено
+        db.delete_data("events", where_conditions={"id": event_id, "user_id": user_id})  
+        db.delete_data("events_notifications", where_conditions={"event_id": event_id})  
         logger.info(f"Event deleted: {event_id}")
         
 
@@ -400,7 +378,7 @@ def delete_event(ai_response, db, user_id):
 def select_events(ai_response, db, user_id):
     logger.debug(f"select_events: user_id={user_id}, time_range={ai_response.get('time_range')}")
 
-    user = db.select_data("users", where_conditions={"id": user_id})  # изменено
+    user = db.select_data("users", where_conditions={"id": user_id})  
 
     offset = user[0][4]
     user_tz = ZoneInfo(offset)
@@ -421,23 +399,20 @@ def select_events(ai_response, db, user_id):
         date_start = start_local.strftime("%d.%m.%Y")
         date_end = (end_local - timedelta(days = 1)).strftime("%d.%m.%Y")
 
-        # Заменяем сложный where на получение всех событий пользователя и фильтрацию в Python
         all_events = db.select_data("events", where_conditions={"user_id": user_id})
-        events = [e for e in all_events if start_utc <= e[3] < end_utc]  # e[3] - start_at
+        events = [e for e in all_events if start_utc <= e[3] < end_utc]
 
         if not events:
             return f"У вас нет событий с {date_start} по {date_end}"
         
         result_text = f"Ваши события с {date_start} по {date_end}\n"
         for event in events:
-            # event[2] — название, event[3] — start_at
             event_start_utc = datetime.fromisoformat(str(event[3])).replace(tzinfo=timezone.utc)
             event_start_local = event_start_utc.astimezone(ZoneInfo(offset))
             result_text += f"• {event[2]} — {event_start_local.strftime('%d.%m.%Y %H:%M')}\n"
         
         return result_text
     else:
-        # одиночная дата (tomorrow, today)
         target_local = result
         start_of_day = target_local.replace(hour=0, minute=0, second=0, microsecond=0)
         end_of_day = start_of_day + timedelta(days=1)

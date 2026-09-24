@@ -12,7 +12,7 @@ def add_back_button(builder: InlineKeyboardBuilder, max_id=None):
 
     text_back = get_text(
         key="back_btn",
-        user_id=max_id,
+        max_id=max_id,
         db=db
     )
 
@@ -90,19 +90,19 @@ def get_documents_inline_keyboard(max_id=None):
 def get_settings_inline_keyboard(max_id=None):
     text_change_language = get_text(
         key="change_language",
-        user_id=max_id,
+        max_id=max_id,
         db=db
     )
 
     text_update_notifications_btn = get_text(
         key="update_notifications_btn",
-        user_id=max_id,
+        max_id=max_id,
         db=db
     )
 
     text_update_time_btn = get_text(
         key="update_time_btn",
-        user_id=max_id,
+        max_id=max_id,
         db=db
     )
 
@@ -497,10 +497,6 @@ def get_inline_google_app_specific_password_link(max_id=None):
 
 def get_inline_google_authorization(user_id, max_id=None):
     builder = InlineKeyboardBuilder()
-
-    # В исходной версии эта кнопка была закомментирована,
-    # поэтому здесь сохраняем исходную логику:
-    # клавиатура содержит только кнопку "Назад".
 
     return add_back_button(
         builder,

@@ -10,31 +10,20 @@ load_dotenv()
 CLIENT_ID = os.getenv("CLIENT_GOOGLE_ID")
 CLIENT_SECRET = os.getenv("CLIENT_GOOGLE_SECRET")
 REDIRECT_URL = os.getenv("REDIRECT_URI")
+DEVICE_CODE_URL = os.getenv("DEVICE_CODE_URL")
+TOKEN_URI = os.getenv("TOKEN_URI")
 
 db = None
 
-def build_google_auth_url(user_id):
-    state = secrets.token_urlsafe(32)
-    url = (
-        "https://accounts.google.com/o/oauth2/v2/auth"
-        f"?client_id={CLIENT_ID}"
-        f"&redirect_uri={REDIRECT_URL}"
-        "&response_type=code"
-        "&scope=https://www.googleapis.com/auth/calendar"
-        "&access_type=offline"
-        "&prompt=consent"
-        f"&state={state}"
-    )
-    db.insert_data(
-        "oauth_states",
-        {
-            "state": state,
-            "user_id": user_id,
-            "provider": "google"
-        }
-    )
+def request_device_code(user_id):
+    data = {
+        "client_id": CLIENT_ID,
+        "scope": "https://www.googleapis.com/auth/calendar",
+    }
+    r = requests.post(DEVICE_CODE_URL, data=data)
+    r.raise_for_status()
 
-    return url
+    return r.json()
 
 def _get_valid_access_token(user_id):
     refresh_token = db.select_data(
@@ -134,6 +123,7 @@ def create_google_calendar_event(user_id, event_data, reminder_offset_minutes = 
     except Exception as e:
         logger.error(f"Исключение при создании события: {e}")
         return None, None
+
 def update_google_calendar_event(user_id, google_old_event_id, update_data, reminder_offset_minutes = None):
 
     access_token = _get_valid_access_token(user_id)
@@ -156,7 +146,7 @@ def update_google_calendar_event(user_id, google_old_event_id, update_data, remi
             logger.info(f"Событие {google_old_event_id} для пользователя user_id: {user_id} обновлено в Google Calendar")
             google_event_url, google_event_id = result.get('htmlLink'), result.get('id')
             return google_event_url, google_event_id
-            #google_event_id совпадает с google_old_event_id. 
+           
         else:
             logger.error(f"Ошибка Google API: {result}")
             return None, None

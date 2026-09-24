@@ -7,16 +7,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# ANSI color codes
 class Colors:
     RESET = '\033[0m'
-    DEBUG = '\033[36m'      # Голубой
-    INFO = '\033[32m'       # Зеленый
-    WARNING = '\033[33m'    # Желтый
-    ERROR = '\033[31m'      # Красный
-    CRITICAL = '\033[35m'   # Пурпурный
+    DEBUG = '\033[36m'      
+    INFO = '\033[32m'       
+    WARNING = '\033[33m'   
+    ERROR = '\033[31m'     
+    CRITICAL = '\033[35m'
     
-    # Дополнительные стили
     BOLD = '\033[1m'
     DIM = '\033[2m'
 

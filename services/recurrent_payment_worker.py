@@ -12,7 +12,6 @@ from handlers.answer_texts.TEXT import get_text
 
 async def run_recurrent_payments(db, bot):
     now = datetime.now(timezone.utc)
-    # ================== 1. АВТОСПИСАНИЕ ==================
     auto_subs = db.select_data(
         "subscriptions",
         columns=["id", "user_id", "expires_at", "auto_renewal_attempted_at"],
@@ -52,7 +51,6 @@ async def run_recurrent_payments(db, bot):
                 f"Auto-renewal payment created: "
                 f"user_id={user_id}, payment_id={payment.id}"
             )
-            # Отмечаем попытку
             db.update_data(
                 "subscriptions",
                 {"auto_renewal_attempted_at": now.replace(tzinfo=None)},
@@ -68,7 +66,6 @@ async def run_recurrent_payments(db, bot):
                 where_conditions={"id": sub_id}
             )
 
-    # ================== 2. УВЕДОМЛЕНИЯ ЗА 3 ДНЯ ==================
     active_subs = db.select_data(
         "subscriptions",
         columns=["id", "user_id", "expires_at", "auto_renewal", "expiry_notified_at"],
@@ -82,11 +79,9 @@ async def run_recurrent_payments(db, bot):
         expires_at = normalize_datetime(expires_at)
         last_notified = normalize_datetime(last_notified) if last_notified else None
 
-        # Если срок от 0 до 3 дней (но не истек)
         if not expires_at or expires_at <= now or expires_at > three_days_later:
             continue
 
-        # Не чаще раза в сутки
         if last_notified and (now - last_notified) < timedelta(hours=24):
             continue
 
@@ -112,7 +107,6 @@ async def run_recurrent_payments(db, bot):
                     date=expires_at.strftime("%d.%m.%Y")
                 )
             else:
-                # Создаём ссылку на оплату для ручного продления
                 renewal_payment = create_one_time_renewal_payment(user_id, max_id)
                 payment_url = renewal_payment.confirmation.confirmation_url
                 text = get_text(
@@ -123,10 +117,8 @@ async def run_recurrent_payments(db, bot):
                     payment_url=payment_url
                 )
 
-            # Асинхронная отправка сообщения
             await bot.send_message(chat_id=max_id, text=text)
 
-            # Запоминаем, что уведомили
             db.update_data(
                 "subscriptions",
                 {"expiry_notified_at": now.replace(tzinfo=None)},

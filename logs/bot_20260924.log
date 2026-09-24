@@ -540,3 +540,945 @@ LINE 1: SELECT * FROM "users" WHERE "user_id" = 'None'
 2026-09-24 01:27:37,581 - Calendator - INFO - commands.py:29 - RAW message.text: /start
 2026-09-24 01:27:37,581 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
 2026-09-24 01:27:37,583 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:30:09,965 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 01:30:10,269 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 01:30:10,270 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 01:30:10,271 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 01:30:10,271 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 01:30:10,272 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 01:30:10,272 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 01:30:10,273 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 01:30:10,273 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 01:30:10,274 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 01:30:10,275 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 01:30:10,275 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 01:30:10,276 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 01:30:10,280 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 01:30:13,029 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:30:13,029 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:30:13,035 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:31:03,703 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 01:31:03,704 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 01:31:03,705 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 01:31:13,238 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  столбец "max_id" не существует
+LINE 1: SELECT * FROM "users" WHERE "max_id" = 285707165
+                                    ^
+
+2026-09-24 13:04:59,196 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:04:59,626 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:04:59,626 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:04:59,627 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:04:59,627 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:04:59,628 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:04:59,628 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:04:59,628 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:04:59,629 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:04:59,629 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:04:59,630 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:04:59,630 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:04:59,630 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:04:59,649 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:05:15,089 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:05:15,090 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:05:15,122 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:05:20,108 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:05:20,109 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:05:20,109 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:05:52,276 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  столбец "max_id" не существует
+LINE 1: SELECT * FROM "users" WHERE "max_id" = 285707165
+                                    ^
+
+2026-09-24 13:07:17,395 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:07:17,620 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:07:17,621 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:07:17,621 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:07:17,622 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:07:17,622 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:07:17,622 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:07:17,623 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:07:17,623 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:07:17,624 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:07:17,625 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:07:17,625 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:07:17,625 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:07:17,628 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:07:22,759 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:07:22,759 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:07:22,760 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:07:22,760 - Calendator - INFO - router.py:158 - User 1 sent: Папа попа
+2026-09-24 13:07:22,761 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:07:22,761 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:07:22,860 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:07, weekday=четверг
+2026-09-24 13:07:22,860 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:07:26,002 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.064096
+2026-09-24 13:07:26,002 - Calendator - INFO - ai_service.py:182 - AI response time: 3.16 seconds
+2026-09-24 13:07:26,003 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:07:26,003 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06409584, column=text_cost
+2026-09-24 13:07:26,043 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06409584
+2026-09-24 13:07:26,043 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:07:26,172 - Calendator - INFO - router.py:617 - User 1: answer=Я помогаю планировать дела и управлять календарем, но не совсем понимаю, что вы имеете в виду. Хотит...
+2026-09-24 13:07:37,171 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:07:37,172 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:07:37,172 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:07:37,172 - Calendator - INFO - router.py:158 - User 1 sent: Да
+2026-09-24 13:07:37,172 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:07:37,172 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:07:37,208 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:07, weekday=четверг
+2026-09-24 13:07:37,208 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:07:39,385 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.054103
+2026-09-24 13:07:39,386 - Calendator - INFO - ai_service.py:182 - AI response time: 2.18 seconds
+2026-09-24 13:07:39,386 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:07:39,386 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05410304, column=text_cost
+2026-09-24 13:07:39,416 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05410304
+2026-09-24 13:07:39,416 - Calendator - INFO - router.py:225 - User 1: action=create_event
+2026-09-24 13:07:39,418 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  столбец "max_id" не существует
+LINE 1: SELECT "max_id" FROM "users" WHERE "id" = 1
+               ^
+
+2026-09-24 13:11:06,921 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:11:07,107 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:11:07,108 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:11:07,108 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:11:07,109 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:11:07,109 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:11:07,109 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:11:07,110 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:11:07,110 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:11:07,110 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:11:07,111 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:11:07,111 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:11:07,111 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:11:07,113 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:11:12,499 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:11:12,499 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:11:12,500 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:11:12,500 - Calendator - INFO - router.py:158 - User 1 sent: Пошел нахуй
+2026-09-24 13:11:12,500 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:11:12,500 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:11:12,529 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:11, weekday=четверг
+2026-09-24 13:11:12,529 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:11:15,456 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.063978
+2026-09-24 13:11:15,457 - Calendator - INFO - ai_service.py:182 - AI response time: 2.93 seconds
+2026-09-24 13:11:15,457 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:11:15,457 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06397758, column=text_cost
+2026-09-24 13:11:15,461 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06397758
+2026-09-24 13:11:15,462 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:11:15,564 - Calendator - INFO - router.py:617 - User 1: answer=Я здесь, чтобы помогать вам с расписанием и делами. Если захотите что-то запланировать, просто напиш...
+2026-09-24 13:11:22,999 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:11:23,000 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:11:23,000 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:11:23,000 - Calendator - INFO - router.py:158 - User 1 sent: Давай помоги мне
+2026-09-24 13:11:23,000 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:11:23,000 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:11:23,034 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:11, weekday=четверг
+2026-09-24 13:11:23,034 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:11:25,588 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.063859
+2026-09-24 13:11:25,588 - Calendator - INFO - ai_service.py:182 - AI response time: 2.55 seconds
+2026-09-24 13:11:25,588 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:11:25,588 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06385932, column=text_cost
+2026-09-24 13:11:25,616 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06385932
+2026-09-24 13:11:25,616 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:11:25,712 - Calendator - INFO - router.py:617 - User 1: answer=Конечно, я готов помочь. Что именно вы хотите запланировать или изменить в своем календаре?...
+2026-09-24 13:11:51,156 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:11:51,156 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:11:51,156 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:11:51,156 - Calendator - INFO - router.py:158 - User 1 sent: Обосраться завтра в 13.00
+2026-09-24 13:11:51,157 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:11:51,157 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:11:51,184 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:11, weekday=четверг
+2026-09-24 13:11:51,184 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:11:54,817 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.057473
+2026-09-24 13:11:54,817 - Calendator - INFO - ai_service.py:182 - AI response time: 3.63 seconds
+2026-09-24 13:11:54,818 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:11:54,818 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05747339, column=text_cost
+2026-09-24 13:11:54,845 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05747339
+2026-09-24 13:11:54,845 - Calendator - INFO - router.py:225 - User 1: action=create_event
+2026-09-24 13:11:54,847 - Calendator - ERROR - database.py:220 - Ошибка в select_data: ОШИБКА:  столбец "max_id" не существует
+LINE 1: SELECT "max_id" FROM "users" WHERE "id" = 1
+               ^
+
+2026-09-24 13:17:43,599 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:17:43,905 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:17:43,906 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:17:43,906 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:17:43,907 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:17:43,907 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:17:43,907 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:17:43,908 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:17:43,908 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:17:43,909 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:17:43,909 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:17:43,909 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:17:43,910 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:17:43,911 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:17:54,618 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:17:54,619 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:17:54,619 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:17:54,619 - Calendator - INFO - router.py:158 - User 1 sent: Писюн
+2026-09-24 13:17:54,619 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:17:54,619 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:17:54,669 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:17, weekday=четверг
+2026-09-24 13:17:54,669 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:17:57,420 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.062322
+2026-09-24 13:17:57,420 - Calendator - INFO - ai_service.py:182 - AI response time: 2.75 seconds
+2026-09-24 13:17:57,421 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:17:57,421 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06232197, column=text_cost
+2026-09-24 13:17:57,450 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06232197
+2026-09-24 13:17:57,450 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:17:57,540 - Calendator - INFO - router.py:617 - User 1: answer=Я здесь, чтобы помогать вам с расписанием и делами. Хотите запланировать что-нибудь важное?...
+2026-09-24 13:18:01,633 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:18:01,633 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:18:01,634 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:18:01,634 - Calendator - INFO - router.py:158 - User 1 sent: Да
+2026-09-24 13:18:01,634 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:18:01,634 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:18:01,674 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:18, weekday=четверг
+2026-09-24 13:18:01,674 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:18:04,116 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.062322
+2026-09-24 13:18:04,116 - Calendator - INFO - ai_service.py:182 - AI response time: 2.44 seconds
+2026-09-24 13:18:04,116 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:18:04,116 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06232197, column=text_cost
+2026-09-24 13:18:04,119 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06232197
+2026-09-24 13:18:04,119 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:18:04,201 - Calendator - INFO - router.py:617 - User 1: answer=Отлично, я готов. Что именно вы хотите запланировать или записать в календарь?...
+2026-09-24 13:18:17,709 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:18:17,709 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:18:17,709 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:18:17,709 - Calendator - INFO - router.py:158 - User 1 sent: Покакать
+2026-09-24 13:18:17,709 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:18:17,709 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:18:17,747 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:18, weekday=четверг
+2026-09-24 13:18:17,747 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:18:20,291 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.055581
+2026-09-24 13:18:20,291 - Calendator - INFO - ai_service.py:182 - AI response time: 2.54 seconds
+2026-09-24 13:18:20,291 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:18:20,291 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05558126, column=text_cost
+2026-09-24 13:18:20,319 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05558126
+2026-09-24 13:18:20,320 - Calendator - INFO - router.py:225 - User 1: action=create_event
+2026-09-24 13:18:20,326 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:18, weekday=четверг
+2026-09-24 13:18:20,326 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:18:22,957 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.198023
+2026-09-24 13:18:22,957 - Calendator - INFO - ai_service.py:182 - AI response time: 2.63 seconds
+2026-09-24 13:18:22,958 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:18:22,958 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.19802302, column=text_cost
+2026-09-24 13:18:22,985 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.19802302
+2026-09-24 13:18:22,986 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=create_event, user_id=1
+2026-09-24 13:18:22,986 - Calendator - DEBUG - event_service.py:47 - create_event: user_id=1, summary=Покакать
+2026-09-24 13:18:27,055 - Calendator - ERROR - get_correct_time.py:45 - Duckling error: HTTPConnectionPool(host='localhost', port=8001): Max retries exceeded with url: /parse (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000023FE3131160>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2026-09-24 13:18:27,161 - Calendator - INFO - router.py:617 - User 1: answer=Извините, я не понял время и дату......
+2026-09-24 13:24:16,572 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:24:16,764 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:24:16,765 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:24:16,765 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:24:16,765 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:24:16,766 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:24:16,766 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:24:16,766 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:24:16,766 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:24:16,767 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:24:16,767 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:24:16,767 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:24:16,767 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:24:16,769 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:24:21,881 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:24:21,881 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:24:21,882 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:24:21,882 - Calendator - INFO - router.py:158 - User 1 sent: Хочу какать
+2026-09-24 13:24:21,882 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:24:21,882 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:24:22,098 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:24, weekday=четверг
+2026-09-24 13:24:22,099 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:24:27,493 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.060666
+2026-09-24 13:24:27,493 - Calendator - INFO - ai_service.py:182 - AI response time: 5.40 seconds
+2026-09-24 13:24:27,494 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:24:27,494 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06066635, column=text_cost
+2026-09-24 13:24:27,523 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06066635
+2026-09-24 13:24:27,523 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:24:27,673 - Calendator - INFO - router.py:617 - User 1: answer=Я помогаю планировать дела и встречи, а в этом вопросе вам лучше справиться самостоятельно....
+2026-09-24 13:24:35,085 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:24:35,085 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:24:35,086 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:24:35,086 - Calendator - INFO - router.py:158 - User 1 sent: Мне нужна помощь
+2026-09-24 13:24:35,086 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:24:35,086 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:24:35,311 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:24, weekday=четверг
+2026-09-24 13:24:35,312 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:24:38,531 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.065870
+2026-09-24 13:24:38,531 - Calendator - INFO - ai_service.py:182 - AI response time: 3.22 seconds
+2026-09-24 13:24:38,531 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:24:38,531 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06586971, column=text_cost
+2026-09-24 13:24:38,534 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06586971
+2026-09-24 13:24:38,534 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:24:38,687 - Calendator - INFO - router.py:617 - User 1: answer=Я готов помочь вам с планированием дел, созданием встреч или управлением вашим календарем. Что именн...
+2026-09-24 13:25:04,771 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:25:04,771 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:25:04,772 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:25:04,772 - Calendator - INFO - router.py:158 - User 1 sent: Запланируй покакать
+2026-09-24 13:25:04,772 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:25:04,772 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:25:05,294 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:25, weekday=четверг
+2026-09-24 13:25:05,294 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:25:09,528 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.056586
+2026-09-24 13:25:09,528 - Calendator - INFO - ai_service.py:182 - AI response time: 4.23 seconds
+2026-09-24 13:25:09,528 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:25:09,529 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05658645, column=text_cost
+2026-09-24 13:25:09,556 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05658645
+2026-09-24 13:25:09,556 - Calendator - INFO - router.py:225 - User 1: action=create_event
+2026-09-24 13:25:09,562 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:25, weekday=четверг
+2026-09-24 13:25:09,562 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:25:12,396 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.201512
+2026-09-24 13:25:12,396 - Calendator - INFO - ai_service.py:182 - AI response time: 2.83 seconds
+2026-09-24 13:25:12,396 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:25:12,396 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.20151163, column=text_cost
+2026-09-24 13:25:12,413 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.20151163
+2026-09-24 13:25:12,413 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=create_event, user_id=1
+2026-09-24 13:25:12,413 - Calendator - DEBUG - event_service.py:47 - create_event: user_id=1, summary=Сходить в туалет
+2026-09-24 13:25:12,616 - Calendator - INFO - event_service.py:71 - INSERT EVENT: Сходить в туалет at 2026-09-24 11:00:00+00:00, user_id=1
+2026-09-24 13:25:12,624 - Calendator - INFO - event_service.py:129 - Event add
+2026-09-24 13:25:12,626 - Calendator - INFO - event_service.py:146 - new_providers: []
+2026-09-24 13:25:12,712 - Calendator - INFO - router.py:617 - User 1: answer=Хорошо, напомню сегодня в 14:00, что нужно сходить в туалет...
+2026-09-24 13:30:01,386 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:30:01,568 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:30:01,569 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:30:01,569 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:30:01,570 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:30:01,570 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:30:01,570 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:30:01,571 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:30:01,571 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:30:01,571 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:30:01,571 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:30:01,572 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:30:01,572 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:30:01,574 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:30:26,189 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:30:26,189 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:30:26,189 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:30:26,189 - Calendator - INFO - router.py:158 - User 1 sent: Запланируй завтра собеседование
+2026-09-24 13:30:26,190 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:30:26,190 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:30:26,259 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:30, weekday=четверг
+2026-09-24 13:30:26,259 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:30:29,693 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.052743
+2026-09-24 13:30:29,693 - Calendator - INFO - ai_service.py:182 - AI response time: 3.44 seconds
+2026-09-24 13:30:29,694 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:30:29,694 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05274307, column=text_cost
+2026-09-24 13:30:29,696 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05274307
+2026-09-24 13:30:29,696 - Calendator - INFO - router.py:225 - User 1: action=create_event
+2026-09-24 13:30:29,700 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:30, weekday=четверг
+2026-09-24 13:30:29,700 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:30:32,909 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.197313
+2026-09-24 13:30:32,909 - Calendator - INFO - ai_service.py:182 - AI response time: 3.21 seconds
+2026-09-24 13:30:32,909 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:30:32,909 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.19731347, column=text_cost
+2026-09-24 13:30:32,937 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.19731347
+2026-09-24 13:30:32,937 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=create_event, user_id=1
+2026-09-24 13:30:32,937 - Calendator - DEBUG - event_service.py:47 - create_event: user_id=1, summary=Собеседование
+2026-09-24 13:30:32,975 - Calendator - INFO - event_service.py:71 - INSERT EVENT: Собеседование at 2026-09-25 07:00:00+00:00, user_id=1
+2026-09-24 13:30:32,981 - Calendator - INFO - event_service.py:129 - Event add
+2026-09-24 13:30:32,982 - Calendator - INFO - event_service.py:146 - new_providers: []
+2026-09-24 13:30:33,052 - Calendator - INFO - router.py:617 - User 1: answer=Хорошо, запланировал собеседование на завтра(25.09.2026) в 10:00...
+2026-09-24 13:30:57,735 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:30:57,735 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:30:57,735 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:30:57,735 - Calendator - INFO - router.py:158 - User 1 sent: Привет
+2026-09-24 13:30:57,735 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:30:57,735 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:30:57,798 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:30, weekday=четверг
+2026-09-24 13:30:57,798 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:31:01,273 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.065515
+2026-09-24 13:31:01,273 - Calendator - INFO - ai_service.py:182 - AI response time: 3.47 seconds
+2026-09-24 13:31:01,273 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:31:01,273 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06551493, column=text_cost
+2026-09-24 13:31:01,300 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06551493
+2026-09-24 13:31:01,301 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:31:01,396 - Calendator - INFO - router.py:617 - User 1: answer=Привет! Я помогу вам организовать расписание и напомню о важных делах. Хотите что-нибудь запланирова...
+2026-09-24 13:31:05,661 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:31:05,661 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:31:05,661 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:31:05,661 - Calendator - INFO - router.py:158 - User 1 sent: Какие напоминания у меня есть
+2026-09-24 13:31:05,661 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:31:05,661 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:31:05,696 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:31, weekday=четверг
+2026-09-24 13:31:05,696 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:31:08,366 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.057887
+2026-09-24 13:31:08,366 - Calendator - INFO - ai_service.py:182 - AI response time: 2.67 seconds
+2026-09-24 13:31:08,366 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:31:08,366 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05788729, column=text_cost
+2026-09-24 13:31:08,394 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05788729
+2026-09-24 13:31:08,394 - Calendator - INFO - router.py:225 - User 1: action=list_per_time
+2026-09-24 13:31:08,395 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:31, weekday=четверг
+2026-09-24 13:31:08,395 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:31:10,761 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.058952
+2026-09-24 13:31:10,761 - Calendator - INFO - ai_service.py:182 - AI response time: 2.37 seconds
+2026-09-24 13:31:10,762 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:31:10,762 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05895161, column=text_cost
+2026-09-24 13:31:10,764 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05895161
+2026-09-24 13:31:10,764 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=list_per_time, user_id=1
+2026-09-24 13:31:10,764 - Calendator - DEBUG - event_service.py:401 - select_events: user_id=1, time_range=None
+2026-09-24 13:31:10,881 - Calendator - INFO - router.py:617 - User 1: answer=Ваши события на 24.09.2026:
+• Сходить в туалет — 14:00
+...
+2026-09-24 13:31:17,601 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:31:17,601 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:31:17,601 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:31:17,602 - Calendator - INFO - router.py:158 - User 1 sent: А завтра
+2026-09-24 13:31:17,602 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:31:17,602 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:31:17,653 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:31, weekday=четверг
+2026-09-24 13:31:17,653 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:31:20,173 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.059839
+2026-09-24 13:31:20,173 - Calendator - INFO - ai_service.py:182 - AI response time: 2.52 seconds
+2026-09-24 13:31:20,174 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:31:20,174 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05983855, column=text_cost
+2026-09-24 13:31:20,175 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05983855
+2026-09-24 13:31:20,175 - Calendator - INFO - router.py:225 - User 1: action=list_per_time
+2026-09-24 13:31:20,175 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:31, weekday=четверг
+2026-09-24 13:31:20,175 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:31:22,589 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.064805
+2026-09-24 13:31:22,590 - Calendator - INFO - ai_service.py:182 - AI response time: 2.41 seconds
+2026-09-24 13:31:22,590 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:31:22,590 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06480538, column=text_cost
+2026-09-24 13:31:22,617 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06480538
+2026-09-24 13:31:22,618 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=list_per_time, user_id=1
+2026-09-24 13:31:22,618 - Calendator - DEBUG - event_service.py:401 - select_events: user_id=1, time_range=None
+2026-09-24 13:31:22,753 - Calendator - INFO - router.py:617 - User 1: answer=Ваши события на 25.09.2026:
+• Собеседование — 10:00
+...
+2026-09-24 13:32:09,084 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:32:09,084 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:32:09,085 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:33:20,879 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:33:20,879 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:33:20,880 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:34:45,732 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:34:45,733 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:34:45,733 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:35:02,092 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:35:02,092 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:35:02,093 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:35:38,047 - Calendator - ERROR - database.py:175 - Ошибка в update_data: ОШИБКА:  столбец "max_id" не существует
+LINE 1: ...DATE "users" SET "notification_time" = 2864 WHERE "max_id" =...
+                                                             ^
+
+2026-09-24 13:40:27,842 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:40:28,036 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:40:28,037 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:40:28,037 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:40:28,038 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:40:28,038 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:40:28,038 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:40:28,039 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:40:28,039 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:40:28,039 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:40:28,039 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:40:28,040 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:40:28,040 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:40:28,042 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:40:35,048 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:40:35,048 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:40:35,048 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:40:35,049 - Calendator - INFO - router.py:158 - User 1 sent: Старт
+2026-09-24 13:40:35,049 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:40:35,049 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:40:35,079 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:40, weekday=четверг
+2026-09-24 13:40:35,080 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:40:37,842 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.060785
+2026-09-24 13:40:37,842 - Calendator - INFO - ai_service.py:182 - AI response time: 2.76 seconds
+2026-09-24 13:40:37,842 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:40:37,842 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06078461, column=text_cost
+2026-09-24 13:40:37,871 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06078461
+2026-09-24 13:40:37,872 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 13:40:37,987 - Calendator - INFO - router.py:617 - User 1: answer=Привет! Я помогу вам управлять календарем и напоминаниями. Что мы запланируем сегодня?...
+2026-09-24 13:40:41,916 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 13:40:41,916 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 13:40:41,916 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 13:40:41,916 - Calendator - INFO - router.py:158 - User 1 sent: Покажи меню
+2026-09-24 13:40:41,917 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 13:40:41,917 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 13:40:42,005 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:40, weekday=четверг
+2026-09-24 13:40:42,006 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:40:44,606 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.053157
+2026-09-24 13:40:44,606 - Calendator - INFO - ai_service.py:182 - AI response time: 2.60 seconds
+2026-09-24 13:40:44,606 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:40:44,607 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05315697, column=text_cost
+2026-09-24 13:40:44,610 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05315697
+2026-09-24 13:40:44,610 - Calendator - INFO - router.py:225 - User 1: action=question
+2026-09-24 13:40:44,611 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 13:40, weekday=четверг
+2026-09-24 13:40:44,611 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 13:40:47,118 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.052684
+2026-09-24 13:40:47,118 - Calendator - INFO - ai_service.py:182 - AI response time: 2.51 seconds
+2026-09-24 13:40:47,118 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 13:40:47,118 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05268394, column=text_cost
+2026-09-24 13:40:47,145 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05268394
+2026-09-24 13:40:47,237 - Calendator - INFO - router.py:617 - User 1: answer=В меню через команду /start вы можете настроить часовой пояс, уведомления и язык, а также управлять ...
+2026-09-24 13:40:53,231 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:40:53,232 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:40:53,232 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:50:48,532 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:50:48,731 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:50:48,732 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:50:48,733 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:50:48,733 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:50:48,733 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:50:48,734 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:50:48,734 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:50:48,734 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:50:48,734 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:50:48,735 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:50:48,735 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:50:48,735 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:50:48,737 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:50:53,242 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:50:53,242 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:50:53,245 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:56:10,706 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:56:10,932 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:56:10,932 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:56:10,933 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:56:10,933 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:56:10,933 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:56:10,934 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:56:10,934 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:56:10,934 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:56:10,935 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:56:10,935 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:56:10,935 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:56:10,935 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:56:10,937 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:56:43,390 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:56:43,390 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:56:43,393 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:56:44,489 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:56:44,489 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:56:44,490 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:56:47,509 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:56:47,509 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:56:47,510 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 13:57:26,127 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 13:57:26,327 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 13:57:26,328 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 13:57:26,328 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 13:57:26,328 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 13:57:26,329 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 13:57:26,329 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 13:57:26,329 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 13:57:26,330 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 13:57:26,330 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 13:57:26,330 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 13:57:26,330 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 13:57:26,331 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 13:57:26,332 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 13:58:17,632 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 13:58:17,632 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 13:58:17,633 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 14:00:26,719 - Calendator - DEBUG - remind_user.py:39 - Processing notification for event: [(1, 1, 'Сходить в туалет', datetime.datetime(2026, 9, 24, 11, 0), 60, datetime.datetime(2026, 9, 24, 13, 25, 12, 413999), None, None, None, None, True)]
+2026-09-24 14:00:27,101 - Calendator - INFO - remind_user.py:63 - Notification sent to user 285707165: Сходить в туалет
+2026-09-24 14:01:34,900 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 14:01:35,110 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 14:01:35,111 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 14:01:35,112 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 14:01:35,112 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 14:01:35,112 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 14:01:35,113 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 14:01:35,113 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 14:01:35,113 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 14:01:35,113 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 14:01:35,113 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 14:01:35,114 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 14:01:35,114 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 14:01:35,116 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 14:01:36,817 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 14:01:36,817 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 14:01:36,820 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 14:01:36,878 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 14:01:36,878 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 14:01:36,879 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 14:03:30,197 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 14:03:30,384 - Calendator - INFO - database.py:70 - Table 'users' ensured
+2026-09-24 14:03:30,385 - Calendator - INFO - database.py:70 - Table 'events' ensured
+2026-09-24 14:03:30,385 - Calendator - INFO - database.py:70 - Table 'events_notifications' ensured
+2026-09-24 14:03:30,386 - Calendator - INFO - database.py:70 - Table 'users_costs' ensured
+2026-09-24 14:03:30,386 - Calendator - INFO - database.py:70 - Table 'users_authorizations' ensured
+2026-09-24 14:03:30,386 - Calendator - INFO - database.py:70 - Table 'oauth_states' ensured
+2026-09-24 14:03:30,387 - Calendator - INFO - database.py:70 - Table 'plans' ensured
+2026-09-24 14:03:30,387 - Calendator - INFO - database.py:70 - Table 'subscriptions' ensured
+2026-09-24 14:03:30,387 - Calendator - INFO - database.py:70 - Table 'usage' ensured
+2026-09-24 14:03:30,387 - Calendator - INFO - database.py:70 - Table 'payments' ensured
+2026-09-24 14:03:30,388 - Calendator - INFO - database.py:70 - Table 'payment_notifications' ensured
+2026-09-24 14:03:30,388 - Calendator - INFO - database.py:70 - Table 'analytics_events' ensured
+2026-09-24 14:03:30,390 - Calendator - INFO - work_with_dp.py:195 - Plans already exist
+2026-09-24 14:03:36,490 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 14:03:36,490 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 14:03:36,493 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 14:04:45,084 - Calendator - ERROR - router.py:820 - Error saving calendar credentials for user 285707165: AuthorizationError at 'https://caldav.icloud.com', reason Unauthorized
+2026-09-24 20:10:35,943 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:11:14,526 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:11:18,570 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:12:16,832 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:12:17,379 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:12:17,381 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:12:17,382 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:12:17,383 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:12:17,384 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:12:17,503 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:12:17,508 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:12:17,509 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:12:17,510 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:12:17,511 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:12:17,512 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:12:17,513 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:12:17,518 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:12:25,755 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:25,755 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:12:25,755 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:25,756 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 20:12:25,756 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:25,756 - Calendator - INFO - router.py:158 - User 1 sent: Писюн
+2026-09-24 20:12:25,757 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:25,757 - Calendator - INFO - router.py:158 - User 1 sent: Писюн
+2026-09-24 20:12:25,757 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:25,757 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:25,758 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:25,758 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:25,775 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:25,775 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:25,778 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:25,779 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:28,093 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.066386
+2026-09-24 20:12:28,093 - Calendator - INFO - ai_service.py:155 - AI response time: 2.32 seconds
+2026-09-24 20:12:28,094 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:12:28,094 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06638638, column=text_cost
+2026-09-24 20:12:28,103 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06638638
+2026-09-24 20:12:28,103 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:12:28,156 - Calendator - INFO - router.py:600 - User 1: answer=Я специализируюсь на управлении вашим календарем и напоминаниями. Если вам нужно запланировать встре...
+2026-09-24 20:12:29,251 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.064840
+2026-09-24 20:12:29,252 - Calendator - INFO - ai_service.py:182 - AI response time: 3.47 seconds
+2026-09-24 20:12:29,253 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 20:12:29,253 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06483974, column=text_cost
+2026-09-24 20:12:29,285 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06483974
+2026-09-24 20:12:29,286 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:12:29,344 - Calendator - INFO - router.py:617 - User 1: answer=Я специализируюсь на планировании дел и напоминаниях. Если у вас есть задачи на сегодня, я с радость...
+2026-09-24 20:12:34,800 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:34,800 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 20:12:34,801 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:34,801 - Calendator - INFO - router.py:158 - User 1 sent: Чё
+2026-09-24 20:12:34,802 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:34,802 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:34,822 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:34,823 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:34,825 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:34,825 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:12:34,826 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:34,826 - Calendator - INFO - router.py:158 - User 1 sent: Чё
+2026-09-24 20:12:34,826 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:34,826 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:34,866 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:34,866 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:37,227 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.064959
+2026-09-24 20:12:37,227 - Calendator - INFO - ai_service.py:155 - AI response time: 2.36 seconds
+2026-09-24 20:12:37,227 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:12:37,227 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06495871, column=text_cost
+2026-09-24 20:12:37,232 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06495871
+2026-09-24 20:12:37,232 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:12:37,302 - Calendator - INFO - router.py:600 - User 1: answer=Я здесь, чтобы помогать вам с расписанием и делами. Хотите что-нибудь запланировать?...
+2026-09-24 20:12:38,149 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.065673
+2026-09-24 20:12:38,150 - Calendator - INFO - ai_service.py:182 - AI response time: 3.33 seconds
+2026-09-24 20:12:38,150 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 20:12:38,151 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06567254, column=text_cost
+2026-09-24 20:12:38,154 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06567254
+2026-09-24 20:12:38,155 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:12:38,230 - Calendator - INFO - router.py:617 - User 1: answer=Я помогаю управлять календарем и задачами. Если нужно создать напоминание или проверить расписание, ...
+2026-09-24 20:12:52,354 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:52,354 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:12:52,355 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:52,355 - Calendator - INFO - router.py:158 - User 1 sent: Почему ты отправляешь два сообщения чзх
+2026-09-24 20:12:52,356 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:52,356 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:52,357 - Calendator - DEBUG - router.py:906 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:12:52,357 - Calendator - DEBUG - router.py:929 - user_id from DB: 1
+2026-09-24 20:12:52,357 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:12:52,357 - Calendator - INFO - router.py:158 - User 1 sent: Почему ты отправляешь два сообщения чзх
+2026-09-24 20:12:52,358 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:12:52,358 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:12:52,374 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:52,375 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:52,375 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:52,376 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:54,942 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.056988
+2026-09-24 20:12:54,943 - Calendator - INFO - ai_service.py:155 - AI response time: 2.57 seconds
+2026-09-24 20:12:54,943 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:12:54,943 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05698759, column=text_cost
+2026-09-24 20:12:54,946 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05698759
+2026-09-24 20:12:54,947 - Calendator - INFO - router.py:225 - User 1: action=question
+2026-09-24 20:12:54,948 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:54,949 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:55,146 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.056928
+2026-09-24 20:12:55,147 - Calendator - INFO - ai_service.py:182 - AI response time: 2.77 seconds
+2026-09-24 20:12:55,147 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 20:12:55,149 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.0569281, column=text_cost
+2026-09-24 20:12:55,172 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.0569281
+2026-09-24 20:12:55,172 - Calendator - INFO - router.py:225 - User 1: action=question
+2026-09-24 20:12:55,174 - Calendator - INFO - ai_service.py:153 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:12, weekday=четверг
+2026-09-24 20:12:55,174 - Calendator - INFO - ai_service.py:171 - Пробуем primary (попытка 1/2)
+2026-09-24 20:12:57,932 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.056869
+2026-09-24 20:12:57,933 - Calendator - INFO - ai_service.py:155 - AI response time: 2.98 seconds
+2026-09-24 20:12:57,933 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:12:57,934 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05686862, column=text_cost
+2026-09-24 20:12:57,963 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05686862
+2026-09-24 20:12:58,043 - Calendator - INFO - router.py:600 - User 1: answer=Я не обладаю информацией о причинах дублирования сообщений, но могу помочь вам настроить уведомления...
+2026-09-24 20:12:58,809 - Calendator - INFO - ai_service.py:180 - Cost response from primary: 0.058237
+2026-09-24 20:12:58,810 - Calendator - INFO - ai_service.py:182 - AI response time: 3.64 seconds
+2026-09-24 20:12:58,810 - Calendator - INFO - ai_service.py:202 - Успешный ответ от primary
+2026-09-24 20:12:58,811 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05823679, column=text_cost
+2026-09-24 20:12:58,840 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05823679
+2026-09-24 20:12:58,889 - Calendator - INFO - router.py:617 - User 1: answer=Я присылаю только одно сообщение в ответ на ваш запрос. Если возникла техническая ошибка, вы можете ...
+2026-09-24 20:15:18,033 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:15:18,034 - Calendator - INFO - commands.py:64 - START params: yclid=None, client_id=None
+2026-09-24 20:15:18,036 - Calendator - INFO - commands.py:183 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:15:18,040 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:15:18,043 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:15:18,045 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:22:41,821 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:22:42,136 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:22:42,137 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:22:42,138 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:22:42,139 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:22:42,139 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:22:42,140 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:22:42,141 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:22:42,141 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:22:42,142 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:22:42,142 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:22:42,143 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:22:42,144 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:22:42,148 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:22:48,231 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:22:48,231 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:22:48,232 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:22:48,232 - Calendator - INFO - router.py:158 - User 1 sent: Писюнчик
+2026-09-24 20:22:48,233 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:22:48,233 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:22:48,252 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:22, weekday=четверг
+2026-09-24 20:22:48,254 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:22:51,892 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.064245
+2026-09-24 20:22:51,892 - Calendator - INFO - ai_service.py:155 - AI response time: 3.64 seconds
+2026-09-24 20:22:51,893 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:22:51,893 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06424488, column=text_cost
+2026-09-24 20:22:51,929 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06424488
+2026-09-24 20:22:51,930 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:22:51,996 - Calendator - INFO - router.py:600 - User 1: answer=Я не совсем понимаю, что вы имеете в виду. Я могу помочь вам запланировать встречу или напомнить о в...
+2026-09-24 20:22:58,097 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:22:58,097 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:22:58,097 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:22:58,097 - Calendator - INFO - router.py:158 - User 1 sent: как дела
+2026-09-24 20:22:58,098 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:22:58,098 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:22:58,116 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:22, weekday=четверг
+2026-09-24 20:22:58,117 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:23:00,960 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.063115
+2026-09-24 20:23:00,960 - Calendator - INFO - ai_service.py:155 - AI response time: 2.85 seconds
+2026-09-24 20:23:00,961 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:23:00,961 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06311465, column=text_cost
+2026-09-24 20:23:00,990 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06311465
+2026-09-24 20:23:00,992 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:23:01,041 - Calendator - INFO - router.py:600 - User 1: answer=У меня всё отлично, я готов помогать вам с вашим расписанием и задачами....
+2026-09-24 20:23:15,118 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:23:15,119 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:23:15,119 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:23:15,119 - Calendator - INFO - router.py:158 - User 1 sent: Напиши сортировку пузырьком
+2026-09-24 20:23:15,120 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:23:15,120 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:23:15,142 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:23, weekday=четверг
+2026-09-24 20:23:15,143 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:23:18,458 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.067636
+2026-09-24 20:23:18,459 - Calendator - INFO - ai_service.py:155 - AI response time: 3.32 seconds
+2026-09-24 20:23:18,459 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:23:18,460 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06763558, column=text_cost
+2026-09-24 20:23:18,489 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06763558
+2026-09-24 20:23:18,489 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 20:23:18,540 - Calendator - INFO - router.py:600 - User 1: answer=Я специализируюсь на управлении вашим календарем и напоминаниями, поэтому не могу помочь с написание...
+2026-09-24 20:23:31,339 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 20:23:31,339 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 20:23:31,339 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 20:23:31,340 - Calendator - INFO - router.py:158 - User 1 sent: Ладно давай меню показывай
+2026-09-24 20:23:31,340 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 20:23:31,341 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 20:23:31,357 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:23, weekday=четверг
+2026-09-24 20:23:31,357 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:23:34,467 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.058475
+2026-09-24 20:23:34,467 - Calendator - INFO - ai_service.py:155 - AI response time: 3.11 seconds
+2026-09-24 20:23:34,467 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:23:34,468 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.05847474, column=text_cost
+2026-09-24 20:23:34,497 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.05847474
+2026-09-24 20:23:34,498 - Calendator - INFO - router.py:225 - User 1: action=question
+2026-09-24 20:23:34,500 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 20:23, weekday=четверг
+2026-09-24 20:23:34,500 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 20:23:37,708 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.056928
+2026-09-24 20:23:37,708 - Calendator - INFO - ai_service.py:155 - AI response time: 3.21 seconds
+2026-09-24 20:23:37,708 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 20:23:37,709 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.0569281, column=text_cost
+2026-09-24 20:23:37,738 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.0569281
+2026-09-24 20:23:37,788 - Calendator - INFO - router.py:600 - User 1: answer=Чтобы открыть меню управления подпиской, настроить уведомления или часовой пояс, просто введите кома...
+2026-09-24 20:23:41,776 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:23:41,777 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:23:41,778 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:26:51,294 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:26:51,592 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:26:51,593 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:26:51,594 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:26:51,594 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:26:51,596 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:26:51,597 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:26:51,599 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:26:51,601 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:26:51,602 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:26:51,603 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:26:51,603 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:26:51,604 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:26:51,609 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:26:57,728 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:26:57,729 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:26:57,735 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:28:03,498 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:28:03,825 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:28:03,826 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:28:03,827 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:28:03,828 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:28:03,829 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:28:03,829 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:28:03,830 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:28:03,831 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:28:03,832 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:28:03,832 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:28:03,833 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:28:03,834 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:28:03,839 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:28:06,292 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:28:06,293 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:28:06,299 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:29:51,124 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:29:51,590 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:29:51,591 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:29:51,592 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:29:51,593 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:29:51,593 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:29:51,594 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:29:51,595 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:29:51,596 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:29:51,597 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:29:51,598 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:29:51,598 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:29:51,599 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:29:51,603 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:29:54,849 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:29:54,850 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:29:54,855 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:31:26,157 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:31:26,599 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:31:26,601 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:31:26,601 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:31:26,602 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:31:26,602 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:31:26,603 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:31:26,603 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:31:26,604 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:31:26,604 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:31:26,605 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:31:26,606 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:31:26,606 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:31:26,610 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:31:29,085 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 20:31:29,085 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 20:31:29,092 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 20:34:02,648 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:34:02,919 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:34:02,920 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:34:02,921 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:34:02,922 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:34:02,922 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:34:02,923 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:34:02,923 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:34:02,923 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:34:02,924 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:34:02,925 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:34:02,925 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:34:02,925 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:34:02,930 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 20:57:40,931 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 20:57:41,348 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 20:57:41,349 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 20:57:41,350 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 20:57:41,351 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 20:57:41,351 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 20:57:41,352 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 20:57:41,352 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 20:57:41,353 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 20:57:41,353 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 20:57:41,353 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 20:57:41,354 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 20:57:41,355 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 20:57:41,359 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 21:01:34,736 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 21:01:35,174 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 21:01:35,175 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 21:01:35,176 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 21:01:35,177 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 21:01:35,177 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 21:01:35,178 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 21:01:35,179 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 21:01:35,180 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 21:01:35,181 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 21:01:35,182 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 21:01:35,183 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 21:01:35,184 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 21:01:35,188 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 21:01:39,119 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(1, 285707165, 'no_nickname', 'Иван', 'Europe/Moscow', 30, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 23, 23, 20, 34, 800562))]
+2026-09-24 21:01:39,120 - Calendator - DEBUG - router.py:885 - user_id from DB: 1
+2026-09-24 21:01:39,120 - Calendator - DEBUG - router.py:98 - User 285707165 has timezone: Europe/Moscow
+2026-09-24 21:01:39,121 - Calendator - INFO - router.py:158 - User 1 sent: Првиет
+2026-09-24 21:01:39,122 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-24 21:01:39,122 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-24 21:01:39,140 - Calendator - INFO - ai_service.py:126 - Local time for user (offset=Europe/Moscow): 24.09.2026 21:01, weekday=четверг
+2026-09-24 21:01:39,141 - Calendator - INFO - ai_service.py:144 - Пробуем primary (попытка 1/2)
+2026-09-24 21:01:42,571 - Calendator - INFO - ai_service.py:153 - Cost response from primary: 0.063174
+2026-09-24 21:01:42,572 - Calendator - INFO - ai_service.py:155 - AI response time: 3.43 seconds
+2026-09-24 21:01:42,572 - Calendator - INFO - ai_service.py:172 - Успешный ответ от primary
+2026-09-24 21:01:42,572 - Calendator - DEBUG - router.py:111 - cost: user_id=1, cost=0.06317413, column=text_cost
+2026-09-24 21:01:42,607 - Calendator - INFO - router.py:151 - Cost updated for user 1: text_cost += 0.06317413
+2026-09-24 21:01:42,608 - Calendator - INFO - router.py:225 - User 1: action=chat
+2026-09-24 21:01:42,672 - Calendator - INFO - router.py:600 - User 1: answer=Привет! Я помогаю управлять вашим календарем и задачами. Хотите запланировать что-нибудь на сегодня?...
+2026-09-24 23:52:51,183 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 23:52:51,640 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 23:52:51,641 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 23:52:51,641 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 23:52:51,641 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 23:52:51,642 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 23:52:51,642 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 23:52:51,642 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 23:52:51,642 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 23:52:51,643 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 23:52:51,643 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 23:52:51,643 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 23:52:51,643 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 23:52:51,645 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 23:53:04,634 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 23:53:04,634 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 23:53:04,637 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-24 23:54:41,715 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-24 23:54:42,003 - Calendator - INFO - database.py:69 - Table 'users' ensured
+2026-09-24 23:54:42,003 - Calendator - INFO - database.py:69 - Table 'events' ensured
+2026-09-24 23:54:42,004 - Calendator - INFO - database.py:69 - Table 'events_notifications' ensured
+2026-09-24 23:54:42,004 - Calendator - INFO - database.py:69 - Table 'users_costs' ensured
+2026-09-24 23:54:42,004 - Calendator - INFO - database.py:69 - Table 'users_authorizations' ensured
+2026-09-24 23:54:42,005 - Calendator - INFO - database.py:69 - Table 'oauth_devices' ensured
+2026-09-24 23:54:42,005 - Calendator - INFO - database.py:69 - Table 'plans' ensured
+2026-09-24 23:54:42,005 - Calendator - INFO - database.py:69 - Table 'subscriptions' ensured
+2026-09-24 23:54:42,006 - Calendator - INFO - database.py:69 - Table 'usage' ensured
+2026-09-24 23:54:42,006 - Calendator - INFO - database.py:69 - Table 'payments' ensured
+2026-09-24 23:54:42,006 - Calendator - INFO - database.py:69 - Table 'payment_notifications' ensured
+2026-09-24 23:54:42,007 - Calendator - INFO - database.py:69 - Table 'analytics_events' ensured
+2026-09-24 23:54:42,009 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-24 23:54:46,734 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-24 23:54:46,734 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-24 23:54:46,737 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped

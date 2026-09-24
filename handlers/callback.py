@@ -1,4 +1,6 @@
 import asyncio
+import os
+import aiohttp
 
 from forms.calendar_fsm import CalendarStates
 
@@ -18,8 +20,8 @@ from services.access import is_pro_user
 from logger_config import logger
 from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
-from services.google_calendar_service import build_google_auth_url
-from monitor.status import get_full_status, format_status
+from services.google_calendar_service import request_device_code
+#from monitor.status import get_full_status, format_status
 from handlers.keyboards import (get_admin_inline_keyboard, 
                                 get_calendars_inline_keyboard, 
                                 get_time_inline_keyboard,
@@ -62,6 +64,10 @@ WORLD_TIMEZONES = {
     12: "Asia/Kamchatka"
 }
 
+CLIENT_GOOGLE_ID = os.getenv("CLIENT_GOOGLE_ID")
+CLIENT_GOOGLE_SECRET = os.getenv("CLIENT_GOOGLE_SECRET")
+TOKEN_URI = os.getenv("TOKEN_URI")
+
 waiting_for_time_message = {}
 
 callback_router = Router()
@@ -82,6 +88,83 @@ async def pop_menu(context: MemoryContext) -> str | None:
         return None
     return history.pop()
 
+async def poll_device_token(device_code_data, user_id, max_id, callback):
+    device_code = device_code_data["device_code"]
+    interval = device_code_data["interval"]
+    expires_at = datetime.utcnow() + timedelta(
+        seconds=device_code_data["expires_in"]
+    )
+
+    async with aiohttp.ClientSession() as session:
+        while datetime.utcnow() < expires_at:
+            await asyncio.sleep(interval)
+
+            data = {
+                "client_id": CLIENT_GOOGLE_ID,
+                "client_secret": CLIENT_GOOGLE_SECRET,
+                "device_code": device_code,
+                "grant_type": "urn:ietf:params:oauth:grant-type:device_code",
+            }
+
+            try:
+                async with session.post(TOKEN_URI, data=data) as response:
+                    tokens = await response.json()
+
+            except aiohttp.ClientError as e:
+                logger.error(f"Google OAuth request error: {e}")
+                return
+
+            error = tokens.get("error")
+
+            if error == "authorization_pending":
+                continue
+
+            elif error == "slow_down":
+                interval += 5
+                continue
+
+            elif error == "access_denied":
+                text = get_text(key="google_calendar_access_denied", max_id=max_id, db=db )
+                await callback.message.answer(text=text)
+                return
+
+            elif error == "expired_token":
+                text = get_text(key="google_calendar_expired_token", max_id=max_id, db=db)
+                await callback.message.answer(text=text)
+                return
+
+            elif error:
+                logger.error(f"Device flow error: {tokens}")
+                return
+
+            refresh_token = tokens.get("refresh_token")
+
+            if refresh_token:
+                existing = db.select_data(
+                    "users_authorizations",
+                    columns=["id"],
+                    where_conditions={"user_id": user_id},
+                )
+
+                if existing:
+                    db.update_data(
+                        "users_authorizations",
+                        {"google_calendar_refresh_token": refresh_token},
+                        where_conditions={"user_id": user_id},
+                    )
+                else:
+                    db.insert_data(
+                        "users_authorizations",
+                        {
+                            "user_id": user_id,
+                            "google_calendar_refresh_token": refresh_token,
+                        },
+                    )
+
+                await callback.message.answer("Google Calendar подключён!")
+
+            return
+
 async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryContext):
     """
     Отображает меню по его имени, заменяя текущее сообщение (edit_text).
@@ -97,40 +180,31 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
             max_id=max_id
         )
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== НАСТРОЙКИ ==========
     elif menu_name == "settings":
-        # В вашем коде используется ключ "notification_time_set" – возможно, это ошибка.
-        # Я оставлю как есть, но рекомендую создать отдельный ключ "settings".
         text = get_text(key="settings_menu", max_id=max_id, db=db)
         keyboard = get_settings_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== ДОКУМЕНТЫ ==========
     elif menu_name == "documents":
-        # В вашем коде тоже используется "notification_time_set" – замените на "documents", если создадите
         text = get_text(key="documents_menu", max_id=max_id, db=db)
         keyboard = get_documents_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== ПОДКЛЮЧЕНИЕ КАЛЕНДАРЕЙ ==========
     elif menu_name == "calendars_setup":
         text = get_text(key="calendars_setup", max_id=max_id, db=db)
         keyboard = get_calendars_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== APPLE КАЛЕНДАРЬ (с проверкой) ==========
     elif menu_name == "apple_calendar":
-        # Проверяем пользователя
         users = db.select_data("users", where_conditions={"user_id":max_id})
         if not users:
             text = get_text(key="user_not_found", max_id=max_id, db=db)
             await callback.message.edit(text=text)
-            #await callback.answer()
             return
 
         user_id = users[0][0]
@@ -145,7 +219,6 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
             text = get_text(key="apple_calendar_activated_already", max_id=max_id, db=db)
             keyboard = get_recconect_disconnect_calendar_keyboard(provider="apple", max_id=max_id)
             await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
         else:
             await callback.message.delete()
             text = get_text(key="apple_email_prompt", max_id=max_id, db=db)
@@ -155,14 +228,14 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
                             db=db
                         )
             media = [
-                InputMedia(path=("media/instructions/apple/1.png"), caption=apple_instruction_text),
+                InputMedia(path=("media/instructions/apple/1.png")),
                 InputMedia(path=("media/instructions/apple/2.png")),
                 InputMedia(path=("media/instructions/apple/3.png")),
                 InputMedia(path=("media/instructions/apple/4.png")),
                 InputMedia(path=("media/instructions/apple/5.png")),
                 InputMedia(path=("media/instructions/apple/6.png"))
             ]
-            await callback.message.answer(attachments=media)
+            await callback.message.answer(text=apple_instruction_text, attachments=media)
 
             await context.update_data(provider="apple")
             await callback.message.answer(text)
@@ -174,7 +247,6 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
         if not users:
             text = get_text(key="user_not_found", max_id=max_id, db=db)
             await callback.message.edit(text=text)
-            #await callback.answer()
             return
 
         user_id = users[0][0]
@@ -189,9 +261,7 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
             text = get_text(key="google_calendar_activated_already", max_id=max_id, db=db)
             keyboard = get_recconect_disconnect_calendar_keyboard(provider="google", max_id=max_id)
             await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
         else:
-
             await callback.message.delete()
             text = get_text(
                             key="google_calendar_oauth",
@@ -204,18 +274,29 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
                 db=db
             )
             media = [
-                InputMedia(path=("media/instructions/google/1.png"), caption=google_instruction_text),
+                InputMedia(path=("media/instructions/google/1.png")),
                 InputMedia(path=("media/instructions/google/2.png")),
-                InputMedia(path=("media/instructions/google/3.png"))
+                InputMedia(path=("media/instructions/google/3.png")), 
             ]
-            await callback.message.answer(attachments=media)
+            await callback.message.answer(text=google_instruction_text, attachments=media)
 
-            google_url = build_google_auth_url(user_id=user_id)
+            device_code_data = request_device_code(user_id=user_id)
+            db.insert_data(
+                "oauth_devices",
+                {
+                    "device_code": device_code_data.get("device_code"),
+                    "user_code": device_code_data.get("user_code"),
+                    "user_id": user_id,
+                    "provider": "google"
+                }
+            )
 
-            # Вставляем ссылку в текст
-            text = text.format(url=google_url)
+            text = get_text(key="google_calendar_oauth", max_id=max_id, db=db)
+            text = text.format(
+                url=device_code_data["verification_url"],
+                code=device_code_data["user_code"],
+            )
 
-            # Клавиатура — только кнопка «Назад» (если она нужна)
             keyboard = get_inline_google_authorization(
                 user_id=user_id,
                 max_id=max_id
@@ -223,47 +304,45 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
 
             await callback.message.answer(text, attachments=[keyboard])
 
+            asyncio.create_task(poll_device_token(device_code_data, user_id, max_id, callback))
+
+
     # ========== ВЫБОР ЧАСОВОГО ПОЯСА ==========
     elif menu_name == "timezone":
         text = get_text(key="timezone_setup", max_id=max_id, db=db)
         keyboard = get_time_inline_keyboard_with_back(max_id=max_id)   # с кнопкой «Назад»
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== ПОДДЕРЖКА ==========
     elif menu_name == "support":
         text = get_text(key="support", max_id=max_id, db=db)
         keyboard = get_support_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== АДМИН-ПАНЕЛЬ ==========
     elif menu_name == "admin_panel":
         text = get_text(key="admin_panel", max_id=max_id, db=db)
         keyboard = get_admin_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== УВЕДОМЛЕНИЯ (настройка) ==========
     elif menu_name == "update_notifications":
         text = get_text(key="update_notifications", max_id=max_id, db=db)
         keyboard = get_update_notifications_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== СМЕНА ЯЗЫКА ==========
     elif menu_name == "change_language":
         text = get_text(key="select_language", max_id=max_id, db=db)
         keyboard = get_inline_language_keyborad(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
 
     # ========== ПЕРВАЯ ИНФОРМАЦИЯ (что такое Календатор) ==========
     elif menu_name == "first_info":
         text = get_text(key="first_info", max_id=max_id, db=db)
         keyboard = get_support_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
+
 
     # ========== ЕСЛИ ИМЯ НЕ РАСПОЗНАНО – ПОКАЗЫВАЕМ ГЛАВНОЕ ==========
     else:
@@ -273,23 +352,23 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
             max_id=max_id
         )
         await replace_menu(callback, text, keyboard)
-        #await callback.message.answer(text=text,attachments=[keyboard])
+
 
 
 @callback_router.message_callback(F.callback.payload == "first_info")
 async def process_first_info(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "main")   # запоминаем главное меню
+    await push_menu(context, "main")
     await show_menu("first_info", callback, context)
 
 @callback_router.message_callback(F.callback.payload == "support")
 async def process_support(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "main")   # запоминаем, что были в главном меню
+    await push_menu(context, "main") 
     await show_menu("support", callback, context)
 
 @callback_router.message_callback(F.callback.payload == "update_time")
 async def process_update_time(callback: MessageCallback, context: MemoryContext):
     await push_menu(context, "settings")
-    await context.update_data(from_settings=True)   # новый флаг
+    await context.update_data(from_settings=True)
     await show_menu("timezone", callback, context)
     
 @callback_router.message_callback(F.callback.payload == "delete_data")
@@ -304,13 +383,11 @@ async def process_delete_data(callback: MessageCallback):
 
     text = get_text(key = "delete_success", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
-    #await callback.answer()
 
 @callback_router.message_callback(F.callback.payload == "cancel_delete")
 async def process_cancel_delete(callback: MessageCallback):
     text = get_text(key = "delete_cancel", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
-    #await callback.answer()
 
 @callback_router.message_callback(F.callback.payload.startswith("timezone:"))
 async def process_timezone_page(callback: MessageCallback, context: MemoryContext):
@@ -324,7 +401,6 @@ async def process_timezone_page(callback: MessageCallback, context: MemoryContex
         where_conditions={"user_id": max_id}
     )
 
-    # Сбрасываем флаг, чтобы кнопка «Назад» не появлялась при следующем входе
     await context.update_data(from_settings=False)
 
     text = get_text(key="timezone_set", max_id=max_id, db=db)
@@ -332,7 +408,7 @@ async def process_timezone_page(callback: MessageCallback, context: MemoryContex
 
     await callback.message.answer(text)
 
-    #await callback.answer()
+    
 
 @callback_router.message_callback(F.callback.payload.startswith("page:"))
 async def process_time_page(callback: MessageCallback, context: MemoryContext):
@@ -347,7 +423,7 @@ async def process_time_page(callback: MessageCallback, context: MemoryContext):
         await callback.answer(attachments=[new_markup])
     except Exception as e:
         logger.error(f"Error updating inline keyboard: {e}")
-    # #await callback.answer()
+    # 
 
 @callback_router.message_callback(F.callback.payload == "update_notifications")
 async def process_update_notifications(callback: MessageCallback, context: MemoryContext):
@@ -370,7 +446,7 @@ async def process_no_update_notifications(callback: MessageCallback):
     )
     text = get_text(key = "notification_time_set", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
-    #await callback.answer()
+    
 
 @callback_router.message_callback(F.callback.payload == "settings")
 async def process_settings_menu(callback: MessageCallback, context: MemoryContext):
@@ -384,7 +460,7 @@ async def process_documents_menu(callback: MessageCallback, context: MemoryConte
 
 @callback_router.message_callback(F.callback.payload == "admin_panel")
 async def process_admin_panel(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "main")   # или из какого меню пришли? Если только из главного, то "main"
+    await push_menu(context, "main") 
     await show_menu("admin_panel", callback, context)
 
 @callback_router.message_callback(F.callback.payload == "admin_update_notification")
@@ -392,18 +468,18 @@ async def process_admin_update_notification(callback: MessageCallback):
     if callback.from_user.user_id not in ADMINS:
         text = get_text(key = "admin_no_permission", max_id = callback.from_user.user_id, db=db)
         await callback.message.answer(text)
-        #await callback.answer()
+        
         return
     waiting_for_broadcast.add(callback.from_user.user_id)
     text = get_text(key = "admin_broadcast_prompt", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload == "services_status")
 async def process_admin_status_services(callback: MessageCallback):
     status = get_full_status()
     text = format_status(status)
     await callback.message.answer(text)
-    #await callback.answer()
+    
     return
 @callback_router.message_callback(F.callback.payload == "calendars_setup")
 async def process_calendars_setup(callback: MessageCallback, context: MemoryContext):
@@ -423,7 +499,6 @@ async def process_calendars_setup(callback: MessageCallback, context: MemoryCont
 
     user_id = user[0][0]
 
-    # Проверяем подписку
     """if not is_pro_user(db, user_id):
         text = get_text(
             key="calendars_pro_only",
@@ -436,7 +511,6 @@ async def process_calendars_setup(callback: MessageCallback, context: MemoryCont
         )
         return
     """
-    # PRO → открываем меню календарей
     await push_menu(context, "main")
     await show_menu("calendars_setup", callback, context)
 @callback_router.message_callback(F.callback.payload == "apple_calendar")
@@ -449,7 +523,7 @@ async def process_google_calendar_spec_pass_setup(callback: MessageCallback, con
     await context.update_data(provider="google")
     await callback.message.answer(text)
     await context.set_state(CalendarStates.waiting_email)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload.startswith("google_calendar"))
 async def process_google_calendar_setup(callback: MessageCallback, context: MemoryContext):
     await push_menu(context, "calendars_setup")
@@ -473,7 +547,7 @@ async def process_russian_language(callback: MessageCallback):
         logger.error(f"Error updating language for user {max_id}: {e}")
         text = get_text(key = "language_change_error", max_id = callback.from_user.user_id, db=db)
         await callback.message.answer(text)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload.startswith("english_language"))
 async def process_english_language(callback: MessageCallback):
 
@@ -491,10 +565,10 @@ async def process_english_language(callback: MessageCallback):
         logger.error(f"Error updating language for user {max_id}: {e}")
         text = get_text(key = "language_change_error", max_id = callback.from_user.user_id, db=db)
         await callback.message.answer(text)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload.startswith("reconnect_google_calendar"))
 async def reconnect_google_calendar(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "google_calendar")   # запоминаем, что были в меню Google
+    await push_menu(context, "google_calendar")
     max_id = callback.from_user.user_id
     user = db.select_data("users", where_conditions={"user_id":max_id})
     user_id = user[0][0]
@@ -505,7 +579,6 @@ async def reconnect_google_calendar(callback: MessageCallback, context: MemoryCo
     db=db
 )
 
-    # Получаем ссылку
     keyboard = get_inline_google_authorization(
         user_id=user_id,
         max_id=max_id
@@ -516,7 +589,7 @@ async def reconnect_google_calendar(callback: MessageCallback, context: MemoryCo
     text = text.format(url=google_url)
 
     await callback.message.edit(text)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload == "disconnect_google_calendar")
 async def disconnect_google_calendar(callback: MessageCallback):
     max_id = callback.from_user.user_id
@@ -526,7 +599,6 @@ async def disconnect_google_calendar(callback: MessageCallback):
         return
     user_id = user[0][0]
 
-    # Очищаем все данные Google
     db.update_data(
         table_name="users_authorizations",
         data={
@@ -540,17 +612,16 @@ async def disconnect_google_calendar(callback: MessageCallback):
 
     text = get_text(key="calendar_disconnected", max_id=max_id, db=db)
     await callback.message.answer(text)
-    #await callback.answer()
+    
 @callback_router.message_callback(F.callback.payload == "reconnect_apple_calendar")
 async def reconnect_apple_calendar(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "apple_calendar")   # запоминаем меню Apple
+    await push_menu(context, "apple_calendar")  
     max_id = callback.from_user.user_id
     user = db.select_data("users", where_conditions={"user_id":max_id})
     if not user:
         await callback.answer("Ошибка")
         return
     user_id = user[0][0]
-    # Очищаем старые данные Apple
     db.update_data(
         table_name="users_authorizations",
         data={
@@ -564,7 +635,7 @@ async def reconnect_apple_calendar(callback: MessageCallback, context: MemoryCon
     await context.update_data(provider="apple")
     await callback.message.edit(text)
     await context.set_state(CalendarStates.waiting_email)
-    #await callback.answer()
+    
     
 @callback_router.message_callback(F.callback.payload.startswith("disconnect_apple_calendar"))
 async def disconnect_apple_calendar(callback: MessageCallback):
@@ -583,11 +654,10 @@ async def disconnect_apple_calendar(callback: MessageCallback):
     text = get_text(key = "calendar_disconnected", max_id = callback.from_user.user_id, db=db)
     
     await callback.message.answer(text)
-    #await callback.answer()
+    
 
 @callback_router.message_callback(F.callback.payload == "back")
 async def process_back(callback: MessageCallback, context: MemoryContext):
-    # Если в процессе ввода – выходим из FSM и возвращаемся
     current_state = await context.get_state()
     if current_state in (CalendarStates.waiting_email, CalendarStates.waiting_password):
         await context.clear()
@@ -596,7 +666,7 @@ async def process_back(callback: MessageCallback, context: MemoryContext):
             await show_menu(prev, callback, context)
         else:
             await show_menu("main", callback, context)
-        #await callback.answer()
+        
         return
 
     prev = await pop_menu(context)
@@ -669,7 +739,6 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
 
             now_user = datetime.now(user_tz)
 
-            # Если дата из БД без timezone
             if expires_at.tzinfo is None:
                 expires_at = expires_at.replace(tzinfo=user_tz)
 
@@ -705,7 +774,6 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
 
         builder = InlineKeyboardBuilder()
 
-        # Кнопка отключения автопродления
         if auto_renewal:
             builder.row(
                 CallbackButton(
@@ -716,9 +784,7 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
                     ),
                     payload="disable_auto_renewal"
                 )
-            )
-
-        # Кнопка назад
+    )
         builder.row(
             CallbackButton(
                 text=get_text(
@@ -741,7 +807,6 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
 
         builder = InlineKeyboardBuilder()
 
-        # Купить Pro
         builder.row(
             CallbackButton(
                 text=get_text(
@@ -753,7 +818,6 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
             )
         )
 
-        # Назад
         builder.row(
             CallbackButton(
                 text=get_text(
@@ -772,7 +836,7 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
         status_text,
         attachments=[keyboard]
     )
-    #await callback.answer()
+    
 
 
 @callback_router.message_callback(F.callback.payload == "buy_pro")
@@ -798,7 +862,6 @@ async def process_buy_pro(callback: MessageCallback, context: MemoryContext):
 
     builder = InlineKeyboardBuilder()
 
-    # Разовая оплата
     builder.row(
         CallbackButton(
             text=get_text(
@@ -810,7 +873,6 @@ async def process_buy_pro(callback: MessageCallback, context: MemoryContext):
         )
     )
 
-    # Автопродление
     builder.row(
         CallbackButton(
             text=get_text(
@@ -822,7 +884,6 @@ async def process_buy_pro(callback: MessageCallback, context: MemoryContext):
         )
     )
 
-    # Назад
     builder.row(
         CallbackButton(
             text=get_text(
@@ -847,7 +908,7 @@ async def process_buy_pro(callback: MessageCallback, context: MemoryContext):
         attachments=[keyboard]
     )
 
-    #await callback.answer()
+    
 
 
 @callback_router.message_callback(F.callback.payload == "buy_pro_once")
@@ -924,7 +985,7 @@ async def process_buy_pro_once(
         )
         return
 
-    #await callback.answer()
+    
 
 
 @callback_router.message_callback(F.callback.payload == "buy_pro_auto")
@@ -999,7 +1060,7 @@ async def process_buy_pro_auto(
         )
         return
 
-    #await callback.answer()
+    
 
 @callback_router.message_callback(F.callback.payload == "disable_auto_renewal")
 async def process_disable_auto_renewal(callback: MessageCallback, context: MemoryContext):
@@ -1012,7 +1073,6 @@ async def process_disable_auto_renewal(callback: MessageCallback, context: Memor
 
     user_id = user[0][0]
 
-    # Найти активную подписку
     subs = db.select_data(
         "subscriptions",
         where_conditions={"user_id": user_id, "status": "active"}
@@ -1026,14 +1086,12 @@ async def process_disable_auto_renewal(callback: MessageCallback, context: Memor
         await callback.answer("Нет активной подписки", )
         return
 
-    # Отключаем автопродление
     db.update_data(
         "subscriptions",
         {"auto_renewal": False},
         where_conditions={"id": active_sub[0]}
     )
 
-    # Опционально: очистить сохранённый метод оплаты
     # db.update_data(
     #     "users",
     #     {"yookassa_payment_method_id": None},
@@ -1043,7 +1101,6 @@ async def process_disable_auto_renewal(callback: MessageCallback, context: Memor
     text = get_text(key="auto_renewal_disabled", max_id=max_id, db=db)
     await callback.answer(text, )
 
-    # Обновляем меню управления подпиской
     await process_manage_subscription(callback, context)
 
 async def replace_menu(callback, text, keyboard):

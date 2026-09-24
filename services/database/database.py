@@ -16,7 +16,7 @@ class Database:
         :param connection: активное соединение с БД.
         """
         self.connection = connection
-        # Сохраняем параметры для переподключения
+
         dsn = connection.get_dsn_parameters()
         self.conn_params = {
             "host": dsn.get("host"),
@@ -25,7 +25,6 @@ class Database:
             "user": dsn.get("user"),
             "password": dsn.get("password"),
         }
-        # Убираем None значения
         self.conn_params = {k: v for k, v in self.conn_params.items() if v is not None}
 
     def _ensure_connection(self) -> None:

@@ -13,7 +13,7 @@ from services.ai_service import ai_answer
 from handlers.answer_texts.TEXT import get_text
 
 from services.event_service import process_ai_event
-from services.voice_to_text_ai import transcribe
+#from services.voice_to_text_ai import transcribe
 from services.crypto_utils import CryptographyService
 from services.calendars.calendar_service import get_calendar_url
 from services.access import check_access
@@ -56,7 +56,7 @@ async def _save_notification_time(event: MessageCreated) -> bool:
                     "notification_time": notification_time
                 },
                 where_conditions={
-                    "max_id": max_id
+                    "user_id": max_id
                 }
             )
 
@@ -91,7 +91,7 @@ async def _save_notification_time(event: MessageCreated) -> bool:
 async def check_user_registration(user_id):
     user = db.select_data(
         table_name="users",
-        where_conditions={"max_id": user_id}
+        where_conditions={"user_id": user_id}
     )
 
     if user and user[0][4] is not None:
@@ -232,10 +232,6 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
         db=db
     )
 
-    # =====================================================
-    # CREATE EVENT
-    # =====================================================
-
     if action == "create_event":
 
         allowed, msg, plan = check_access(
@@ -294,10 +290,6 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
             db=db,
             user_id=user_id
         )
-
-    # =====================================================
-    # UPDATE EVENT
-    # =====================================================
 
     if action == "update_event":
 
@@ -404,9 +396,6 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
                 user_id=user_id
             )
 
-    # =====================================================
-    # DELETE EVENT
-    # =====================================================
 
     if action == "delete_event":
 
@@ -504,10 +493,7 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
                 user_id=user_id
             )
 
-    # =====================================================
-    # LIST EVENTS BY TIME
-    # =====================================================
-
+ 
     if action == "list_per_time":
 
         if language == "ru":
@@ -548,9 +534,6 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
             user_id=user_id
         )
 
-    # =====================================================
-    # OTHER ACTIONS
-    # =====================================================
 
     if action == "daily_summary":
 
@@ -619,11 +602,6 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
         f"answer={answer_text[:100]}..."
     )
 
-
-# =========================================================
-# CALENDAR EMAIL
-# =========================================================
-
 @router.message_created(
     CalendarStates.waiting_email,
     F.message.body.text
@@ -632,13 +610,13 @@ async def process_calendar_email(
     event: MessageCreated,
     context: MemoryContext
 ):
-    data = await state.get_data()
+    data = await context.get_data()
 
     provider = data.get("provider")
 
     email = event.message.body.text
 
-    await state.update_data(
+    await context.update_data(
         email=email
     )
 
@@ -678,7 +656,7 @@ async def process_calendar_email(
             "Ошибка: неизвестный провайдер"
         )
 
-        await state.clear()
+        await context.clear()
 
         return
 
@@ -687,14 +665,9 @@ async def process_calendar_email(
         attachments=[reply_markup]
     )
 
-    await state.set_state(
+    await context.set_state(
         CalendarStates.waiting_password
     )
-
-
-# =========================================================
-# CALENDAR PASSWORD
-# =========================================================
 
 @router.message_created(
     CalendarStates.waiting_password,
@@ -706,11 +679,11 @@ async def process_calendar_password(
 ):
     password = event.message.body.text
 
-    await state.update_data(
+    await context.update_data(
         password=password
     )
 
-    data = await state.get_data()
+    data = await context.get_data()
 
     provider = data.get("provider")
     email = data.get("email")
@@ -732,7 +705,7 @@ async def process_calendar_password(
         user_row = db.select_data(
             "users",
             columns=["id"],
-            where_conditions={"max_id": max_id}
+            where_conditions={"user_id": max_id}
         )
 
         if not user_row:
@@ -745,7 +718,7 @@ async def process_calendar_password(
 
             await event.message.answer(text)
 
-            await state.clear()
+            await context.clear()
 
             return
 
@@ -780,7 +753,7 @@ async def process_calendar_password(
                 "Неизвестный провайдер"
             )
 
-            await state.clear()
+            await context.clear()
 
             return
 
@@ -832,12 +805,7 @@ async def process_calendar_password(
 
     finally:
 
-        await state.clear()
-
-
-# =========================================================
-# TEXT MESSAGES
-# =========================================================
+        await context.clear()
 
 @router.message_created(F.message.body.text)
 async def handle_text_message(
@@ -846,10 +814,6 @@ async def handle_text_message(
     max_id = event.from_user.user_id
 
     text = event.message.body.text
-
-    # -----------------------------------------------------
-    # Broadcast
-    # -----------------------------------------------------
 
     if (
         max_id in ADMINS
@@ -886,21 +850,13 @@ async def handle_text_message(
         )
 
         return
-
-    # -----------------------------------------------------
-    # Notification time
-    # -----------------------------------------------------
-
+    
     if await _save_notification_time(event):
         return
 
-    # -----------------------------------------------------
-    # User
-    # -----------------------------------------------------
-
     user_id_db = db.select_data(
         table_name="users",
-        where_conditions={"max_id": max_id}
+        where_conditions={"user_id": max_id}
     )
 
     logger.debug(
@@ -929,10 +885,6 @@ async def handle_text_message(
     logger.debug(
         f"user_id from DB: {user_id}"
     )
-
-    # -----------------------------------------------------
-    # Timezone
-    # -----------------------------------------------------
 
     if not await check_user_registration(max_id):
 
@@ -963,306 +915,273 @@ async def handle_text_message(
         user_id
     )
 
+# def _is_audio_message(event: MessageCreated) -> bool:
+#     body = event.message.body
 
-# =========================================================
-# VOICE / AUDIO MESSAGES
-# =========================================================
+#     if body is None:
+#         return False
 
-def _is_audio_message(event: MessageCreated) -> bool:
-    body = event.message.body
+#     attachments = body.attachments or []
 
-    if body is None:
-        return False
+#     return any(
+#         getattr(attachment.type, "value", attachment.type) == "audio"
+#         for attachment in attachments
+#     )
 
-    attachments = body.attachments or []
 
-    return any(
-        getattr(attachment.type, "value", attachment.type) == "audio"
-        for attachment in attachments
-    )
+# @router.message_created(
+#     lambda event: _is_audio_message(event)
+# )
+# async def handle_voice_message(
+#     event: MessageCreated
+# ):
+#     max_id = event.from_user.user_id
 
+#     logger.debug(
+#         f"get_audio: user={max_id}"
+#     )
 
-@router.message_created(
-    lambda event: _is_audio_message(event)
-)
-async def handle_voice_message(
-    event: MessageCreated
-):
-    max_id = event.from_user.user_id
+#     user_id_db = db.select_data(
+#         table_name="users",
+#         where_conditions={"user_id": max_id}
+#     )
 
-    logger.debug(
-        f"get_audio: user={max_id}"
-    )
+#     if not user_id_db:
 
-    user_id_db = db.select_data(
-        table_name="users",
-        where_conditions={"max_id": max_id}
-    )
+#         text = get_text(
+#             key="not_registered",
+#             max_id=max_id,
+#             db=db
+#         )
 
-    if not user_id_db:
+#         await event.message.answer(text)
 
-        text = get_text(
-            key="not_registered",
-            max_id=max_id,
-            db=db
-        )
+#         return
 
-        await event.message.answer(text)
+#     user_id = user_id_db[0][0]
 
-        return
+#     if not await check_user_registration(max_id):
 
-    user_id = user_id_db[0][0]
+#         text = get_text(
+#             key="need_timezone",
+#             max_id=max_id,
+#             db=db
+#         )
 
-    if not await check_user_registration(max_id):
+#         keyboard = get_time_inline_keyboard(
+#             max_id=max_id
+#         )
 
-        text = get_text(
-            key="need_timezone",
-            max_id=max_id,
-            db=db
-        )
+#         await event.message.answer(
+#             text,
+#             attachments=[keyboard]
+#         )
 
-        keyboard = get_time_inline_keyboard(
-            max_id=max_id
-        )
+#         return
 
-        await event.message.answer(
-            text,
-            attachments=[keyboard]
-        )
+#     allowed, msg, plan = check_access(
+#         db,
+#         user_id,
+#         action_type="voice"
+#     )
 
-        return
+#     if not allowed:
 
-    allowed, msg, plan = check_access(
-        db,
-        user_id,
-        action_type="voice"
-    )
+#         await event.message.answer(msg)
 
-    if not allowed:
+#         return
 
-        await event.message.answer(msg)
+#     body = event.message.body
 
-        return
+#     attachments = body.attachments or []
 
-    # -----------------------------------------------------
-    # Ищем MAX audio attachment
-    # -----------------------------------------------------
+#     audio_attachment = next(
+#         (
+#             attachment
+#             for attachment in attachments
+#             if getattr(
+#                 attachment.type,
+#                 "value",
+#                 attachment.type
+#             ) == "audio"
+#         ),
+#         None
+#     )
 
-    body = event.message.body
+#     if audio_attachment is None:
 
-    attachments = body.attachments or []
+#         logger.error(
+#             f"Audio attachment not found "
+#             f"for user {max_id}"
+#         )
 
-    audio_attachment = next(
-        (
-            attachment
-            for attachment in attachments
-            if getattr(
-                attachment.type,
-                "value",
-                attachment.type
-            ) == "audio"
-        ),
-        None
-    )
+#         return
 
-    if audio_attachment is None:
+#     if audio_attachment.payload is None:
 
-        logger.error(
-            f"Audio attachment not found "
-            f"for user {max_id}"
-        )
+#         logger.error(
+#             f"Audio payload is missing "
+#             f"for user {max_id}"
+#         )
 
-        return
+#         text = get_text(
+#             key="voice_not_understood",
+#             max_id=max_id,
+#             db=db
+#         )
 
-    if audio_attachment.payload is None:
+#         await event.message.answer(text)
 
-        logger.error(
-            f"Audio payload is missing "
-            f"for user {max_id}"
-        )
+#         return
 
-        text = get_text(
-            key="voice_not_understood",
-            max_id=max_id,
-            db=db
-        )
+#     audio_url = getattr(
+#         audio_attachment.payload,
+#         "url",
+#         None
+#     )
 
-        await event.message.answer(text)
+#     if not audio_url:
 
-        return
+#         logger.error(
+#             f"Audio URL is missing "
+#             f"for user {max_id}"
+#         )
 
-    audio_url = getattr(
-        audio_attachment.payload,
-        "url",
-        None
-    )
+#         text = get_text(
+#             key="voice_not_understood",
+#             max_id=max_id,
+#             db=db
+#         )
 
-    if not audio_url:
+#         await event.message.answer(text)
 
-        logger.error(
-            f"Audio URL is missing "
-            f"for user {max_id}"
-        )
+#         return
 
-        text = get_text(
-            key="voice_not_understood",
-            max_id=max_id,
-            db=db
-        )
+#     url_path = urlparse(audio_url).path
 
-        await event.message.answer(text)
+#     extension = Path(
+#         url_path
+#     ).suffix.lower()
 
-        return
+#     if not extension:
+#         extension = ".ogg"
 
-    # -----------------------------------------------------
-    # Определяем расширение
-    # -----------------------------------------------------
+#     temp_file = tempfile.NamedTemporaryFile(
+#         delete=False,
+#         suffix=extension
+#     )
 
-    url_path = urlparse(audio_url).path
+#     local_audio_path = temp_file.name
 
-    extension = Path(
-        url_path
-    ).suffix.lower()
+#     temp_file.close()
 
-    if not extension:
-        extension = ".ogg"
+#     text = None
+#     error = None
+#     voice_cost_rub = 0
 
-    temp_file = tempfile.NamedTemporaryFile(
-        delete=False,
-        suffix=extension
-    )
+#     try:
 
-    local_audio_path = temp_file.name
+#         session = await event.bot.ensure_session()
 
-    temp_file.close()
+#         async with session.get(audio_url) as response:
 
-    text = None
-    error = None
-    voice_cost_rub = 0
+#             response.raise_for_status()
 
-    # -----------------------------------------------------
-    # Скачиваем аудио
-    # -----------------------------------------------------
+#             with open(
+#                 local_audio_path,
+#                 "wb"
+#             ) as file:
 
-    try:
+#                 async for chunk in response.content.iter_chunked(
+#                     1024 * 1024
+#                 ):
+#                     file.write(chunk)
 
-        session = await event.bot.ensure_session()
+#         logger.debug(
+#             f"Audio file downloaded: "
+#             f"{local_audio_path}"
+#         )
 
-        async with session.get(audio_url) as response:
+#         result = await transcribe(
+#             local_audio_path
+#         )
 
-            response.raise_for_status()
+#         text = result.get("text")
+#         error = result.get("error")
 
-            with open(
-                local_audio_path,
-                "wb"
-            ) as file:
+#         voice_cost_rub = result.get(
+#             "voice_cost_rub",
+#             0
+#         )
 
-                async for chunk in response.content.iter_chunked(
-                    1024 * 1024
-                ):
-                    file.write(chunk)
+#         logger.info(
+#             f"Voice transcribed: "
+#             f"{(text or '')[:50]}..., "
+#             f"cost_rub={voice_cost_rub}"
+#         )
 
-        logger.debug(
-            f"Audio file downloaded: "
-            f"{local_audio_path}"
-        )
+#         await cost(
+#             user_id,
+#             voice_cost_rub,
+#             "voice_cost"
+#         )
 
-        # -------------------------------------------------
-        # Распознавание
-        # -------------------------------------------------
+#         logger.debug(
+#             f"Voice cost saved: "
+#             f"{voice_cost_rub}"
+#         )
 
-        result = await transcribe(
-            local_audio_path
-        )
+#     except Exception as e:
 
-        text = result.get("text")
-        error = result.get("error")
+#         logger.error(
+#             f"Error processing voice: {e}",
+#             exc_info=True
+#         )
 
-        voice_cost_rub = result.get(
-            "voice_cost_rub",
-            0
-        )
+#     finally:
 
-        logger.info(
-            f"Voice transcribed: "
-            f"{(text or '')[:50]}..., "
-            f"cost_rub={voice_cost_rub}"
-        )
+#         try:
 
-        await cost(
-            user_id,
-            voice_cost_rub,
-            "voice_cost"
-        )
+#             os.remove(
+#                 local_audio_path
+#             )
 
-        logger.debug(
-            f"Voice cost saved: "
-            f"{voice_cost_rub}"
-        )
+#             logger.debug(
+#                 f"Temp file removed: "
+#                 f"{local_audio_path}"
+#             )
 
-    except Exception as e:
+#         except FileNotFoundError:
+#             pass
 
-        logger.error(
-            f"Error processing voice: {e}",
-            exc_info=True
-        )
 
-    finally:
+#     if not text:
 
-        try:
+#         if error == "Audio duration > 2 minutes":
 
-            os.remove(
-                local_audio_path
-            )
+#             text = get_text(
+#                 key="voice_too_long",
+#                 max_id=max_id,
+#                 db=db
+#             )
 
-            logger.debug(
-                f"Temp file removed: "
-                f"{local_audio_path}"
-            )
+#         else:
 
-        except FileNotFoundError:
-            pass
+#             text = get_text(
+#                 key="voice_not_understood",
+#                 max_id=max_id,
+#                 db=db
+#             )
 
-    # -----------------------------------------------------
-    # Не удалось распознать
-    # -----------------------------------------------------
+#         await event.message.answer(text)
 
-    if not text:
+#         return
 
-        if error == "Audio duration > 2 minutes":
-
-            text = get_text(
-                key="voice_too_long",
-                max_id=max_id,
-                db=db
-            )
-
-        else:
-
-            text = get_text(
-                key="voice_not_understood",
-                max_id=max_id,
-                db=db
-            )
-
-        await event.message.answer(text)
-
-        return
-
-    # -----------------------------------------------------
-    # Передаём распознанный текст в основной обработчик
-    # -----------------------------------------------------
-
-    await handle_user_input(
-        event,
-        text,
-        user_id
-    )
-
-
-# =========================================================
-# OTHER MESSAGE TYPES
-# =========================================================
+#     await handle_user_input(
+#         event,
+#         text,
+#         user_id
+#     )
 
 @router.message_created()
 async def handle_other_message(
@@ -1276,4 +1195,18 @@ async def handle_other_message(
         db=db
     )
 
+    await event.message.answer(text)
+
+@router.message_created()
+async def audio_message(
+    event: MessageCreated
+):
+    max_id = event.from_user.user_id
+    
+    text = get_text(
+        key="unsupported_message_type",
+        max_id=max_id,
+        db=db
+    )
+    
     await event.message.answer(text)

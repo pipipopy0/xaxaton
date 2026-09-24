@@ -59,10 +59,10 @@ def check_access(db, user_id, action_type='event'):
     action_type: 'event' или 'voice'
     Возвращает (allowed, message, plan_name)
     """
-    # 1. Берём активную подписку пользователя
+
     user_row = db.select_data(
             "users",
-            columns=["max_id"],
+            columns=["user_id"],
             where_conditions={"id": user_id}
         )
     if user_row:
@@ -73,8 +73,7 @@ def check_access(db, user_id, action_type='event'):
         "subscriptions",
         where_conditions={"user_id": user_id, "status": "active"}
     )
-    
-    # Сортируем по id (самая свежая последняя) вручную
+
     active_sub = None
     for sub in subs:
         if active_sub is None or sub[0] > active_sub[0]:
@@ -82,33 +81,26 @@ def check_access(db, user_id, action_type='event'):
     
     plan_id = None
     if active_sub:
-        plan_id = active_sub[2]          # plan_id
-        expires_at = active_sub[5]       # expires_at
-        # Если есть срок и он истёк – считаем подписку недействительной
+        plan_id = active_sub[2]          
+        expires_at = active_sub[5]       
         if expires_at and expires_at < datetime.now():
             plan_id = None
     
-    # 2. Если нет активной подписки – используем план free
     if not plan_id:
         free_plan = db.select_data("plans", where_conditions={"name": "free"})
         if not free_plan:
-            # Защита: если вдруг нет free, создаём
             db.insert_data("plans", {"name": "free", "events_limit": 7, "voice_limit": 2})
             free_plan = db.select_data("plans", where_conditions={"name": "free"})
         plan_id = free_plan[0][0]
     
-    # 3. Получаем данные плана
     plan = db.select_data("plans", where_conditions={"id": plan_id})[0]
-    plan_name = plan[1]          # 'free' или 'pro'
-    events_limit = plan[2]       # 7 для free, None для pro
-    voice_limit = plan[3]        # 2 для free, None для pro
+    plan_name = plan[1]          
+    events_limit = plan[2]       
+    voice_limit = plan[3]        
     
-    # 4. Если pro – сразу разрешаем
     if plan_name == 'pro':
         return True, "", "pro"
     
-    # 5. Если free – проверяем usage за текущий месяц
-    # === УЧЁТ ЧАСОВОГО ПОЯСА ===
     user_data = db.select_data("users", where_conditions={"id": user_id})
     if not user_data:
         text = get_text(key = "user_not_found", max_id = user_id, db=db)
@@ -123,7 +115,6 @@ def check_access(db, user_id, action_type='event'):
     month_start = now_user.date().replace(day=1)
     next_month = month_start + timedelta(days=32)
     month_end = next_month.replace(day=1) - timedelta(days=1)
-    # ==========================
     
     usage = db.select_data(
         "usage",
@@ -135,7 +126,6 @@ def check_access(db, user_id, action_type='event'):
         events_used = usage[0][2] or 0
         voice_used = usage[0][3] or 0
     else:
-        # Если записи за этот месяц нет – создаём с нулями (по времени пользователя)
         db.insert_data(
             "usage",
             {
@@ -147,13 +137,10 @@ def check_access(db, user_id, action_type='event'):
         events_used = 0
         voice_used = 0
     
-    # Получаем текст для отказа (для обоих типов одинаковый)
     text = get_text(key="access_denied", max_id=max_id, db=db)
     
-    # 6. Сравниваем с лимитами
     if action_type == 'event':
         if events_limit is not None and events_used >= events_limit:
-            # ===== НАЧАЛО БЛОКА ДЛЯ limit_reached =====
             from services.metrika import send_metrika_event
             import asyncio
             
@@ -173,7 +160,6 @@ def check_access(db, user_id, action_type='event'):
                             yclid=yclid
                         )
                     )
-            # ===== КОНЕЦ БЛОКА =====
             return False, text, "free"
         return True, "", "free"
     elif action_type == 'voice':

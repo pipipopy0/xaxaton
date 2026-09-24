@@ -46,11 +46,6 @@ def parse_yookassa_datetime(value):
     except Exception:
         return now_utc()
 
-
-# ============================================================
-# ПЕРВАЯ РАЗОВАЯ ОПЛАТА — 249 ₽
-# ============================================================
-
 def create_first_payment(user_id: int, max_id: int):
     """
     Обычная разовая подписка.
@@ -79,11 +74,6 @@ def create_first_payment(user_id: int, max_id: int):
         },
         str(uuid.uuid4())
     )
-
-
-# ============================================================
-# ПЕРВАЯ ОПЛАТА С АВТОПРОДЛЕНИЕМ — 229 ₽
-# ============================================================
 
 def create_auto_payment(user_id: int, max_id: int):
     """
@@ -115,10 +105,6 @@ def create_auto_payment(user_id: int, max_id: int):
     )
 
 
-# ============================================================
-# РУЧНОЕ ПРОДЛЕНИЕ — 249 ₽
-# ============================================================
-
 def create_one_time_renewal_payment(user_id: int, max_id: int):
     """
     Ручное продление без автопродления.
@@ -146,11 +132,6 @@ def create_one_time_renewal_payment(user_id: int, max_id: int):
         },
         str(uuid.uuid4())
     )
-
-
-# ============================================================
-# АВТОСПИСАНИЕ — 199 ₽
-# ============================================================
 
 def create_recurrent_payment(
     user_id: int,
@@ -180,15 +161,11 @@ def create_recurrent_payment(
     )
 
 
-# ============================================================
-# АКТИВАЦИЯ ПЕРВОЙ ПОДПИСКИ
-# ============================================================
 
 def activate_subscription(db, user_id: int, paid_at, auto_renewal: bool):
     paid_at = normalize_datetime(paid_at)
     expires_at = paid_at + timedelta(days=SUBSCRIPTION_DAYS)
 
-    # Закрываем старые активные подписки
     db.update_data(
         "subscriptions",
         {"status": "expired"},
@@ -212,11 +189,6 @@ def activate_subscription(db, user_id: int, paid_at, auto_renewal: bool):
 
     return expires_at
 
-
-# ============================================================
-# ПРОДЛЕНИЕ
-# ============================================================
-
 def extend_subscription(db, user_id: int, paid_at, auto_renewal: bool = False):
     paid_at = normalize_datetime(paid_at)
 
@@ -234,7 +206,6 @@ def extend_subscription(db, user_id: int, paid_at, auto_renewal: bool = False):
             active_sub = sub
 
     if active_sub:
-        # Есть активная подписка – просто продлеваем, не трогаем auto_renewal
         expires_at = normalize_datetime(active_sub[5])
 
         if expires_at and expires_at > paid_at:
@@ -248,20 +219,14 @@ def extend_subscription(db, user_id: int, paid_at, auto_renewal: bool = False):
                 "plan_id": PRO_PLAN_ID,
                 "status": "active",
                 "expires_at": new_expires_at.replace(tzinfo=None)
-                # auto_renewal не обновляем!
             },
             where_conditions={"id": active_sub[0]}
         )
 
         return new_expires_at
 
-    # Если активной подписки нет (истекла) – создаём новую
     return activate_subscription(db, user_id, paid_at, auto_renewal)
 
-
-# ============================================================
-# WEBHOOK
-# ============================================================
 
 def handle_webhook(db, data: dict):
     """
@@ -278,10 +243,6 @@ def handle_webhook(db, data: dict):
     if not payment_id:
         return None
 
-    # --------------------------------------------------------
-    # Защита от повторного webhook
-    # --------------------------------------------------------
-
     existing = db.select_data(
         "payments",
         where_conditions={
@@ -294,10 +255,6 @@ def handle_webhook(db, data: dict):
             f"Payment {payment_id} already processed"
         )
         return None
-
-    # --------------------------------------------------------
-    # Metadata
-    # --------------------------------------------------------
 
     metadata = payment.get("metadata", {})
 
@@ -315,18 +272,10 @@ def handle_webhook(db, data: dict):
         "payment_type"
     )
 
-    # --------------------------------------------------------
-    # Реальное время успешного платежа
-    # --------------------------------------------------------
-
     paid_at = parse_yookassa_datetime(
         payment.get("captured_at")
         or payment.get("created_at")
     )
-
-    # --------------------------------------------------------
-    # Сохраняем платёж
-    # --------------------------------------------------------
 
     db.insert_data(
         "payments",
@@ -344,10 +293,6 @@ def handle_webhook(db, data: dict):
             )
         }
     )
-
-    # --------------------------------------------------------
-    # Первая разовая покупка
-    # --------------------------------------------------------
 
     if payment_type == "first_one_time":
         expires_at = activate_subscription(db, user_id, paid_at, auto_renewal=False)
@@ -376,9 +321,6 @@ def handle_webhook(db, data: dict):
                     }
                 )
     
-    # --------------------------------------------------------
-    # Ручное продление
-    # --------------------------------------------------------
 
     elif payment_type == "renewal_one_time":
         expires_at = extend_subscription(db, user_id, paid_at, auto_renewal=False)

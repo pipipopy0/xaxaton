@@ -1,10 +1,8 @@
-#Сервис для работы с ИИ
 import re
 import time
 
 from openai import OpenAI
 
-#Загрузка переменных окружения из .env файла
 from os import getenv
 from dotenv import load_dotenv
 
@@ -20,8 +18,6 @@ import json
 
 load_dotenv()
 
-OPENROUTER_API = getenv("OPENROUTER_API")
-OPENROUTER_URL = getenv("OPENROUTER_URL")
 POLZA_API = getenv("POLZA_API")
 POLZA_URL = getenv("POLZA_URL")
 GEMINI_FLASH_3 = getenv("GEMINI_FLASH_3")
@@ -31,13 +27,6 @@ PROVIDERS = {
         "name": "polza",
         "base_url": POLZA_URL,
         "api_key": POLZA_API,
-        "model": GEMINI_FLASH_3,
-        "timeout": 30
-    },
-    "fallback": {
-        "name": "openrouter",
-        "base_url": OPENROUTER_URL,
-        "api_key": OPENROUTER_API,
         "model": GEMINI_FLASH_3,
         "timeout": 30
     }
@@ -63,7 +52,7 @@ def clean_json_response(content: str) -> str:
     
     content = content.strip()
     
-    # Пробуем найти JSON в тексте (между { и } или [ и ])
+
     match = re.search(r'(\{.*\}|\[.*\])', content, re.DOTALL)
     if match:
         return match.group(1)
@@ -74,29 +63,15 @@ def calculate_cost(response, provider_key):
     try:
         usage = response.usage
             
-        # Polza.ai - стоимость в рублях
         if provider_key == "primary":
             if hasattr(usage, "cost") and usage.cost is not None:
-                return float(usage.cost)  # рубли
-            else:
-                # Запасной вариант - считаем по токенам
-                prompt_tokens = getattr(usage, "prompt_tokens", 0)
-                completion_tokens = getattr(usage, "completion_tokens", 0)
-                # Цены для Polza 
-                input_p_gemini_3 = 49.93   # за 1M токенов
-                output_p_gemini_3 = 299.6  # за 1M токенов
-                return (prompt_tokens / 1_000_000) * input_p_gemini_3 + (completion_tokens / 1_000_000) * output_p_gemini_3
-        
-        # OpenRouter - стоимость в долларах
-        elif provider_key == "fallback":
-            if hasattr(usage, "cost") and usage.cost is not None:
-                return float(usage.cost)*EXCHANGE_RATE # доллары
+                return float(usage.cost)  
             else:
                 prompt_tokens = getattr(usage, "prompt_tokens", 0)
                 completion_tokens = getattr(usage, "completion_tokens", 0)
-                # Цены для Openrouter
-                input_p_gemini_3 = 47.0   # за 1M токенов
-                output_p_gemini_3 = 282.0  # за 1M токенов
+       
+                input_p_gemini_3 = 49.93  
+                output_p_gemini_3 = 299.6 
                 return (prompt_tokens / 1_000_000) * input_p_gemini_3 + (completion_tokens / 1_000_000) * output_p_gemini_3
         
         
@@ -123,10 +98,8 @@ def create_prompt(user_text: str, system_prompt: str, user_offset: str = None, h
         user_now = utc_now
         
     time_now = user_now.strftime("%d.%m.%Y %H:%M")
-    # День недели на русском
     weekdays = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"]
     weekday_ru = weekdays[user_now.weekday()]
-    # Системный промпт с временем и днём недели
     history_text = "пустая"
     if history and isinstance(history, list) and len(history) > 0:
         history_parts = []
@@ -159,7 +132,7 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
     
     messages = create_prompt(user_text, system_prompt, user_offset, history)
     
-    providers_to_try = ["primary", "fallback"]#primary - polza.ai, fallback - openrouter
+    providers_to_try = ["primary"]
 
     for provider_key in providers_to_try:
         provider_config = PROVIDERS[provider_key]
@@ -185,10 +158,8 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
                 if content is None:
                     raise Exception("Empty AI Answer")
                 
-                # Очищаем JSON
                 cleaned_content = clean_json_response(content)
                 
-                # Парсим JSON
                 try:
                     response_data = json.loads(cleaned_content)
                 except json.JSONDecodeError as e:
@@ -198,7 +169,6 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
                     text_error = get_text(key="ai_not_understood", max_id=max_id)
                     response_data = {"action": "chat", "text": text_error}
                 
-                # Успешный ответ - возвращаем результат
                 logger.info(f"Успешный ответ от {provider_key}")
                 return {
                     "response": response_data,
@@ -214,7 +184,7 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
             except TimeoutError as e:
                 last_error = e
                 logger.error(f"Timeout {provider_key} (attempt {attempt+1}): {e}")
-                time.sleep(0.5 * (attempt + 1))  # ждем перед повтором
+                time.sleep(0.5 * (attempt + 1))  
                 
             except ConnectionError as e:
                 last_error = e
@@ -226,7 +196,6 @@ def ai_answer(user_text: str, system_prompt: str, history : list = None, user_of
                 logger.error(f"Error {provider_key} (attempt {attempt+1}): {e}")
                 time.sleep(0.5 * (attempt + 1))
         
-        # Если все попытки для этого провайдера неудачны
         logger.warning(f"Provider {provider_key} didn`t work reconnect to another")
     
     logger.error(f"All providers are unavailable. Last erorr: {last_error}")

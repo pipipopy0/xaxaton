@@ -22,19 +22,11 @@ def get_errors(status):
 
     return errors
 
-
-
 while True:
 
-
     status = get_full_status()
-
-
     errors = get_errors(status)
 
-
-
-    # новые ошибки
     if errors != state.last_errors:
 
 
