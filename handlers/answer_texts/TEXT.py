@@ -37,8 +37,8 @@ TEXTS = {
     },
 
     "timezone_set": {
-        "ru": "Отлично. Ваш часовой пояс: UTC{offset:+d}\nМожем поставить напоминания.\n\nПросто отправьте мне сообщение, в котором будет информация о событии.\nВы также можете перейти в меню: /start",
-        "en": "Great. Your timezone is: UTC{offset:+d}\nWe can set up reminders.\n\nJust send me a message with information about the event.\nYou can also go to the menu: /start"
+        "ru": "Отлично. Ваш часовой пояс: UTC{offset:+d}\nМожем поставить напоминания.\n\nПросто отправьте мне сообщение, в котором будет информация о событии.\nВы также можете перейти в меню: /menu",
+        "en": "Great. Your timezone is: UTC{offset:+d}\nWe can set up reminders.\n\nJust send me a message with information about the event.\nYou can also go to the menu: /menu"
     },
 
     "delete_confirmation": {

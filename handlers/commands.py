@@ -1,6 +1,7 @@
 import asyncio
 
 from maxapi import Router
+from maxapi import context
 from maxapi.context import MemoryContext
 from maxapi.types import MessageCreated, Command
 
@@ -232,3 +233,7 @@ async def update_time_cmd(event: MessageCreated):
 async def penis_cmd(event: MessageCreated):
     text = 'is very big'
     await event.message.answer(text)
+
+@command_router.message_created(Command("menu"))
+async def menu_cmd(event: MessageCreated, context: MemoryContext, args: list[str]):
+    await start_cmd(event, context=context, args=args)
