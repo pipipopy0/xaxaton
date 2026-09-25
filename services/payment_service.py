@@ -30,11 +30,6 @@ def normalize_datetime(dt):
 
 
 def parse_yookassa_datetime(value):
-    """
-    Преобразует дату ЮKassa вида:
-    2026-08-12T12:35:52.185918Z
-    в timezone-aware datetime UTC.
-    """
 
     if not value:
         return now_utc()
@@ -47,10 +42,6 @@ def parse_yookassa_datetime(value):
         return now_utc()
 
 def create_first_payment(user_id: int, max_id: int):
-    """
-    Обычная разовая подписка.
-    Карта НЕ сохраняется.
-    """
 
     return Payment.create(
         {
@@ -76,10 +67,6 @@ def create_first_payment(user_id: int, max_id: int):
     )
 
 def create_auto_payment(user_id: int, max_id: int):
-    """
-    Первая оплата тарифа с автопродлением.
-    Способ оплаты сохраняется.
-    """
 
     return Payment.create(
         {
@@ -106,9 +93,6 @@ def create_auto_payment(user_id: int, max_id: int):
 
 
 def create_one_time_renewal_payment(user_id: int, max_id: int):
-    """
-    Ручное продление без автопродления.
-    """
 
     return Payment.create(
         {
@@ -137,10 +121,6 @@ def create_recurrent_payment(
     user_id: int,
     payment_method_id: str
 ):
-    """
-    Создаёт автосписание по сохранённой карте.
-    """
-
     return Payment.create(
         {
             "amount": {
@@ -229,10 +209,7 @@ def extend_subscription(db, user_id: int, paid_at, auto_renewal: bool = False):
 
 
 def handle_webhook(db, data: dict):
-    """
-    Обрабатывает payment.succeeded.
-    """
-
+    
     if data.get("event") != "payment.succeeded":
         return None
 

@@ -38,40 +38,6 @@ async def send_metrika_event(
     extra_params: Optional[dict] = None,
     event_time: Optional[int] = None,
 ) -> bool:
-    """
-    Отправляет одну офлайн-конверсию в Яндекс.Метрику.
-
-    Пример:
-
-        await send_metrika_event(
-            client_id="123456789",
-            target="start_bot",
-            yclid="1234567890"
-        )
-
-    Параметры:
-
-    client_id:
-        ClientID Яндекс.Метрики.
-
-    target:
-        ID JavaScript-цели в Яндекс.Метрике.
-
-    yclid:
-        YCLID из Яндекс.Директа.
-
-    extra_params:
-        Дополнительные параметры CSV.
-        Например:
-        {
-            "Price": "199",
-            "Currency": "RUB"
-        }
-
-    event_time:
-        Unix timestamp события.
-        Если не указан — используется текущее время.
-    """
 
     if not METRIKA_OAUTH_TOKEN:
         logger.error(

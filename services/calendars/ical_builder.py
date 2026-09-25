@@ -1,5 +1,3 @@
-"""Собирает объект для действия с событием"""
-
 from datetime import datetime, timedelta, timezone
 
 def build_ical_event(event_data, event_uid=None, reminder_offset_minutes = None):

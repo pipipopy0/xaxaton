@@ -1,6 +1,7 @@
 from datetime import timedelta, datetime, timezone
 from logger_config import logger
 import requests
+from os import getenv
 
 def get_correct_time():
     now_utc = datetime.now(timezone.utc)
@@ -19,7 +20,7 @@ def parser_duckling(time_text: str, user_offset: str):
 
     try:
         response = requests.post(
-            'http://localhost:8001/parse',
+            f'{getenv("DUCKLING_URL", "http://localhost:8001")}/parse',
             data={'text': time_text, 'locale': 'en_US', 'reftime': reftime_ms, 'tz': user_offset},
             timeout=5
         )

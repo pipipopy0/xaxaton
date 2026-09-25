@@ -74,14 +74,13 @@ callback_router = Router()
 db = None
 
 async def push_menu(context: MemoryContext, menu_name: str):
-    """Сохраняет текущее меню в историю."""
     data = await context.get_data()
     history = data.get("history", [])
     history.append(menu_name)
     await context.update_data(history=history)
 
 async def pop_menu(context: MemoryContext) -> str | None:
-    """Удаляет последнее меню из истории и возвращает его."""
+
     data = await context.get_data()
     history = data.get("history", [])
     if not history:
@@ -166,10 +165,6 @@ async def poll_device_token(device_code_data, user_id, max_id, callback):
             return
 
 async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryContext):
-    """
-    Отображает меню по его имени, заменяя текущее сообщение (edit_text).
-    Для меню с логикой (Apple/Google) вызывает отдельные функции.
-    """
     max_id = callback.from_user.user_id
 
     # ========== ГЛАВНОЕ МЕНЮ ==========
@@ -497,20 +492,6 @@ async def process_calendars_setup(callback: MessageCallback, context: MemoryCont
         )
         return
 
-    user_id = user[0][0]
-
-    """if not is_pro_user(db, user_id):
-        text = get_text(
-            key="calendars_pro_only",
-            max_id=max_id,
-            db=db
-        )
-        await callback.answer(
-            text,
-            
-        )
-        return
-    """
     await push_menu(context, "main")
     await show_menu("calendars_setup", callback, context)
 @callback_router.message_callback(F.callback.payload == "apple_calendar")

@@ -54,11 +54,6 @@ def is_pro_user(db, user_id):
     return plan[0][1] == "pro"
 
 def check_access(db, user_id, action_type='event'):
-    """
-    Проверяет, может ли пользователь создать событие или голосовое.
-    action_type: 'event' или 'voice'
-    Возвращает (allowed, message, plan_name)
-    """
 
     user_row = db.select_data(
             "users",

@@ -52,7 +52,6 @@ TRANSCRIPTION_CHAIN = [
 
 
 def get_ogg_duration_minutes(file_path: str) -> float:
-    """Возвращает длительность OGG-файла в минутах через ffprobe."""
     cmd = [
         'ffprobe', '-v', 'error',
         '-show_entries', 'format=duration',

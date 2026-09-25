@@ -38,7 +38,6 @@ dp = Dispatcher()
 
 dp.include_routers(command_router, router, callback_router)
 
-
 async def main():
     bot = Bot(token=TOKEN)
     create_tables()

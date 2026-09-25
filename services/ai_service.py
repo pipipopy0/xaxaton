@@ -40,10 +40,7 @@ def create_client(provider_config):
     )
 
 def clean_json_response(content: str) -> str:
-    """
-    Очищает ответ AI от маркдауна и лишних символов,
-    оставляя только валидный JSON.
-    """
+
     if not content:
         return "{}"
     

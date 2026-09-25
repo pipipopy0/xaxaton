@@ -6,15 +6,8 @@ from logger_config import logger
 
 
 class Database:
-    """
-    Обёртка над psycopg2 для безопасной работы с PostgreSQL.
-    С автоматическим переподключением при обрыве соединения.
-    """
-
     def __init__(self, connection: PsycopgConnection) -> None:
-        """
-        :param connection: активное соединение с БД.
-        """
+
         self.connection = connection
 
         dsn = connection.get_dsn_parameters()
@@ -28,9 +21,7 @@ class Database:
         self.conn_params = {k: v for k, v in self.conn_params.items() if v is not None}
 
     def _ensure_connection(self) -> None:
-        """
-        Проверяет, живо ли соединение, и пересоздаёт при необходимости.
-        """
+
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("SELECT 1")
@@ -44,19 +35,14 @@ class Database:
                 raise
 
     def _safe_rollback(self) -> None:
-        """
-        Безопасный rollback — не падает, если соединение уже закрыто.
-        """
+
         try:
             self.connection.rollback()
         except Exception:
             pass
 
     def create_table(self, tables: Dict[str, str]) -> None:
-        """
-        Создаёт таблицы, если их нет.
-        :param tables: словарь {имя_таблицы: определение_колонок}
-        """
+
         self._ensure_connection()
         try:
             with self.connection.cursor() as cursor:
@@ -79,11 +65,7 @@ class Database:
         data: Dict[str, Any],
         returning_col: Optional[str] = "id"
     ) -> Optional[Any]:
-        """
-        Вставляет одну строку.
-        :param returning_col: колонка, значение которой вернуть (или None, чтобы не возвращать).
-        :return: значение returning_col или None.
-        """
+
         self._ensure_connection()
 
         if not data:
@@ -133,10 +115,7 @@ class Database:
         where_conditions: Dict[str, Any],
         where_operator: str = "AND"
     ) -> int:
-        """
-        Обновляет строки по условиям.
-        :return: количество обновлённых строк.
-        """
+        
         self._ensure_connection()
 
         if not data:
@@ -181,9 +160,7 @@ class Database:
         where_conditions: Optional[Dict[str, Any]] = None,
         where_operator: str = "AND"
     ) -> List[Tuple]:
-        """
-        Выбирает данные из таблицы.
-        """
+
         self._ensure_connection()
 
         if columns is None:
@@ -225,10 +202,7 @@ class Database:
         where_conditions: Dict[str, Any],
         where_operator: str = "AND"
     ) -> int:
-        """
-        Удаляет строки по условиям.
-        :return: количество удалённых строк.
-        """
+
         self._ensure_connection()
 
         if not where_conditions:

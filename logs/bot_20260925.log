@@ -587,3 +587,71 @@
 }
 2026-09-25 02:44:25,819 - Calendator - INFO - google_calendar_service.py:146 - Событие nhfkhgjpsube6a36tttsi0d2ps для пользователя user_id: 3 обновлено в Google Calendar
 2026-09-25 02:44:25,924 - Calendator - INFO - router.py:600 - User 3: answer=Хорошо, я перенес событие Вторая пара на завтра(26.09.2026) в 17:00...
+2026-09-25 12:57:26,761 - Calendator - WARNING - metrika.py:22 - METRIKA_OAUTH_TOKEN is not set. Metrika offline conversions will not work.
+2026-09-25 12:57:27,079 - Calendator - INFO - database.py:55 - Table 'users' ensured
+2026-09-25 12:57:27,080 - Calendator - INFO - database.py:55 - Table 'events' ensured
+2026-09-25 12:57:27,081 - Calendator - INFO - database.py:55 - Table 'events_notifications' ensured
+2026-09-25 12:57:27,081 - Calendator - INFO - database.py:55 - Table 'users_costs' ensured
+2026-09-25 12:57:27,081 - Calendator - INFO - database.py:55 - Table 'users_authorizations' ensured
+2026-09-25 12:57:27,082 - Calendator - INFO - database.py:55 - Table 'oauth_devices' ensured
+2026-09-25 12:57:27,082 - Calendator - INFO - database.py:55 - Table 'plans' ensured
+2026-09-25 12:57:27,082 - Calendator - INFO - database.py:55 - Table 'subscriptions' ensured
+2026-09-25 12:57:27,083 - Calendator - INFO - database.py:55 - Table 'usage' ensured
+2026-09-25 12:57:27,083 - Calendator - INFO - database.py:55 - Table 'payments' ensured
+2026-09-25 12:57:27,083 - Calendator - INFO - database.py:55 - Table 'payment_notifications' ensured
+2026-09-25 12:57:27,083 - Calendator - INFO - database.py:55 - Table 'analytics_events' ensured
+2026-09-25 12:57:27,089 - Calendator - INFO - work_with_dp.py:198 - Plans already exist
+2026-09-25 13:04:49,865 - Calendator - INFO - commands.py:29 - RAW message.text: /start
+2026-09-25 13:04:49,865 - Calendator - INFO - commands.py:55 - START params: yclid=None, client_id=None
+2026-09-25 13:04:49,901 - Calendator - INFO - commands.py:111 - New user 22749647 registered with free subscription
+2026-09-25 13:04:49,901 - Calendator - INFO - commands.py:155 - No yclid/client_id — Metrika start_bot skipped
+2026-09-25 13:05:19,074 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(4, 22749647, 'no_nickname', 'Богдан', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 25, 12, 58, 27, 95819))]
+2026-09-25 13:05:19,075 - Calendator - DEBUG - router.py:885 - user_id from DB: 4
+2026-09-25 13:05:19,075 - Calendator - DEBUG - router.py:98 - User 22749647 has timezone: Europe/Moscow
+2026-09-25 13:05:19,075 - Calendator - INFO - router.py:158 - User 4 sent: Звонок в 13.10
+2026-09-25 13:05:19,076 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-25 13:05:19,076 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-25 13:05:19,095 - Calendator - INFO - ai_service.py:123 - Local time for user (offset=Europe/Moscow): 25.09.2026 13:05, weekday=пятница
+2026-09-25 13:05:19,095 - Calendator - INFO - ai_service.py:141 - Пробуем primary (попытка 1/2)
+2026-09-25 13:05:21,504 - Calendator - INFO - ai_service.py:150 - Cost response from primary: 0.053105
+2026-09-25 13:05:21,504 - Calendator - INFO - ai_service.py:152 - AI response time: 2.41 seconds
+2026-09-25 13:05:21,505 - Calendator - INFO - ai_service.py:169 - Успешный ответ от primary
+2026-09-25 13:05:21,505 - Calendator - DEBUG - router.py:111 - cost: user_id=4, cost=0.05310539, column=text_cost
+2026-09-25 13:05:21,508 - Calendator - INFO - router.py:151 - Cost updated for user 4: text_cost += 0.05310539
+2026-09-25 13:05:21,508 - Calendator - INFO - router.py:225 - User 4: action=create_event
+2026-09-25 13:05:21,510 - Calendator - INFO - ai_service.py:123 - Local time for user (offset=Europe/Moscow): 25.09.2026 13:05, weekday=пятница
+2026-09-25 13:05:21,510 - Calendator - INFO - ai_service.py:141 - Пробуем primary (попытка 1/2)
+2026-09-25 13:05:25,258 - Calendator - INFO - ai_service.py:150 - Cost response from primary: 0.195492
+2026-09-25 13:05:25,258 - Calendator - INFO - ai_service.py:152 - AI response time: 3.75 seconds
+2026-09-25 13:05:25,258 - Calendator - INFO - ai_service.py:169 - Успешный ответ от primary
+2026-09-25 13:05:25,258 - Calendator - DEBUG - router.py:111 - cost: user_id=4, cost=0.19549198, column=text_cost
+2026-09-25 13:05:25,288 - Calendator - INFO - router.py:151 - Cost updated for user 4: text_cost += 0.19549198
+2026-09-25 13:05:25,288 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=create_event, user_id=4
+2026-09-25 13:05:25,288 - Calendator - DEBUG - event_service.py:46 - create_event: user_id=4, summary=Звонок
+2026-09-25 13:05:27,324 - Calendator - ERROR - get_correct_time.py:44 - Duckling error: HTTPConnectionPool(host='localhost', port=8001): Max retries exceeded with url: /parse (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000017B146D4590>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2026-09-25 13:05:27,405 - Calendator - INFO - router.py:600 - User 4: answer=Извините, я не понял время и дату......
+2026-09-25 13:08:38,805 - Calendator - DEBUG - router.py:862 - get_text: user_id_db=[(4, 22749647, 'no_nickname', 'Богдан', 'Europe/Moscow', None, 'ru', None, None, None, None, False, False, datetime.datetime(2026, 9, 25, 12, 58, 27, 95819))]
+2026-09-25 13:08:38,806 - Calendator - DEBUG - router.py:885 - user_id from DB: 4
+2026-09-25 13:08:38,806 - Calendator - DEBUG - router.py:98 - User 22749647 has timezone: Europe/Moscow
+2026-09-25 13:08:38,806 - Calendator - INFO - router.py:158 - User 4 sent: Звонок сегодня в 13.10
+2026-09-25 13:08:38,806 - Calendator - DEBUG - router.py:179 - User offset: Europe/Moscow
+2026-09-25 13:08:38,806 - Calendator - DEBUG - router.py:183 - User default time: ru
+2026-09-25 13:08:38,827 - Calendator - INFO - ai_service.py:123 - Local time for user (offset=Europe/Moscow): 25.09.2026 13:08, weekday=пятница
+2026-09-25 13:08:38,827 - Calendator - INFO - ai_service.py:141 - Пробуем primary (попытка 1/2)
+2026-09-25 13:08:41,521 - Calendator - INFO - ai_service.py:150 - Cost response from primary: 0.054828
+2026-09-25 13:08:41,521 - Calendator - INFO - ai_service.py:152 - AI response time: 2.69 seconds
+2026-09-25 13:08:41,521 - Calendator - INFO - ai_service.py:169 - Успешный ответ от primary
+2026-09-25 13:08:41,521 - Calendator - DEBUG - router.py:111 - cost: user_id=4, cost=0.05482805, column=text_cost
+2026-09-25 13:08:41,549 - Calendator - INFO - router.py:151 - Cost updated for user 4: text_cost += 0.05482805
+2026-09-25 13:08:41,549 - Calendator - INFO - router.py:225 - User 4: action=create_event
+2026-09-25 13:08:41,551 - Calendator - INFO - ai_service.py:123 - Local time for user (offset=Europe/Moscow): 25.09.2026 13:08, weekday=пятница
+2026-09-25 13:08:41,551 - Calendator - INFO - ai_service.py:141 - Пробуем primary (попытка 1/2)
+2026-09-25 13:08:44,323 - Calendator - INFO - ai_service.py:150 - Cost response from primary: 0.197927
+2026-09-25 13:08:44,323 - Calendator - INFO - ai_service.py:152 - AI response time: 2.77 seconds
+2026-09-25 13:08:44,323 - Calendator - INFO - ai_service.py:169 - Успешный ответ от primary
+2026-09-25 13:08:44,323 - Calendator - DEBUG - router.py:111 - cost: user_id=4, cost=0.19792746, column=text_cost
+2026-09-25 13:08:44,350 - Calendator - INFO - router.py:151 - Cost updated for user 4: text_cost += 0.19792746
+2026-09-25 13:08:44,351 - Calendator - DEBUG - event_service.py:13 - process_ai_event: action=create_event, user_id=4
+2026-09-25 13:08:44,351 - Calendator - DEBUG - event_service.py:46 - create_event: user_id=4, summary=Звонок
+2026-09-25 13:08:46,397 - Calendator - ERROR - get_correct_time.py:44 - Duckling error: HTTPConnectionPool(host='localhost', port=8001): Max retries exceeded with url: /parse (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000017B147E6FD0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2026-09-25 13:08:46,468 - Calendator - INFO - router.py:600 - User 4: answer=Извините, я не понял время и дату......
