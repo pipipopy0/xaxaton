@@ -12,14 +12,14 @@ TEXTS = {
     "first_info": {
         "ru": (
             "Календатор — это сервис, который поможет не забыть вам о ваших делах и событиях.\n"
-            "Вы можете отправлять ему как текстовые, так и голосовые сообщения — "
+            "Вы можете отправлять ему текстовые сообщения — "
             "он извлечет из них суть события и заранее напомнит о нем.\n\n"
             "Также вы можете привязать Google Календарь или Apple Календарь. "
             "Тогда все события, созданные через бота, будут автоматически синхронизироваться с вашим календарем."
         ),
         "en": (
             "Calendator is a service that helps you stay on top of your tasks and events.\n"
-            "You can send both text and voice messages, and it will extract the important details "
+            "You can send both text messages, and it will extract the important details "
             "and remind you in advance.\n\n"
             "You can also connect your Google Calendar or Apple Calendar. "
             "All events created through the bot will be automatically synchronized with your calendar."
@@ -186,10 +186,10 @@ TEXTS = {
         "en": "Please set your timezone first."
     },
 
-    "voice_not_understood": {
-        "ru": "Не понял голосовое",
-        "en": "Didn't understand the voice message"
-    },
+    # "voice_not_understood": {
+    #     "ru": "Не понял голосовое",
+    #     "en": "Didn't understand the voice message"
+    # },
 
     "no_events": {
         "ru": "У вас нет событий.",
@@ -495,10 +495,10 @@ TEXTS = {
           "Your subscription is active for 30 days.\n"
           "You now have access to all Calendator features without limits."
           },
-    "voice_too_long" : {
-        "ru": "Извините, я не могу обработать голосовое сообщение дольше 2 минут. Пожалуйста, отправьте более короткое сообщение.",
-        "en": "Sorry, I cannot process voice messages longer than 2 minutes. Please send a shorter message."
-    },
+    # "voice_too_long" : {
+    #     "ru": "Извините, я не могу обработать голосовое сообщение дольше 2 минут. Пожалуйста, отправьте более короткое сообщение.",
+    #     "en": "Sorry, I cannot process voice messages longer than 2 minutes. Please send a shorter message."
+    # },
     "calendars_pro_only" : {
         "ru": "Привязка календарей доступна только для пользователей с подпиской Pro. Пожалуйста, оформите подписку, чтобы использовать эту функцию.",
         "en": "Calendar linking is only available for Pro subscription users. Please subscribe to use this feature."

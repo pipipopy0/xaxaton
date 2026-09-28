@@ -157,9 +157,5 @@ def check_access(db, user_id, action_type='event'):
                     )
             return False, text, "free"
         return True, "", "free"
-    elif action_type == 'voice':
-        if voice_limit is not None and voice_used >= voice_limit:
-            return False, text, "free"
-        return True, "", "free"
     else:
         return True, "", "free"
