@@ -230,6 +230,71 @@ def get_register_inline_keyboard(is_admin=False, max_id=None):
     return builder.as_markup()
 
 
+def get_onboarding_start_inline_keyboard(max_id=None):
+    text_timezone_btn = get_text(
+        key="onboarding_timezone_btn",
+        max_id=max_id,
+        db=db
+    )
+    text_documents_btn = get_text(
+        key="onboarding_documents_btn",
+        max_id=max_id,
+        db=db
+    )
+
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        CallbackButton(
+            text=text_timezone_btn,
+            payload="onboarding_timezone"
+        )
+    )
+    builder.row(
+        CallbackButton(
+            text=text_documents_btn,
+            payload="documents"
+        )
+    )
+
+    return builder.as_markup()
+
+
+def get_onboarding_calendar_inline_keyboard(max_id=None):
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        CallbackButton(
+            text=get_text(
+                key="onboarding_google_calendar_btn",
+                max_id=max_id,
+                db=db
+            ),
+            payload="onboarding_google_calendar"
+        )
+    )
+    builder.row(
+        CallbackButton(
+            text=get_text(
+                key="onboarding_apple_calendar_btn",
+                max_id=max_id,
+                db=db
+            ),
+            payload="onboarding_apple_calendar"
+        )
+    )
+    builder.row(
+        CallbackButton(
+            text=get_text(
+                key="onboarding_later_btn",
+                max_id=max_id,
+                db=db
+            ),
+            payload="onboarding_calendar_later"
+        )
+    )
+
+    return builder.as_markup()
+
+
 def _build_time_inline_keyboard(page=3, max_id=None):
     ITEMS_PER_PAGE = 5
 

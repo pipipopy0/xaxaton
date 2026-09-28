@@ -84,15 +84,13 @@ def check_access(db, user_id, action_type='event'):
     if not plan_id:
         free_plan = db.select_data("plans", where_conditions={"name": "free"})
         if not free_plan:
-            db.insert_data("plans", {"name": "free", "events_limit": 7, "voice_limit": 2})
+            db.insert_data("plans", {"name": "free", "events_limit": 7})
             free_plan = db.select_data("plans", where_conditions={"name": "free"})
         plan_id = free_plan[0][0]
     
     plan = db.select_data("plans", where_conditions={"id": plan_id})[0]
     plan_name = plan[1]          
     events_limit = plan[2]       
-    voice_limit = plan[3]        
-    
     if plan_name == 'pro':
         return True, "", "pro"
     
@@ -119,18 +117,15 @@ def check_access(db, user_id, action_type='event'):
     )
     if usage:
         events_used = usage[0][2] or 0
-        voice_used = usage[0][3] or 0
     else:
         db.insert_data(
             "usage",
             {
                 "user_id": user_id,
-                "events_created": 0,
-                "voice_used": 0
+                "events_created": 0
             }
         )
         events_used = 0
-        voice_used = 0
     
     text = get_text(key="access_denied", max_id=max_id, db=db)
     

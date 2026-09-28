@@ -1,7 +1,20 @@
 TEXTS = {
     "start_new": {
-        "ru": "Привет! Выберите ваше текущее время\n(нажмите на кнопку с вашим временем):",
-        "en": "Hello! Please select your current timezone\n(click on the button with your time):"
+        "ru": (
+            "Planlit — бот, который помогает не забывать о делах и событиях. "
+            "Отправьте ему текстовое сообщение: он поймёт, что вы планируете, "
+            "сохранит событие и заранее напомнит о нём.\n"
+            "Также вы можете привязать Google Календарь или Apple Календарь. "
+            "Тогда события, созданные через Planlit, будут автоматически "
+            "появляться в вашем календаре."
+        ),
+        "en": (
+            "Planlit helps you keep track of tasks and events. Send it a text "
+            "message, and it will understand your plans, save the event, and "
+            "remind you in advance.\n"
+            "You can also connect Google Calendar or Apple Calendar. Events "
+            "created through Planlit will then appear in your calendar automatically."
+        )
     },
 
     "start_registered": {
@@ -11,15 +24,15 @@ TEXTS = {
 
     "first_info": {
         "ru": (
-            "Календатор — это сервис, который поможет не забыть вам о ваших делах и событиях.\n"
+            "PlanLit — это сервис, который поможет не забыть вам о ваших делах и событиях.\n"
             "Вы можете отправлять ему текстовые сообщения — "
             "он извлечет из них суть события и заранее напомнит о нем.\n\n"
             "Также вы можете привязать Google Календарь или Apple Календарь. "
             "Тогда все события, созданные через бота, будут автоматически синхронизироваться с вашим календарем."
         ),
         "en": (
-            "Calendator is a service that helps you stay on top of your tasks and events.\n"
-            "You can send both text messages, and it will extract the important details "
+            "PlanLit is a service that helps you stay on top of your tasks and events.\n"
+            "You can send text messages, and it will extract the important details "
             "and remind you in advance.\n\n"
             "You can also connect your Google Calendar or Apple Calendar. "
             "All events created through the bot will be automatically synchronized with your calendar."
@@ -28,11 +41,11 @@ TEXTS = {
     "say_hello": {
         "ru": (
             "Planlit — бот, который помогает не забывать о намеченных встречах.\n"
-            "Запишите ему голосовое о деле или напишите сообщение  в свободной форме, он сохранит событие  и напомнит о нём."
+            "Отправьте текстовое сообщение в свободной форме: бот сохранит событие и напомнит о нём."
         ),
         "en": (
             "Planlit is a bot that helps you keep track of your scheduled meetings.\n"
-            "Record a voice note about an appointment or send a free-form message, and it will save the event and remind you about it."
+            "Send a free-form text message, and it will save the event and remind you about it."
         )
     },
 
@@ -42,13 +55,74 @@ TEXTS = {
     },
 
     "timezone_setup": {
-        "ru": "Выберите ваше текущее время\n(нажмите на кнопку с вашим временем):",
-        "en": "Select your current timezone\n(click on the button with your time):"
+        "ru": "Выберите часовой пояс:",
+        "en": "Choose your timezone:"
     },
 
     "timezone_set": {
-        "ru": "Отлично. Ваш часовой пояс: UTC{offset:+d}\nМожем поставить напоминания.\n\nПросто отправьте мне сообщение, в котором будет информация о событии.\nВы также можете перейти в меню: /menu",
-        "en": "Great. Your timezone is: UTC{offset:+d}\nWe can set up reminders.\n\nJust send me a message with information about the event.\nYou can also go to the menu: /menu"
+        "ru": (
+            "Давайте попробуем Planlit!\n\n"
+            "Часовой пояс настроен. Напишите в свободной форме, что и когда "
+            "вы планируете, например: «Завтра в 15:00 встреча с командой». "
+            "Я сохраню событие и напомню о нём здесь, в чате."
+        ),
+        "en": (
+            "Let's try Planlit!\n\n"
+            "Your timezone is set. Describe what you are planning and when, "
+            "for example: “Team meeting tomorrow at 3:00 PM”. I'll save the "
+            "event and remind you here in the chat."
+        )
+    },
+
+    "onboarding_timezone_btn": {
+        "ru": "Выбрать часовой пояс",
+        "en": "Choose timezone"
+    },
+    "onboarding_documents_btn": {
+        "ru": "Документы",
+        "en": "Documents"
+    },
+    "onboarding_calendar_prompt": {
+        "ru": (
+            "Подключите свой календарь\n\n"
+            "Выберите Google Календарь или Apple Календарь, чтобы события, "
+            "созданные в Planlit, автоматически появлялись в вашем календаре."
+        ),
+        "en": (
+            "Connect your calendar\n\n"
+            "Choose Google Calendar or Apple Calendar to automatically add "
+            "events created in Planlit to your calendar."
+        )
+    },
+    "onboarding_google_calendar_btn": {
+        "ru": "Подключить Google Календарь",
+        "en": "Connect Google Calendar"
+    },
+    "onboarding_apple_calendar_btn": {
+        "ru": "Подключить Apple Календарь",
+        "en": "Connect Apple Calendar"
+    },
+    "onboarding_later_btn": {
+        "ru": "Позже",
+        "en": "Later"
+    },
+    "onboarding_calendar_later": {
+        "ru": "Хорошо, календарь можно подключить позже в меню.",
+        "en": "You can connect a calendar later from the menu."
+    },
+    "onboarding_calendar_success": {
+        "ru": (
+            "Календарь подключён!\n\n"
+            "Теперь вы можете планировать события, отправляя текстовые сообщения. "
+            "Расскажите Planlit о своих планах, и бот сохранит события и напомнит о них.\n\n"
+            "Приятного пользования!"
+        ),
+        "en": (
+            "Calendar connected!\n\n"
+            "You can now plan events by sending text messages. Tell Planlit about "
+            "your plans, and the bot will save events and remind you about them.\n\n"
+            "Enjoy using Planlit!"
+        )
     },
 
     "delete_confirmation": {
@@ -195,11 +269,6 @@ TEXTS = {
         "ru": "Пожалуйста, сначала укажи свой часовой пояс.",
         "en": "Please set your timezone first."
     },
-
-    # "voice_not_understood": {
-    #     "ru": "Не понял голосовое",
-    #     "en": "Didn't understand the voice message"
-    # },
 
     "no_events": {
         "ru": "У вас нет событий.",
@@ -351,8 +420,8 @@ TEXTS = {
         "en": "Privacy Policy"
     },
     "unsupported_message_type" : {
-        "ru": "Извините, пока что я не могу обработать этот тип сообщения. Пожалуйста, отправьте текстовое сообщение.",
-        "en": "Sorry, I cannot process this type of message yet. Please send a text message."
+        "ru": "Planlit принимает только текстовые сообщения. Отправьте, пожалуйста, текст с вашим планом.",
+        "en": "Planlit currently accepts text messages only. Please send your plan as text."
     },
     "admin_status_services" : {
         "ru" : "Статус сервисов",
@@ -439,8 +508,15 @@ TEXTS = {
         "en": "Please read our documents."
     },
     "access_denied" : {
-            "ru": "Вы исчерпали бесплатный лимит (7 событий в месяц). Чтобы продолжить пользоваться сервисом, пожалуйста, оформите подписку, нажав на /subscribe.",
-            "en": "You have exceeded the free limit (7 events per month). To continue using the service, please subscribe by clicking on /subscribe."
+            "ru": (
+                "Бесплатный лимит событий закончился.\n\n"
+                "Чтобы продолжать пользоваться Planlit без ограничений, "
+                "оформите подписку на безлимитный доступ к сервису."
+            ),
+            "en": (
+                "Your free event limit has been reached.\n\n"
+                "Subscribe for unlimited access to Planlit."
+            )
     },
     "subscription_lifetime": {
         "ru": "бессрочно",
@@ -505,10 +581,6 @@ TEXTS = {
           "Your subscription is active for 30 days.\n"
           "You now have access to all Calendator features without limits."
           },
-    # "voice_too_long" : {
-    #     "ru": "Извините, я не могу обработать голосовое сообщение дольше 2 минут. Пожалуйста, отправьте более короткое сообщение.",
-    #     "en": "Sorry, I cannot process voice messages longer than 2 minutes. Please send a shorter message."
-    # },
     "calendars_pro_only" : {
         "ru": "Привязка календарей доступна только для пользователей с подпиской Pro. Пожалуйста, оформите подписку, чтобы использовать эту функцию.",
         "en": "Calendar linking is only available for Pro subscription users. Please subscribe to use this feature."

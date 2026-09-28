@@ -1,25 +1,17 @@
 #!/bin/bash
 set -e
 
-# ===== ПЕРЕМЕННЫЕ (обязательно измени под себя) =====
 DOMAIN="calendator.online"
 EMAIL="max886066@gmail.com"
 POSTGRES_PASSWORD="fdtA126_AsK"
 
-# --- Данные для доступа к приватному репозиторию ---
-GIT_USERNAME=""          # оставь пустым, если будешь вводить вручную
-GIT_TOKEN=""             # или укажи свой токен здесь
+GIT_USERNAME=""          
+GIT_TOKEN=""             
 
-# Если GIT_USERNAME и GIT_TOKEN заданы – используем их,
-# иначе запросим ввод во время выполнения.
-# ----------------------------------------------------
 GIT_REPO_BASE="https://github.com/pipipopy0/Calendator"
 PROJECT_DIR="/root/Calendator"
 STATIC_DIR="/var/www/calendator"
 
-# =====================================================
-
-# Если логин и токен не заданы в скрипте – запрашиваем
 if [ -z "$GIT_USERNAME" ] || [ -z "$GIT_TOKEN" ]; then
     echo "🔐 Введите логин (username) для доступа к GitHub:"
     read -r GIT_USERNAME
@@ -28,12 +20,10 @@ if [ -z "$GIT_USERNAME" ] || [ -z "$GIT_TOKEN" ]; then
     echo ""
 fi
 
-# Собираем URL с авторизацией
 GIT_REPO="https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/pipipopy0/Calendator"
 
 echo "🚀 Начинаем настройку сервера..."
 
-# 1. Системные пакеты
 apt update && apt upgrade -y
 apt install -y \
     git curl wget \
@@ -47,7 +37,6 @@ apt install -y \
 systemctl enable --now docker
 systemctl enable --now nginx
 
-# 2. Клонирование репозитория
 if [ ! -d "$PROJECT_DIR" ]; then
     echo "📦 Клонируем репозиторий..."
     git clone $GIT_REPO $PROJECT_DIR
@@ -58,7 +47,6 @@ else
 fi
 cd $PROJECT_DIR
 
-# 3. .env – если нет, копируем из .env.example
 if [ ! -f .env ]; then
     if [ -f .env.example ]; then
         cp .env.example .env
@@ -69,18 +57,14 @@ if [ ! -f .env ]; then
     fi
 fi
 
-# 4. PostgreSQL
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$POSTGRES_PASSWORD';"
 
-# 5. Виртуальное окружение и зависимости
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
-# (в requirements.txt уже нет pydub – твоя правка сохранена)
 deactivate
 
-# 6. Docker – Duckling
 if ! docker ps -a --format '{{.Names}}' | grep -q duckling; then
     docker run -d \
         --name duckling \
@@ -91,11 +75,9 @@ else
     echo "✅ Duckling уже запущен"
 fi
 
-# 7. Статика сайта
 mkdir -p $STATIC_DIR
 cp -r $PROJECT_DIR/SITE/* $STATIC_DIR/
 
-# 8. Nginx
 cat > /etc/nginx/sites-available/calendator <<EOF
 server {
     server_name $DOMAIN;
@@ -133,14 +115,12 @@ ln -sf /etc/nginx/sites-available/calendator /etc/nginx/sites-enabled/
 rm -f /etc/nginx/sites-enabled/default
 nginx -t && systemctl restart nginx
 
-# 9. SSL-сертификат
 certbot --nginx -d $DOMAIN \
     --non-interactive \
     --agree-tos \
     --email $EMAIL \
     --redirect
 
-# 10. Systemd-сервисы
 cat > /etc/systemd/system/main.service <<EOF
 [Unit]
 Description=Calendator Main
@@ -178,7 +158,6 @@ EOF
 systemctl daemon-reload
 systemctl enable --now main.service flask.service
 
-# 11. Финальная проверка
 echo "============================================"
 echo "✅ Настройка завершена!"
 echo "🌐 Сайт: https://$DOMAIN"

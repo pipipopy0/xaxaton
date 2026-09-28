@@ -20,7 +20,7 @@ from logger_config import logger
 from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
 from services.google_calendar_service import request_device_code
-#from monitor.status import get_full_status, format_status
+
 from handlers.keyboards import (get_admin_inline_keyboard, 
                                 get_calendars_inline_keyboard, 
                                 get_time_inline_keyboard,
@@ -32,6 +32,7 @@ from handlers.keyboards import (get_admin_inline_keyboard,
                                 get_settings_inline_keyboard,
                                 get_documents_inline_keyboard,
                                 get_register_inline_keyboard,
+                                get_onboarding_start_inline_keyboard,
                                 get_time_inline_keyboard_with_back,
                                 add_back_button)
 
@@ -86,7 +87,7 @@ async def pop_menu(context: MemoryContext) -> str | None:
         return None
     return history.pop()
 
-async def poll_device_token(device_code_data, user_id, max_id, callback):
+async def poll_device_token(device_code_data, user_id, max_id, callback, context):
     device_code = device_code_data["device_code"]
     interval = device_code_data["interval"]
     expires_at = datetime.utcnow() + timedelta(
@@ -159,7 +160,25 @@ async def poll_device_token(device_code_data, user_id, max_id, callback):
                         },
                     )
 
-                await callback.message.answer("Google Calendar подключён!")
+                context_data = await context.get_data()
+                if context_data.get("onboarding_calendar"):
+                    text = get_text(
+                        key="onboarding_calendar_success",
+                        max_id=max_id,
+                        db=db
+                    )
+                    await callback.message.answer(
+                        text,
+                        attachments=[
+                            get_register_inline_keyboard(
+                                is_admin=max_id in ADMINS,
+                                max_id=max_id
+                            )
+                        ]
+                    )
+                    await context.update_data(onboarding_calendar=False)
+                else:
+                    await callback.message.answer("Google Calendar подключён!")
 
             return
 
@@ -173,6 +192,11 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
             is_admin=callback.from_user.user_id in ADMINS,
             max_id=max_id
         )
+        await replace_menu(callback, text, keyboard)
+
+    elif menu_name == "onboarding_start":
+        text = get_text(key="start_new", max_id=max_id, db=db)
+        keyboard = get_onboarding_start_inline_keyboard(max_id=max_id)
         await replace_menu(callback, text, keyboard)
 
     # ========== НАСТРОЙКИ ==========
@@ -298,13 +322,21 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
 
             await callback.message.answer(text, attachments=[keyboard])
 
-            asyncio.create_task(poll_device_token(device_code_data, user_id, max_id, callback))
+            asyncio.create_task(
+                poll_device_token(
+                    device_code_data,
+                    user_id,
+                    max_id,
+                    callback,
+                    context
+                )
+            )
 
 
     # ========== ВЫБОР ЧАСОВОГО ПОЯСА ==========
     elif menu_name == "timezone":
         text = get_text(key="timezone_setup", max_id=max_id, db=db)
-        keyboard = get_time_inline_keyboard_with_back(max_id=max_id)   # с кнопкой «Назад»
+        keyboard = get_time_inline_keyboard_with_back(max_id=max_id)
         await replace_menu(callback, text, keyboard)
 
     # ========== ПОДДЕРЖКА ==========
@@ -342,19 +374,47 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
     else:
         text = get_text(key="say_hello", max_id=max_id, db=db)
         await callback.message.answer(text=text)
-        # text = get_text(key="start_registered", max_id=max_id, db=db)
-        # keyboard = get_register_inline_keyboard(
-        #     is_admin=callback.from_user.user_id in ADMINS,
-        #     max_id=max_id
-        # )
-        # await replace_menu(callback, text, keyboard)
-
-
 
 @callback_router.message_callback(F.callback.payload == "first_info")
 async def process_first_info(callback: MessageCallback, context: MemoryContext):
     await push_menu(context, "main")
     await show_menu("first_info", callback, context)
+
+@callback_router.message_callback(F.callback.payload == "onboarding_timezone")
+async def process_onboarding_timezone(callback: MessageCallback, context: MemoryContext):
+    await push_menu(context, "onboarding_start")
+    await context.update_data(from_settings=False)
+    await show_menu("timezone", callback, context)
+
+@callback_router.message_callback(F.callback.payload == "onboarding_google_calendar")
+async def process_onboarding_google_calendar(callback: MessageCallback, context: MemoryContext):
+    await context.update_data(onboarding_calendar=True)
+    await process_google_calendar_setup(callback, context)
+
+@callback_router.message_callback(F.callback.payload == "onboarding_apple_calendar")
+async def process_onboarding_apple_calendar(callback: MessageCallback, context: MemoryContext):
+    await context.update_data(onboarding_calendar=True)
+    await push_menu(context, "calendars_setup")
+    await show_menu("apple_calendar", callback, context)
+
+@callback_router.message_callback(F.callback.payload == "onboarding_calendar_later")
+async def process_onboarding_calendar_later(callback: MessageCallback, context: MemoryContext):
+    max_id = callback.from_user.user_id
+    await context.update_data(onboarding_calendar=False)
+    text = get_text(
+        key="onboarding_calendar_later",
+        max_id=max_id,
+        db=db
+    )
+    await callback.message.edit(
+        text,
+        attachments=[
+            get_register_inline_keyboard(
+                is_admin=max_id in ADMINS,
+                max_id=max_id
+            )
+        ]
+    )
 
 @callback_router.message_callback(F.callback.payload == "support")
 async def process_support(callback: MessageCallback, context: MemoryContext):
@@ -419,7 +479,6 @@ async def process_time_page(callback: MessageCallback, context: MemoryContext):
         await callback.answer(attachments=[new_markup])
     except Exception as e:
         logger.error(f"Error updating inline keyboard: {e}")
-    # 
 
 @callback_router.message_callback(F.callback.payload == "update_notifications")
 async def process_update_notifications(callback: MessageCallback, context: MemoryContext):
@@ -451,7 +510,17 @@ async def process_settings_menu(callback: MessageCallback, context: MemoryContex
 
 @callback_router.message_callback(F.callback.payload == "documents")
 async def process_documents_menu(callback: MessageCallback, context: MemoryContext):
-    await push_menu(context, "main")
+    user = db.select_data(
+        "users",
+        columns=["timezone_offset"],
+        where_conditions={"user_id": callback.from_user.user_id}
+    )
+    previous_menu = (
+        "onboarding_start"
+        if user and user[0][0] is None
+        else "main"
+    )
+    await push_menu(context, previous_menu)
     await show_menu("documents", callback, context)
 
 @callback_router.message_callback(F.callback.payload == "admin_panel")
@@ -469,14 +538,7 @@ async def process_admin_update_notification(callback: MessageCallback):
     waiting_for_broadcast.add(callback.from_user.user_id)
     text = get_text(key = "admin_broadcast_prompt", max_id = callback.from_user.user_id, db=db)
     await callback.message.answer(text)
-    
-#@callback_router.message_callback(F.callback.payload == "services_status")
-#async def process_admin_status_services(callback: MessageCallback):
-    # status = get_full_status()
-    # text = format_status(status)
-    #await callback.message.answer(text)
-    
-    #return
+
 @callback_router.message_callback(F.callback.payload == "calendars_setup")
 async def process_calendars_setup(callback: MessageCallback, context: MemoryContext):
     max_id = callback.from_user.user_id
@@ -1024,12 +1086,6 @@ async def process_disable_auto_renewal(callback: MessageCallback, context: Memor
         {"auto_renewal": False},
         where_conditions={"id": active_sub[0]}
     )
-
-    # db.update_data(
-    #     "users",
-    #     {"yookassa_payment_method_id": None},
-    #     where_conditions={"id": max_id}
-    # )
 
     text = get_text(key="auto_renewal_disabled", max_id=max_id, db=db)
     await callback.answer(text, )

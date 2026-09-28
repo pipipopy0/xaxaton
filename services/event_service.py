@@ -90,8 +90,7 @@ def create_event(ai_response, db, user_id):
             "usage",
             {
                 "user_id": user_id,
-                "events_created": 1,
-                "voice_used": 0
+                "events_created": 1
             }
         )
     reminder_offset_minutes = ai_response.get("reminder_offset_minutes", -1)

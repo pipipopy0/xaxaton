@@ -9,6 +9,7 @@ from handlers.answer_texts.TEXT import get_text
 from handlers.keyboards import(
     get_admin_inline_keyboard,
     get_register_inline_keyboard,
+    get_onboarding_start_inline_keyboard,
     get_time_inline_keyboard,
     get_delete_inline_keyboard, 
     
@@ -69,8 +70,7 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
             "usage",
             {
                 "user_id": user_id,
-                "events_created": 0,
-                "voice_used": 0
+                "events_created": 0
             }
         )
 
@@ -102,13 +102,10 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
 
         await event.message.answer(
             text,
-            attachments=[get_time_inline_keyboard(
-                page=3,
+            attachments=[get_onboarding_start_inline_keyboard(
                 max_id=max_id
             )]
         )
-
-    # Существующий пользователь
 
     else:
 
@@ -127,8 +124,7 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
 
             await event.message.answer(
                 text,
-                attachments=[get_time_inline_keyboard(
-                    page=3,
+                attachments=[get_onboarding_start_inline_keyboard(
                     max_id=max_id
                 )]
             )

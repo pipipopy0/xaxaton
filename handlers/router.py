@@ -13,7 +13,6 @@ from services.ai_service import ai_answer
 from handlers.answer_texts.TEXT import get_text
 
 from services.event_service import process_ai_event
-#from services.voice_to_text_ai import transcribe
 from services.crypto_utils import CryptographyService
 from services.calendars.calendar_service import get_calendar_url
 from services.access import check_access
@@ -22,6 +21,8 @@ from handlers.keyboards import (
     get_time_inline_keyboard,
     get_inline_apple_app_specific_password_link,
     get_inline_google_app_specific_password_link,
+    get_onboarding_calendar_inline_keyboard,
+    get_register_inline_keyboard,
 )
 
 from datetime import timezone
@@ -231,6 +232,7 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
         max_id=max_id,
         db=db
     )
+    first_event_created = False
 
     if action == "create_event":
 
@@ -243,6 +245,13 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
         if not allowed:
             await event.message.answer(msg)
             return
+
+        usage_before = db.select_data(
+            "usage",
+            columns=["events_created"],
+            where_conditions={"user_id": user_id}
+        )
+        events_before = usage_before[0][0] if usage_before else 0
 
         if language == "ru":
 
@@ -290,6 +299,14 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
             db=db,
             user_id=user_id
         )
+
+        usage_after = db.select_data(
+            "usage",
+            columns=["events_created"],
+            where_conditions={"user_id": user_id}
+        )
+        events_after = usage_after[0][0] if usage_after else 0
+        first_event_created = events_before == 0 and events_after > 0
 
     if action == "update_event":
 
@@ -597,6 +614,19 @@ async def handle_user_input(event: MessageCreated, text: str, user_id):
 
     await event.message.answer(answer_text)
 
+    if first_event_created:
+        calendar_prompt = get_text(
+            key="onboarding_calendar_prompt",
+            max_id=max_id,
+            db=db
+        )
+        await event.message.answer(
+            calendar_prompt,
+            attachments=[
+                get_onboarding_calendar_inline_keyboard(max_id=max_id)
+            ]
+        )
+
     logger.info(
         f"User {user_id}: "
         f"answer={answer_text[:100]}..."
@@ -780,13 +810,29 @@ async def process_calendar_password(
             f"{provider}_calendar_success"
         )
 
-        text = get_text(
-            key=success_key,
-            max_id=max_id,
-            db=db
-        )
-
-        await event.message.answer(text)
+        context_data = await context.get_data()
+        if context_data.get("onboarding_calendar"):
+            text = get_text(
+                key="onboarding_calendar_success",
+                max_id=max_id,
+                db=db
+            )
+            await event.message.answer(
+                text,
+                attachments=[
+                    get_register_inline_keyboard(
+                        is_admin=max_id in ADMINS,
+                        max_id=max_id
+                    )
+                ]
+            )
+        else:
+            text = get_text(
+                key=success_key,
+                max_id=max_id,
+                db=db
+            )
+            await event.message.answer(text)
 
     except Exception as e:
 

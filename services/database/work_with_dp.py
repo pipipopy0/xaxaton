@@ -170,14 +170,12 @@ def insert_initial_plans(db):
         db.insert_data("plans",{
             "name": "free",
             "events_limit": 7,
-            "voice_limit": 2,
             "google_calendar": False,
             "apple_calendar": False
         })
         db.insert_data("plans",{
                     "name": "pro",
                     "events_limit": None,
-                    "voice_limit": None,
                     "google_calendar": True,
                     "apple_calendar": True
                 })
