@@ -535,9 +535,6 @@ async def process_admin_update_notification(callback: MessageCallback):
         await callback.message.answer(text)
         
         return
-    waiting_for_broadcast.add(callback.from_user.user_id)
-    text = get_text(key = "admin_broadcast_prompt", max_id = callback.from_user.user_id, db=db)
-    await callback.message.answer(text)
 
 @callback_router.message_callback(F.callback.payload == "calendars_setup")
 async def process_calendars_setup(callback: MessageCallback, context: MemoryContext):
