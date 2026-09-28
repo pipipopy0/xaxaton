@@ -25,6 +25,16 @@ TEXTS = {
             "All events created through the bot will be automatically synchronized with your calendar."
         ),
     },
+    "say_hello": {
+        "ru": (
+            "Planlit — бот, который помогает не забывать о намеченных встречах.\n"
+            "Запишите ему голосовое о деле или напишите сообщение  в свободной форме, он сохранит событие  и напомнит о нём."
+        ),
+        "en": (
+            "Planlit is a bot that helps you keep track of your scheduled meetings.\n"
+            "Record a voice note about an appointment or send a free-form message, and it will save the event and remind you about it."
+        )
+    },
 
     "support": {
         "ru": "Если у вас возникли проблемы или вопросы, напишите нам!",

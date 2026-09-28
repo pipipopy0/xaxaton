@@ -18,8 +18,6 @@ from handlers.router import ADMINS
 from datetime import datetime, timedelta
 from logger_config import logger
 
-from services.metrika import send_metrika_event
-
 command_router = Router()
 db = None
 
@@ -28,36 +26,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
     max_id = event.from_user.user_id
 
     logger.info(f"RAW message.text: {event.message.body.text}")
-    start_args = " ".join(args)
-
-    yclid = None
-    client_id = None
-    if "_client_" in start_args:
-
-        yclid_part, client_part = start_args.split(
-            "_client_",
-            1
-        )
-
-        if yclid_part.startswith("yclid_"):
-            yclid = yclid_part[len("yclid_"):]
-
-        if client_part:
-            client_id = client_part
-
-    elif start_args.startswith("client_"):
-
-        client_id = start_args[len("client_"):]
-
-    elif start_args.startswith("yclid_"):
-
-        yclid = start_args[len("yclid_"):]
-
-    logger.info(
-        f"START params: "
-        f"yclid={yclid}, "
-        f"client_id={client_id}"
-    )
 
     exist = db.select_data(
         "users",
@@ -65,7 +33,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
     )
 
     user_id = exist[0][0] if exist else None
-
 
     if not exist:
 
@@ -78,8 +45,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
                 "user_id": max_id,
                 "name": name,
                 "max_nickname": nickname,
-                "yclid": yclid,
-                "metrika_client_id": client_id,
                 "admin_notified": False   
             }
         )
@@ -117,12 +82,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
 
         update_data = {}
 
-        if yclid:
-            update_data["yclid"] = yclid
-
-        if client_id:
-            update_data["metrika_client_id"] = client_id
-
         if update_data:
 
             db.update_data(
@@ -130,33 +89,6 @@ async def start_cmd(event: MessageCreated, context: MemoryContext, args: list[st
                 update_data,
                 where_conditions={"user_id": max_id}
             )
-
-    if yclid or client_id:
-
-        try:
-
-            result = await send_metrika_event(
-                client_id=client_id,
-                target="start_bot",
-                yclid=yclid
-            )
-
-            logger.info(
-                f"Metrika start_bot result: {result}"
-            )
-
-        except Exception:
-
-            logger.exception(
-                "Failed to send start_bot to Metrika"
-            )
-
-    else:
-
-        logger.info(
-            "No yclid/client_id — "
-            "Metrika start_bot skipped"
-        )
 
     await context.clear()
 

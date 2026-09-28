@@ -10,8 +10,7 @@ from maxapi.types import MessageCallback, CallbackButton, InputMedia
 from maxapi.utils.inline_keyboard import InlineKeyboardBuilder
 
 from handlers.answer_texts.TEXT import get_text
-from handlers.router import ADMINS, waiting_for_broadcast
-from services.metrika import send_metrika_event
+from handlers.router import ADMINS
 from services.payment_service import (
     create_first_payment,
     create_auto_payment
@@ -341,12 +340,14 @@ async def show_menu(menu_name: str, callback: MessageCallback, context: MemoryCo
 
     # ========== ЕСЛИ ИМЯ НЕ РАСПОЗНАНО – ПОКАЗЫВАЕМ ГЛАВНОЕ ==========
     else:
-        text = get_text(key="start_registered", max_id=max_id, db=db)
-        keyboard = get_register_inline_keyboard(
-            is_admin=callback.from_user.user_id in ADMINS,
-            max_id=max_id
-        )
-        await replace_menu(callback, text, keyboard)
+        text = get_text(key="say_hello", max_id=max_id, db=db)
+        await callback.message.answer(text=text)
+        # text = get_text(key="start_registered", max_id=max_id, db=db)
+        # keyboard = get_register_inline_keyboard(
+        #     is_admin=callback.from_user.user_id in ADMINS,
+        #     max_id=max_id
+        # )
+        # await replace_menu(callback, text, keyboard)
 
 
 
@@ -667,23 +668,6 @@ async def process_manage_subscription(callback: MessageCallback, context: Memory
 
     user_id = user[0][0]
 
-    user_analytics = db.select_data(
-        "users",
-        columns=["yclid", "metrika_client_id"],
-        where_conditions={"id": user_id}
-    )
-    if user_analytics:
-        yclid = user_analytics[0][0]
-        client_id = user_analytics[0][1]
-        if client_id:
-            asyncio.create_task(
-                send_metrika_event(
-                    client_id=client_id,
-                    target="subscription_management_opened",
-                    yclid=yclid
-                )
-            )
-
     subs = db.select_data(
         "subscriptions",
         where_conditions={"user_id": user_id, "status": "active"}
@@ -916,23 +900,6 @@ async def process_buy_pro_once(
         return
 
     user_id = user[0][0]
-
-    user_analytics = db.select_data(
-        "users",
-        columns=["yclid", "metrika_client_id"],
-        where_conditions={"id": user_id}
-    )
-    if user_analytics:
-        yclid = user_analytics[0][0]
-        client_id = user_analytics[0][1]
-        if client_id:
-            asyncio.create_task(
-                send_metrika_event(
-                    client_id=client_id,
-                    target="payment_started",
-                    yclid=yclid
-                )
-            )
             
     try:
         payment = create_first_payment(
@@ -993,22 +960,7 @@ async def process_buy_pro_auto(
         return
 
     user_id = user[0][0]
-    user_analytics = db.select_data(
-        "users",
-        columns=["yclid", "metrika_client_id"],
-        where_conditions={"id": user_id}
-    )
-    if user_analytics:
-        yclid = user_analytics[0][0]
-        client_id = user_analytics[0][1]
-        if client_id:
-            asyncio.create_task(
-                send_metrika_event(
-                    client_id=client_id,
-                    target="payment_started",
-                    yclid=yclid
-                )
-            )
+
     try:
         payment = create_auto_payment(
             user_id,

@@ -1,9 +1,11 @@
+import asyncio
 import sys
 import os
 
 sys.path.append('/root/Calendator')
 sys.path.append('/root/Calendator/services')
 
+from maxapi import Bot
 import requests
 from flask import Flask, request, redirect
 from dotenv import load_dotenv
@@ -19,27 +21,48 @@ load_dotenv()
 
 CLIENT_ID = os.getenv("CLIENT_GOOGLE_ID")
 CLIENT_SECRET = os.getenv("CLIENT_GOOGLE_SECRET")
-REDIRECT_URI = os.getenv("REDIRECT_URI")
 BOT_USERNAME = os.getenv("TG_BOT_USERNAME")
-TG_BOT_API = os.getenv("TG_BOT_API")
+MAX_BOT_TOKEN = os.getenv("MAX_BOT_API")
 app = Flask(__name__)
+
+if not MAX_BOT_TOKEN:
+    logger.error("MAX_BOT_TOKEN is not set!")
+
+bot = Bot(token=MAX_BOT_TOKEN)
 
 connection = connect_database()
 db = Database(connection)
 
-def send_telegram_message(max_id, text):
-    logger.info(f"Attempting to send message to max_id={max_id}, text preview: {text[:50]}...")
-    if not TG_BOT_API:
-        logger.error("TG_BOT_API is not set. Cannot send message.")
+async def send_max_message(max_id, text):
+    logger.info(
+        f"Attempting to send MAX message to max_id={max_id}, "
+        f"text preview: {text[:50]}..."
+    )
+
+    if not MAX_BOT_TOKEN:
+        logger.error("MAX_BOT_API is not set. Cannot send message.")
         return
-    url = f"https://api.telegram.org/bot{TG_BOT_API}/sendMessage"
+
     try:
-        response = requests.post(url, json={"chat_id": max_id, "text": text})
-        logger.info(f"Telegram response status: {response.status_code}, body: {response.text[:200]}")
-        if response.status_code != 200:
-            logger.error(f"Failed to send message to {max_id}. Response: {response.text}")
+        await bot.send_message(
+            chat_id=max_id,
+            text=text
+        )
+
+        logger.info(
+            f"MAX message successfully sent to {max_id}"
+        )
+
     except Exception as e:
-        logger.error(f"Error occurred while sending message to {max_id}: {e}")
+        logger.exception(
+            f"Error sending MAX message to {max_id}: {e}"
+        )
+
+def send_max_message_sync(max_id, text):
+
+    asyncio.run(
+        send_max_message(max_id, text)
+    )
 
 @app.route("/yookassa/webhook", methods=["POST"])
 def yookassa_webhook():
@@ -114,7 +137,7 @@ def yookassa_webhook():
         else:
             return "OK", 200
 
-        send_telegram_message(max_id, text)
+        send_max_message(max_id, text)
 
         logger.info(
             f"Payment processed: "
@@ -129,7 +152,7 @@ def yookassa_webhook():
         logger.exception(
             f"Error processing YooKassa webhook: {e}"
         )
-        return "OK", 200    
+        return "OK", 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8005, debug=False)

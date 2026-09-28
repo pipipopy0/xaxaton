@@ -908,7 +908,7 @@ async def handle_text_message(
         )
 
         return
-
+    
     await handle_user_input(
         event,
         text,

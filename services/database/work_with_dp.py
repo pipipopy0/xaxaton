@@ -25,8 +25,6 @@ users_db = {
         language VARCHAR(10) DEFAULT 'ru',
         yookassa_payment_method_id VARCHAR(100),
         auto_renewal BOOLEAN,
-        yclid TEXT,
-        metrika_client_id TEXT,
         admin_notified BOOLEAN DEFAULT FALSE,
         blocked_bot BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT NOW()
@@ -156,16 +154,6 @@ payment_notifications_db = {
         updated_at TIMESTAMP DEFAULT NOW()
     """
 }
-analytics_events_db = {
-    "analytics_events": """ 
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        event_name TEXT NOT NULL,
-        yclid TEXT,
-        metrika_client_id TEXT,
-        created_at TIMESTAMP DEFAULT NOW(),
-        sent_to_metrika BOOLEAN DEFAULT FALSE
-"""}
 def connect_database():
     connection = psycopg2.connect(
         host=host,
@@ -215,7 +203,6 @@ def create_tables():
         db.create_table(usage_db)           
         db.create_table(payments_db)
         db.create_table(payment_notifications_db)
-        db.create_table(analytics_events_db)
         insert_initial_plans(db=db)
     except Exception as e:
         logger.error(f"Error {e}")

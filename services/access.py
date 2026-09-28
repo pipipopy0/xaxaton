@@ -136,25 +136,6 @@ def check_access(db, user_id, action_type='event'):
     
     if action_type == 'event':
         if events_limit is not None and events_used >= events_limit:
-            from services.metrika import send_metrika_event
-            import asyncio
-            
-            user_data = db.select_data(
-                "users",
-                columns=["yclid", "metrika_client_id"],
-                where_conditions={"id": user_id}
-            )
-            if user_data:
-                yclid = user_data[0][0]
-                client_id = user_data[0][1]
-                if client_id:
-                    asyncio.create_task(
-                        send_metrika_event(
-                            client_id=client_id,
-                            target="limit_reached",
-                            yclid=yclid
-                        )
-                    )
             return False, text, "free"
         return True, "", "free"
     else:

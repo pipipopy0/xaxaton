@@ -1,11 +1,9 @@
-import asyncio
 from datetime import datetime, timedelta, timezone
 from logger_config import logger, debug_logger
 
 from services.get_correct_time import parser_duckling
 from services.calendars.calendar_service import create_calendar_event, update_calendar_event, delete_calendar_event
 from services.google_calendar_service import create_google_calendar_event, update_google_calendar_event, delete_google_calendar_event
-from services.metrika import send_metrika_event
 
 from zoneinfo import ZoneInfo
 
@@ -173,35 +171,6 @@ def create_event(ai_response, db, user_id):
         db.update_data("events", update_fields, where_conditions={"id": event_id})  
         logger.info(f"Updated event {event_id} with fields: {update_fields}")
 
-    user_data = db.select_data(
-        "users",
-        columns=["yclid", "metrika_client_id"],
-        where_conditions={"id": user_id}
-    )
-
-    if user_data:
-        yclid = user_data[0][0]
-        client_id = user_data[0][1]
-
-        usage_data = db.select_data(
-            "usage",
-            columns=["events_created"],
-            where_conditions={"user_id": user_id}
-        )
-        event_count = usage_data[0][0] if usage_data else 0
-
-        target = "first_event_created" if event_count == 1 else "event_created"
-
-        if client_id:
-            asyncio.create_task(
-                send_metrika_event(
-                    client_id=client_id,
-                    target=target,
-                    yclid=yclid
-                )
-            )
-            logger.info(f"Metrika {target} sent for user {user_id}")
-    
     return answer
 
 def update_event(ai_response, db, user_id): 
