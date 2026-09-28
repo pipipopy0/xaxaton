@@ -157,11 +157,6 @@ async def update_time_cmd(event: MessageCreated):
     text = get_text(key = "timezone_setup", max_id = event.from_user.user_id, db=db)
     await event.message.answer(text, attachments=[get_time_inline_keyboard(max_id=event.from_user.user_id)])
 
-@command_router.message_created(Command("penis"))
-async def penis_cmd(event: MessageCreated):
-    text = 'is very big'
-    await event.message.answer(text)
-
 @command_router.message_created(Command("menu"))
 async def menu_cmd(event: MessageCreated, context: MemoryContext, args: list[str]):
     await start_cmd(event, context=context, args=args)
