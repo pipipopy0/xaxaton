@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timedelta, timezone
-
+import asyncio
 from yookassa import Payment
 from services.yookassa_client import Configuration
 from logger_config import logger
@@ -308,25 +308,6 @@ def handle_webhook(db, data: dict):
     else:
         logger.error(f"Unknown payment_type: {payment_type}")
         return None
-    user_analytics = db.select_data(
-        "users",
-        columns=["yclid", "metrika_client_id"],
-        where_conditions={"id": user_id}
-    )
-    if user_analytics:
-        yclid = user_analytics[0][0]
-        client_id = user_analytics[0][1]
-        if client_id:
-            import asyncio
-            from services.metrika import send_metrika_event
-            asyncio.create_task(
-                send_metrika_event(
-                    client_id=client_id,
-                    target="subscription_purchased",
-                    yclid=yclid,
-                    extra_params={"Price": payment["amount"]["value"], "Currency": "RUB"}
-                )
-            )
     payment_rec = db.select_data(
         "payments",
         columns=["id"],
