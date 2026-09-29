@@ -49,7 +49,6 @@ users_costs = {
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
         text_cost NUMERIC(10,6) DEFAULT 0,
-        voice_cost NUMERIC(10,6) DEFAULT 0,
         all_cost NUMERIC(10,6) DEFAULT 0,
         created_at TIMESTAMP DEFAULT NOW()
     """
@@ -97,7 +96,6 @@ plans_db = {
         id SERIAL PRIMARY KEY,
         name TEXT UNIQUE NOT NULL,
         events_limit INTEGER,
-        voice_limit INTEGER,
         google_calendar BOOLEAN DEFAULT FALSE,
         apple_calendar BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT NOW()
@@ -124,7 +122,6 @@ usage_db = {
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         events_created INTEGER DEFAULT 0,
-        voice_used INTEGER DEFAULT 0,
         created_at TIMESTAMP DEFAULT NOW()
     """
 }
