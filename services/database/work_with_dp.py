@@ -161,6 +161,7 @@ def connect_database():
     )
     return connection
 
+
 def insert_initial_plans(db):
     existing = db.select_data("plans", where_conditions={"name" : "free"})
     if not existing:
