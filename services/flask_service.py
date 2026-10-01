@@ -21,7 +21,7 @@ load_dotenv()
 
 CLIENT_ID = os.getenv("CLIENT_GOOGLE_ID")
 CLIENT_SECRET = os.getenv("CLIENT_GOOGLE_SECRET")
-BOT_USERNAME = os.getenv("TG_BOT_USERNAME")
+BOT_USERNAME = os.getenv("MAX_BOT_USERNAME")
 MAX_BOT_TOKEN = os.getenv("MAX_BOT_API")
 app = Flask(__name__)
 
