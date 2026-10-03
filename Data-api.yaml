@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Planlit Data API
+  version: 1.0.0
+  description: |
+    Спецификация OpenAPI для вебхука обработки платежей, используемого в проекте Planlit.
+    Сервис получает уведомления о платежах от YooKassa, проверяет событие,
+    обновляет статус подписки в PostgreSQL и уведомляет пользователя через MAX Bot.
+
+servers:
+  - url: http://localhost
+    description: Локальное окружение Docker
+  - url: http://localhost:80
+    description: Публичный порт nginx
+  - url: http://localhost:8080
+    description: Пользовательский публичный порт при настройке WEB_PORT
+
+paths:
+  /yookassa/webhook:
+    post:
+      summary: Обработчик webhook YooKassa
+      description: |
+        Получает уведомления о статусе платежа от YooKassa. При успешном платеже
+        система обновляет данные подписки пользователя и отправляет подтверждение
+        в чат через интеграцию MAX Bot.
+      tags:
+        - Платежи
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/YooKassaWebhookPayload'
+      responses:
+        '200':
+          description: Webhook успешно обработан.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+        '400':
+          description: Пустой или некорректный JSON-пакет.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+        '500':
+          description: Внутренняя ошибка обработки; для предотвращения повторных попыток сервер всё равно возвращает OK.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+components:
+  schemas:
+    YooKassaWebhookPayload:
+      type: object
+      additionalProperties: true
+      description: |
+        JSON-объект, который отправляет YooKassa с данными о событии и платеже.
+        В текущем проекте обрабатываются только события со значением event == payment.succeeded.
+      required:
+        - event
+      properties:
+        event:
+          type: string
+          enum:
+            - payment.succeeded
+          example: payment.succeeded
+        type:
+          type: string
+          nullable: true
+          example: payment
+        object:
+          type: object
+          nullable: true
+          description: Метаданные объекта платежа, возвращённые YooKassa.
+        metadata:
+          type: object
+          nullable: true
+          description: Дополнительные метаданные платежа, включая идентификаторы пользователя и подписки, если они переданы.
+        amount:
+          type: object
+          nullable: true
+          description: Данные о сумме платежа от YooKassa.
+          properties:
+            value:
+              type: string
+              example: '199.00'
+            currency:
+              type: string
+              example: RUB
+        id:
+          type: string
+          nullable: true
+          example: 'ch_123456789'
+
+    SubscriptionResult:
+      type: object
+      description: Результат успешной обработки webhook.
+      properties:
+        user_id:
+          type: integer
+          example: 42
+        payment_type:
+          type: string
+          enum:
+            - first_one_time
+            - first_auto
+            - renewal_one_time
+            - renewal_auto
+          example: first_one_time
+        expires_at:
+          type: string
+          format: date-time
+          example: '2026-10-03T12:00:00+03:00'
+
+    UserRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+        max_id:
+          type: integer
+          example: 123456789
+        timezone_offset:
+          type: string
+          nullable: true
+          example: Europe/Moscow
+
+  securitySchemes: {}
