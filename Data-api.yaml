@@ -16,6 +16,28 @@ servers:
     description: Пользовательский публичный порт при настройке WEB_PORT
 
 paths:
+  /health:
+    get:
+      summary: Проверка состояния сервиса
+      description: |
+        Возвращает статус доступности сервиса для мониторинга и health-check.
+        Используется для проверки, что webhook-сервис запущен и отвечает корректно.
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Сервис работает нормально.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Сервис недоступен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
   /yookassa/webhook:
     post:
       summary: Обработчик webhook YooKassa
@@ -56,6 +78,21 @@ paths:
 
 components:
   schemas:
+    HealthResponse:
+      type: object
+      description: Ответ health-check.
+      properties:
+        status:
+          type: string
+          example: ok
+        service:
+          type: string
+          example: webhook
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-10-03T12:00:00+03:00'
+
     YooKassaWebhookPayload:
       type: object
       additionalProperties: true

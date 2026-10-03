@@ -64,6 +64,14 @@ def send_max_message_sync(max_id, text):
         send_max_message(max_id, text)
     )
 
+@app.route("/health", methods=["GET"])
+def health_check():
+    return {
+        "status": "ok",
+        "service": "webhook",
+        "timestamp": datetime.utcnow().isoformat() + "Z"
+    }, 200
+
 @app.route("/yookassa/webhook", methods=["POST"])
 def yookassa_webhook():
     try:
