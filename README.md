@@ -56,58 +56,63 @@ YooKassa -> web (nginx) -> webhook (Flask) -> PostgreSQL
 
 `Python`, `MAX API`, `PostgreSQL`, `Docker Compose`, `Flask`, `nginx`, `Duckling`, `Google Calendar API`, `CalDAV`, `YooKassa`, AI API для обработки текста.
 
-## Быстрый запуск
+## Установка на Ubuntu с нуля
 
-- Docker Desktop с Docker Compose;
-- доступ к интернету для загрузки образов и Python-зависимостей;
-- токены и ключи внешних сервисов.
+### 1. Получите проект и проверьте порты
 
-## Настройка
+Загрузите проект на сервер удобным способом и перейдите в его корневую папку, где лежат `docker-compose.yml` и `Dockerfile`.
 
-Создайте в корне проекта файл `.env`. Файл уже исключён из Git и не должен публиковаться.
+Посмотрите, какие порты уже заняты:
 
-Минимальный набор переменных:
+```bash
+sudo ss -ltnp | grep -E ':(22|80|443|8080|5432|8000|8005)( |$)' || true
+sudo ufw status verbose
+```
+
+Для Compose нужен свободный внешний TCP-порт сайта: по умолчанию `80`. Если он занят, задайте `WEB_PORT=8080` в `.env` и используйте `8080` в firewall и URL. Порты `5432` (PostgreSQL), `8000` (Duckling) и `8005` (webhook) не публикуются на хост и открывать их в интернет не нужно.
+
+### 2. Создайте `.env`
+
+Файла `.env` в репозитории нет: создайте его в корне проекта самостоятельно:
+
+```bash
+nano .env
+```
+
+Добавьте настройки, заменив значения `CHANGE_ME` валидными значениями ключей:
 
 ```dotenv
-MAX_BOT_API=...
-tg_admin_id=...
-
+MAX_BOT_API=CHANGE_ME
+tg_admin_id=CHANGE_ME
+key_cryptography=CHANGE_ME
+EXCHANGE_RATE=CHANGE_ME
 host=postgres
 port=5432
 user=calendator
-password=change-me
+password=CHANGE_ME
 database=calendator
-
-key_cryptography=...
-EXCHANGE_RATE=...
+POLZA_API=CHANGE_ME
+POLZA_URL=CHANGE_ME
+GEMINI_FLASH_3=CHANGE_ME
+WEB_PORT=80
+CLIENT_GOOGLE_ID=
+CLIENT_GOOGLE_SECRET=
+REDIRECT_URI=
+DEVICE_CODE_URL=
+TOKEN_URI=
+MAX_BOT_USERNAME=
+YOOKASSA_SECRET_KEY=
+YOOKASSA_SHOP_ID=
 ```
 
-Для полной функциональности также настройте переменные внешних сервисов:
+### 3. Соберите и запустите сервисы
 
-```dotenv
-GEMINI_FLASH_3=...
-GPT_4O_MINI_TRANSCRIBE=...
-CLIENT_GOOGLE_ID=...
-CLIENT_GOOGLE_SECRET=...
-TOKEN_URI=...
-DEVICE_CODE_URL=...
-
-YOOKASSA_SECRET_KEY=...
-YOOKASSA_SHOP_ID=...
-```
-
-Если порт сайта `80` занят, задайте другой внешний порт:
-
-```dotenv
-WEB_PORT=8080
-```
-
-## Запуск
-
-Сборка и запуск всех сервисов:
+Проверьте Compose-конфигурацию, затем соберите образы и запустите контейнеры:
 
 ```bash
-docker compose up -d --build
+sudo docker compose config --quiet
+sudo docker compose up -d --build
+sudo docker compose ps
 ```
 
 ## Структура проекта
