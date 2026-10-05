@@ -200,6 +200,6 @@ api:
             nullable: true
             example: Europe/Moscow
 
-  securitySchemes: {}
+    securitySchemes: {}
 
 checks: []
